@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-civic-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-civic-500;
+  }
+}
+
+@layer components {
+  .section-card {
+    @apply bg-white rounded-2xl shadow-card border border-slate-100 p-6;
+  }
+
+  .phase-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-civic-600 hover:bg-civic-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-civic hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-civic-600 text-civic-600 hover:bg-civic-50 font-semibold px-5 py-2.5 rounded-xl transition-all duration-200;
+  }
+
+  .step-number {
+    @apply flex-shrink-0 w-9 h-9 rounded-full bg-civic-600 text-white flex items-center justify-center text-sm font-bold shadow-civic;
+  }
+
+  .fact-card {
+    @apply bg-gradient-to-br from-civic-50 to-blue-50 border border-civic-100 rounded-xl p-4 hover:shadow-civic transition-all duration-200 hover:-translate-y-0.5;
+  }
+
+  .did-you-know {
+    @apply bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-400 rounded-r-xl p-4 text-amber-900;
+  }
+}
