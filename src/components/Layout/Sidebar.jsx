@@ -1,27 +1,32 @@
 import {
   Home, ClipboardList, Megaphone, Vote, BarChart3,
-  HelpCircle, ChevronRight, X, Menu, Award
+  HelpCircle, ChevronRight, X, Award
 } from 'lucide-react';
-import { phases } from '../../data/electionData';
 
-const iconMap = {
-  Home, ClipboardList, Megaphone, Vote, BarChart3, HelpCircle,
-};
+const iconMap = { Home, ClipboardList, Megaphone, Vote, BarChart3, HelpCircle };
 
 const phaseColors = {
   overview:     { active: 'bg-civic-600 text-white shadow-civic', hover: 'hover:bg-civic-50 hover:text-civic-700' },
   registration: { active: 'bg-teal-600 text-white shadow-md',     hover: 'hover:bg-teal-50 hover:text-teal-700' },
-  campaigning:  { active: 'bg-saffron-500 text-white shadow-md',  hover: 'hover:bg-orange-50 hover:text-orange-700' },
+  campaigning:  { active: 'bg-orange-500 text-white shadow-md',   hover: 'hover:bg-orange-50 hover:text-orange-700' },
   polling:      { active: 'bg-civic-600 text-white shadow-civic', hover: 'hover:bg-civic-50 hover:text-civic-700' },
   results:      { active: 'bg-teal-600 text-white shadow-md',     hover: 'hover:bg-teal-50 hover:text-teal-700' },
-  quiz:         { active: 'bg-saffron-500 text-white shadow-md',  hover: 'hover:bg-orange-50 hover:text-orange-700' },
+  quiz:         { active: 'bg-orange-500 text-white shadow-md',   hover: 'hover:bg-orange-50 hover:text-orange-700' },
 };
 
-export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMobileOpen }) {
-  const handleNav = (id) => {
-    setActivePhase(id);
-    setMobileOpen(false);
-  };
+export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMobileOpen, sidebar }) {
+  const handleNav = (id) => { setActivePhase(id); setMobileOpen(false); };
+
+  // sidebar prop comes from content[currentLanguage].sidebar in App.jsx
+  const {
+    title = 'ElectionEdu',
+    tagline = "India's Democracy Guide",
+    sectionLabel = 'Election Phases',
+    footerVote = '🗳️ Your vote is your voice',
+    footerEvent = 'Hack2Skills PromptWars 2026',
+    tryIt = 'Try it!',
+    phases = [],
+  } = sidebar ?? {};
 
   return (
     <>
@@ -53,8 +58,8 @@ export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMo
               <Award size={22} className="text-white" />
             </div>
             <div>
-              <h1 className="font-display font-bold text-white text-lg leading-tight">ElectionEdu</h1>
-              <p className="text-white/60 text-xs">India's Democracy Guide</p>
+              <h1 className="font-display font-bold text-white text-lg leading-tight">{title}</h1>
+              <p className="text-white/60 text-xs">{tagline}</p>
             </div>
           </div>
           {/* Tricolour accent bar */}
@@ -65,15 +70,15 @@ export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMo
           </div>
         </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 py-4 px-3 overflow-y-auto space-y-1">
+        {/* Navigation — uses phases from content[lang].sidebar */}
+        <nav className="flex-1 py-4 px-3 overflow-y-auto space-y-1 sidebar-nav">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest px-3 mb-3">
-            Election Phases
+            {sectionLabel}
           </p>
           {phases.map((phase, idx) => {
             const Icon = iconMap[phase.icon];
             const isActive = activePhase === phase.id;
-            const colors = phaseColors[phase.id];
+            const colors = phaseColors[phase.id] ?? phaseColors.overview;
 
             return (
               <button
@@ -94,15 +99,13 @@ export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMo
                 <span className="flex-1">{phase.label}</span>
                 {phase.id === 'quiz' && (
                   <span className="text-[10px] font-bold uppercase tracking-wide bg-white/20 px-2 py-0.5 rounded-full">
-                    Try it!
+                    {tryIt}
                   </span>
                 )}
-                {isActive && <ChevronRight size={14} className="opacity-70" />}
-                {!isActive && (
-                  <span className="text-xs text-slate-400 font-medium">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                )}
+                {isActive
+                  ? <ChevronRight size={14} className="opacity-70" />
+                  : <span className="text-xs text-slate-400 font-medium">{phase.badge ?? String(idx + 1).padStart(2, '0')}</span>
+                }
               </button>
             );
           })}
@@ -111,8 +114,8 @@ export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMo
         {/* Footer */}
         <div className="p-4 border-t border-slate-100 flex-shrink-0">
           <div className="bg-civic-50 rounded-xl p-3 text-center">
-            <p className="text-xs text-civic-700 font-medium">🗳️ Your vote is your voice</p>
-            <p className="text-xs text-slate-500 mt-0.5">Hack2Skills PromptWars 2026</p>
+            <p className="text-xs text-civic-700 font-medium">{footerVote}</p>
+            <p className="text-xs text-slate-500 mt-0.5">{footerEvent}</p>
           </div>
         </div>
       </aside>

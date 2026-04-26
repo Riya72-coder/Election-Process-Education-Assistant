@@ -272,3 +272,209 @@ export const resultsData = {
     'In the 2024 general election, the ECI\'s Results Monitoring System updated seat tallies every 30 minutes, ' +
     'with millions of citizens tracking progress live on the ECI website and the Voter Helpline App.',
 };
+
+// ─────────────────────────────────────────────────────────────
+// GLOBAL i18n CONTENT OBJECT
+// Top-level keys are BCP-47 language codes (en, hi, mr, bn …).
+// Components use:  const lang = content[currentLanguage] ?? content.en
+//
+// HOW TO ADD A NEW LANGUAGE (e.g. Bengali 'bn'):
+//   1. Copy the entire 'en' block below.
+//   2. Change the key to 'bn' and translate every string value.
+//   3. Add 'bn' to the SUPPORTED_LANGS array at the bottom.
+//   All wired components update automatically — no other changes needed.
+// ─────────────────────────────────────────────────────────────
+export const content = {
+
+  // ── ENGLISH ──────────────────────────────────────────────
+  en: {
+    sidebar: {
+      title: 'ElectionEdu',
+      tagline: "India's Democracy Guide",
+      sectionLabel: 'Election Phases',
+      footerVote: '🗳️ Your vote is your voice',
+      footerEvent: 'Hack2Skills PromptWars 2026',
+      tryIt: 'Try it!',
+      phases: [
+        { id: 'overview',     label: 'Overview',         icon: 'Home',          badge: '01' },
+        { id: 'registration', label: 'Registration',     icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning',  label: 'Campaigning',      icon: 'Megaphone',     badge: '03' },
+        { id: 'polling',      label: 'Polling Day',      icon: 'Vote',          badge: '04' },
+        { id: 'results',      label: 'Results',          icon: 'BarChart3',     badge: '05' },
+        { id: 'quiz',         label: 'Eligibility Quiz', icon: 'HelpCircle',    badge: '06' },
+      ],
+    },
+    header: {
+      registerBtn: 'Register to Vote',
+      breadcrumbRoot: 'ElectionEdu',
+      phaseLabels: {
+        overview: 'Overview', registration: 'Voter Registration',
+        campaigning: 'Campaigning & MCC', polling: 'Polling Day',
+        results: 'Results & Government', quiz: 'Voter Eligibility Quiz',
+      },
+    },
+    overview: {
+      tagline: "The World's Largest Democracy",
+      heroTitle: 'Your Vote, Your Power.',
+      heroSubtitle: 'Embark on a guided journey to master the election process in minutes.',
+      description: 'India conducts the largest democratic elections on the planet. With over 97 crore registered voters and nearly 10 lakh polling stations, every election is a massive civic enterprise managed by the Election Commission of India (ECI).',
+      ctaJourney: 'Start My Voting Journey',
+      ctaEligibility: 'Check My Eligibility →',
+      statsLabel: ['Registered Voters', 'Polling Stations', 'Lok Sabha Seats', 'State Assemblies'],
+      journeyTitle: 'Your 4-Phase Election Journey',
+      timelineTitle: 'Historical Timeline',
+      helplinkTitle: '📱 Voter Helpline App — Your Digital Polling Companion',
+      helplinkDesc: 'Search your name in the Electoral Roll, find your polling station, download your e-EPIC, and lodge grievances — all from your phone.',
+      helplinkBtn: 'Get App ↗',
+      dykLabel: '💡 Did You Know? — Pune Edition',
+      dykText: "Pune has over 82 lakh registered voters across its Lok Sabha constituencies. The Pune district Collectorate is the nodal Zonal Office coordinating election logistics across 21 Vidhan Sabha segments. In the 2024 General Election, Pune city's voter turnout was ~58%, with first-time voters aged 18–19 being the fastest-growing enrolment segment.",
+    },
+    quiz: {
+      title: 'Voter Eligibility Quiz',
+      subtitle: 'Find out if you are eligible to vote in India.',
+      startBtn: 'Start Quiz',
+      disclaimer: 'For educational purposes only. Verify at voters.eci.gov.in',
+      questions: 'Questions', time: 'Approx. Time', private: 'Private',
+      nextSteps: 'Next Steps', yourAnswers: 'Your Answers', retake: 'Retake Quiz',
+      eligibleTitle: '🎉 You Are Eligible to Vote!',
+      ineligibleTitle: 'Not Eligible Right Now',
+    },
+  },
+
+  // ── HINDI ─────────────────────────────────────────────────
+  hi: {
+    sidebar: {
+      title: 'ElectionEdu',
+      tagline: 'भारत का लोकतंत्र मार्गदर्शक',
+      sectionLabel: 'चुनाव के चरण',
+      footerVote: '🗳️ आपका वोट, आपकी आवाज़',
+      footerEvent: 'Hack2Skills PromptWars 2026',
+      tryIt: 'आज़माएं!',
+      phases: [
+        { id: 'overview',     label: 'सिंहावलोकन',         icon: 'Home',          badge: '01' },
+        { id: 'registration', label: 'पंजीकरण',             icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning',  label: 'चुनाव प्रचार',         icon: 'Megaphone',     badge: '03' },
+        { id: 'polling',      label: 'मतदान दिवस',           icon: 'Vote',          badge: '04' },
+        { id: 'results',      label: 'परिणाम',               icon: 'BarChart3',     badge: '05' },
+        { id: 'quiz',         label: 'पात्रता प्रश्नोत्तरी', icon: 'HelpCircle',    badge: '06' },
+      ],
+    },
+    header: {
+      registerBtn: 'मतदाता बनें',
+      breadcrumbRoot: 'ElectionEdu',
+      phaseLabels: {
+        overview: 'सिंहावलोकन', registration: 'मतदाता पंजीकरण',
+        campaigning: 'चुनाव प्रचार', polling: 'मतदान दिवस',
+        results: 'परिणाम', quiz: 'पात्रता प्रश्नोत्तरी',
+      },
+    },
+    overview: {
+      tagline: 'विश्व का सबसे बड़ा लोकतंत्र',
+      heroTitle: 'आपका वोट, आपकी शक्ति।',
+      heroSubtitle: 'कुछ ही मिनटों में चुनाव प्रक्रिया को समझने की यात्रा शुरू करें।',
+      description: 'भारत विश्व के सबसे बड़े लोकतांत्रिक चुनाव आयोजित करता है। 97 करोड़ से अधिक पंजीकृत मतदाताओं और लगभग 10 लाख मतदान केंद्रों के साथ, हर चुनाव भारत निर्वाचन आयोग (ECI) द्वारा संचालित एक विशाल नागरिक उपक्रम है।',
+      ctaJourney: 'मेरी यात्रा शुरू करें',
+      ctaEligibility: 'पात्रता जांचें →',
+      statsLabel: ['पंजीकृत मतदाता', 'मतदान केंद्र', 'लोकसभा सीटें', 'राज्य विधानसभाएं'],
+      journeyTitle: '4-चरण चुनाव यात्रा',
+      timelineTitle: 'ऐतिहासिक समयरेखा',
+      helplinkTitle: '📱 मतदाता हेल्पलाइन ऐप — आपका डिजिटल चुनाव साथी',
+      helplinkDesc: 'मतदाता सूची में नाम खोजें, मतदान केंद्र जानें, e-EPIC डाउनलोड करें, और शिकायत दर्ज करें — सब अपने फोन से।',
+      helplinkBtn: 'ऐप डाउनलोड करें ↗',
+      dykLabel: '💡 क्या आप जानते हैं? — पुणे संस्करण',
+      dykText: 'पुणे में 82 लाख से अधिक पंजीकृत मतदाता हैं। पुणे जिला कलेक्टरेट 21 विधानसभा क्षेत्रों में चुनाव संचालन का नोडल जोनल कार्यालय है। 2024 के लोकसभा चुनाव में पुणे का मतदान प्रतिशत लगभग 58% रहा, जिसमें 18–19 वर्ष के पहली बार मतदाताओं की संख्या सबसे तेज गति से बढ़ रही है।',
+    },
+    quiz: {
+      title: 'मतदाता पात्रता प्रश्नोत्तरी',
+      subtitle: 'जानें कि क्या आप भारत में मतदान के योग्य हैं।',
+      startBtn: 'प्रश्नोत्तरी शुरू करें',
+      disclaimer: 'यह केवल शैक्षणिक उद्देश्यों के लिए है। voters.eci.gov.in पर सत्यापित करें।',
+      questions: 'प्रश्न', time: 'अनुमानित समय', private: 'निजी',
+      nextSteps: 'अगले कदम', yourAnswers: 'आपके उत्तर', retake: 'फिर से प्रयास करें',
+      eligibleTitle: '🎉 आप मतदान के योग्य हैं!',
+      ineligibleTitle: 'अभी योग्य नहीं',
+    },
+  },
+
+  // ── MARATHI ───────────────────────────────────────────────
+  mr: {
+    sidebar: {
+      title: 'ElectionEdu',
+      tagline: 'भारताचा लोकशाही मार्गदर्शक',
+      sectionLabel: 'निवडणुकीचे टप्पे',
+      footerVote: '🗳️ तुमचं मत, तुमची आवाज',
+      footerEvent: 'Hack2Skills PromptWars 2026',
+      tryIt: 'वापरून पाहा!',
+      phases: [
+        { id: 'overview',     label: 'आढावा',                icon: 'Home',          badge: '01' },
+        { id: 'registration', label: 'नोंदणी',               icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning',  label: 'प्रचार',                icon: 'Megaphone',     badge: '03' },
+        { id: 'polling',      label: 'मतदान दिन',             icon: 'Vote',          badge: '04' },
+        { id: 'results',      label: 'निकाल',                 icon: 'BarChart3',     badge: '05' },
+        { id: 'quiz',         label: 'पात्रता प्रश्नमंजुषा',  icon: 'HelpCircle',    badge: '06' },
+      ],
+    },
+    header: {
+      registerBtn: 'मतदार व्हा',
+      breadcrumbRoot: 'ElectionEdu',
+      phaseLabels: {
+        overview: 'आढावा', registration: 'मतदार नोंदणी',
+        campaigning: 'प्रचार', polling: 'मतदान दिन',
+        results: 'निकाल', quiz: 'पात्रता प्रश्नमंजुषा',
+      },
+    },
+    overview: {
+      tagline: 'जगातील सर्वात मोठी लोकशाही',
+      heroTitle: 'तुमचं मत, तुमची शक्ती।',
+      heroSubtitle: 'काही मिनिटांत निवडणूक प्रक्रिया समजून घेण्याच्या प्रवासाला सुरुवात करा।',
+      description: 'भारत जगातील सर्वात मोठ्या लोकशाही निवडणुका घेतो. 97 कोटींहून अधिक नोंदणीकृत मतदार आणि सुमारे 10 लाख मतदान केंद्रांसह, प्रत्येक निवडणूक हे भारत निवडणूक आयोगाद्वारे (ECI) व्यवस्थापित एक विशाल नागरी उपक्रम आहे।',
+      ctaJourney: 'माझी यात्रा सुरू करा',
+      ctaEligibility: 'पात्रता तपासा →',
+      statsLabel: ['नोंदणीकृत मतदार', 'मतदान केंद्रे', 'लोकसभा जागा', 'राज्य विधानसभा'],
+      journeyTitle: '४-टप्प्यांची निवडणूक यात्रा',
+      timelineTitle: 'ऐतिहासिक कालरेखा',
+      helplinkTitle: '📱 मतदार हेल्पलाइन ॲप — तुमचा डिजिटल निवडणूक साथी',
+      helplinkDesc: 'मतदार यादीत नाव शोधा, मतदान केंद्र जाणा, e-EPIC डाउनलोड करा आणि तक्रार नोंदवा — सर्व तुमच्या फोनवरून।',
+      helplinkBtn: 'ॲप मिळवा ↗',
+      dykLabel: '💡 तुम्हाला माहीत आहे का? — पुणे आवृत्ती',
+      dykText: 'पुण्यात 82 लाखांहून अधिक नोंदणीकृत मतदार आहेत. पुणे जिल्हा कलेक्टरेट हे 21 विधानसभा मतदारसंघांमध्ये सर्व निवडणूक कामकाजाचे नोडल जोनल कार्यालय आहे. 2024 च्या लोकसभा निवडणुकीत पुणे शहराचा मतदान टक्का सुमारे 58% होता।',
+    },
+    quiz: {
+      title: 'मतदार पात्रता प्रश्नमंजुषा',
+      subtitle: 'तुम्ही भारतात मतदान करण्यास पात्र आहात का ते जाणा।',
+      startBtn: 'प्रश्नमंजुषा सुरू करा',
+      disclaimer: 'हे केवळ शैक्षणिक हेतूंसाठी आहे. voters.eci.gov.in वर सत्यापित करा।',
+      questions: 'प्रश्न', time: 'अंदाजे वेळ', private: 'खाजगी',
+      nextSteps: 'पुढील पावले', yourAnswers: 'तुमची उत्तरे', retake: 'पुन्हा प्रयत्न करा',
+      eligibleTitle: '🎉 तुम्ही मतदानास पात्र आहात!',
+      ineligibleTitle: 'सध्या पात्र नाही',
+    },
+  },
+
+  // ── TEMPLATE ─ copy & translate to add a new language ─────
+  // bn: {
+  //   sidebar: {
+  //     title: 'ElectionEdu',
+  //     tagline: "ভারতের গণতন্ত্র গাইড",
+  //     sectionLabel: 'নির্বাচনের পর্যায়',
+  //     footerVote: '🗳️ আপনার ভোট, আপনার কণ্ঠস্বর',
+  //     footerEvent: 'Hack2Skills PromptWars 2026',
+  //     tryIt: 'চেষ্টা করুন!',
+  //     phases: [
+  //       { id: 'overview',     label: 'সংক্ষিপ্ত বিবরণ', icon: 'Home',          badge: '01' },
+  //       { id: 'registration', label: 'নিবন্ধন',          icon: 'ClipboardList', badge: '02' },
+  //       { id: 'campaigning',  label: 'প্রচারণা',          icon: 'Megaphone',     badge: '03' },
+  //       { id: 'polling',      label: 'ভোটের দিন',         icon: 'Vote',          badge: '04' },
+  //       { id: 'results',      label: 'ফলাফল',             icon: 'BarChart3',     badge: '05' },
+  //       { id: 'quiz',         label: 'যোগ্যতা কুইজ',      icon: 'HelpCircle',    badge: '06' },
+  //     ],
+  //   },
+  //   header:   { registerBtn: '...', breadcrumbRoot: 'ElectionEdu', phaseLabels: { ... } },
+  //   overview: { tagline: '...', heroTitle: '...', heroSubtitle: '...', ... },
+  //   quiz:     { title: '...', subtitle: '...', startBtn: '...', ... },
+  // },
+};
+
+// Languages with full content support — used for navigator.language auto-detection
+export const SUPPORTED_LANGS = ['en', 'hi', 'mr'];
+

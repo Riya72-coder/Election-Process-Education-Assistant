@@ -1,24 +1,38 @@
 import { motion } from 'framer-motion';
-import { Users, MapPin, Building2, Flag, ArrowRight, Smartphone, CheckCircle } from 'lucide-react';
+import { Users, MapPin, Building2, Flag, ArrowRight, Smartphone } from 'lucide-react';
 import { overviewData } from '../../data/electionData';
 
 const iconMap = { Users, MapPin, Building2, Flag };
 
-// Stagger children animation helper
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
 };
-
 const itemVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export default function OverviewPhase({ setActivePhase }) {
+export default function OverviewPhase({ setActivePhase, langContent }) {
+  // Pull translated strings from the content object passed by App.jsx
+  const ov = langContent?.overview ?? {};
+  const {
+    tagline        = "The World's Largest Democracy",
+    heroTitle      = 'Your Vote, Your Power.',
+    heroSubtitle   = 'Embark on a guided journey to master the election process in minutes.',
+    description    = overviewData.description,
+    ctaJourney     = 'Start My Voting Journey',
+    ctaEligibility = 'Check My Eligibility →',
+    statsLabel     = overviewData.stats.map(s => s.label),
+    journeyTitle   = 'Your 4-Phase Election Journey',
+    timelineTitle  = 'Historical Timeline',
+    helplinkTitle  = '📱 Voter Helpline App',
+    helplinkDesc   = overviewData.description,
+    helplinkBtn    = 'Get App ↗',
+    dykLabel       = '💡 Did You Know?',
+    dykText        = overviewData.didYouKnow,
+  } = ov;
+
   return (
     <motion.div
       variants={containerVariants}
@@ -31,38 +45,30 @@ export default function OverviewPhase({ setActivePhase }) {
         variants={itemVariants}
         className="relative overflow-hidden bg-gradient-to-br from-civic-900 via-civic-800 to-civic-600 rounded-3xl p-8 lg:p-14 text-white"
       >
-        {/* Decorative blobs */}
         <div className="absolute -top-20 -right-20 w-72 h-72 bg-white/5 rounded-full pointer-events-none" />
         <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-teal-400/10 rounded-full pointer-events-none" />
 
         <div className="relative max-w-2xl">
-          {/* Tricolour pill */}
+          {/* Tricolour pill + tagline */}
           <div className="flex items-center gap-1.5 mb-6">
             <span className="w-4 h-4 rounded-full bg-india-saffron" />
             <span className="w-4 h-4 rounded-full bg-white/90" />
             <span className="w-4 h-4 rounded-full bg-india-green" />
             <span className="ml-3 text-white/50 text-xs font-semibold uppercase tracking-widest">
-              {overviewData.subtitle}
+              {tagline}
             </span>
           </div>
 
-          {/* Main headline */}
           <h2 className="font-display text-4xl lg:text-6xl font-extrabold leading-tight mb-4">
-            Your Vote,{' '}
-            <span className="bg-gradient-to-r from-teal-300 to-cyan-200 bg-clip-text text-transparent">
-              Your Power.
-            </span>
+            {heroTitle}
           </h2>
-
-          {/* Sub-text */}
           <p className="text-civic-100 text-base lg:text-lg leading-relaxed mb-3 max-w-xl">
-            Embark on a guided journey to master the election process in minutes.
+            {heroSubtitle}
           </p>
           <p className="text-civic-200/70 text-sm leading-relaxed mb-10 max-w-lg">
-            {overviewData.description}
+            {description}
           </p>
 
-          {/* CTA */}
           <div className="flex flex-col sm:flex-row items-start gap-3">
             <motion.button
               whileHover={{ scale: 1.04, y: -2 }}
@@ -70,11 +76,8 @@ export default function OverviewPhase({ setActivePhase }) {
               onClick={() => setActivePhase('registration')}
               className="group inline-flex items-center gap-2.5 bg-teal-400 hover:bg-teal-300 text-teal-950 font-bold px-7 py-3.5 rounded-xl shadow-lg text-sm transition-colors duration-200"
             >
-              Start My Voting Journey
-              <ArrowRight
-                size={17}
-                className="transition-transform duration-200 group-hover:translate-x-1"
-              />
+              {ctaJourney}
+              <ArrowRight size={17} className="transition-transform duration-200 group-hover:translate-x-1" />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.02 }}
@@ -82,7 +85,7 @@ export default function OverviewPhase({ setActivePhase }) {
               onClick={() => setActivePhase('quiz')}
               className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white/80 hover:text-white font-semibold px-5 py-3.5 rounded-xl text-sm transition-all duration-200"
             >
-              Check My Eligibility →
+              {ctaEligibility}
             </motion.button>
           </div>
         </div>
@@ -90,25 +93,25 @@ export default function OverviewPhase({ setActivePhase }) {
 
       {/* ── STATS GRID ── */}
       <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {overviewData.stats.map((stat) => {
+        {overviewData.stats.map((stat, idx) => {
           const Icon = iconMap[stat.icon];
           return (
             <motion.div
               key={stat.label}
-              whileHover={{ y: -4, boxShadow: '0 8px 28px -6px rgba(26,86,219,0.25)' }}
-              className="section-card text-center cursor-default transition-shadow duration-200"
+              whileHover={{ y: -4 }}
+              className="section-card text-center cursor-default"
             >
               <div className="w-12 h-12 bg-civic-50 rounded-xl flex items-center justify-center mx-auto mb-3">
                 {Icon && <Icon size={22} className="text-civic-600" />}
               </div>
               <p className="font-display text-2xl font-bold text-civic-700">{stat.value}</p>
-              <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
+              <p className="text-xs text-slate-500 mt-1">{statsLabel[idx] ?? stat.label}</p>
             </motion.div>
           );
         })}
       </motion.div>
 
-      {/* ── VOTER HELPLINE APP SPOTLIGHT ── */}
+      {/* ── VOTER HELPLINE APP ── */}
       <motion.div
         variants={itemVariants}
         className="section-card flex flex-col md:flex-row items-start md:items-center gap-5 bg-gradient-to-r from-teal-50 to-cyan-50 border-teal-100"
@@ -117,14 +120,8 @@ export default function OverviewPhase({ setActivePhase }) {
           <Smartphone size={26} className="text-white" />
         </div>
         <div className="flex-1">
-          <p className="font-display font-bold text-teal-800 text-base mb-1">
-            📱 Voter Helpline App — Your Digital Polling Companion
-          </p>
-          <p className="text-slate-600 text-sm leading-relaxed">
-            The ECI's official <strong>Voter Helpline App</strong> lets you search your name in the
-            Electoral Roll, find your nearest polling station, download your EPIC (Voter ID) e-card,
-            and lodge grievances — all from your phone. Available on Android &amp; iOS.
-          </p>
+          <p className="font-display font-bold text-teal-800 text-base mb-1">{helplinkTitle}</p>
+          <p className="text-slate-600 text-sm leading-relaxed">{helplinkDesc}</p>
         </div>
         <a
           href="https://play.google.com/store/apps/details?id=com.eci.citizen"
@@ -132,15 +129,15 @@ export default function OverviewPhase({ setActivePhase }) {
           rel="noopener noreferrer"
           className="flex-shrink-0 btn-primary text-xs px-4 py-2"
         >
-          Get App ↗
+          {helplinkBtn}
         </a>
       </motion.div>
 
-      {/* ── JOURNEY OVERVIEW CARDS ── */}
+      {/* ── JOURNEY CARDS ── */}
       <motion.div variants={itemVariants}>
         <h3 className="font-display text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-civic-600 rounded-full" />
-          Your 4-Phase Election Journey
+          {journeyTitle}
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           {overviewData.journeyCards.map((card, idx) => (
@@ -156,9 +153,7 @@ export default function OverviewPhase({ setActivePhase }) {
                   {idx + 1}
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-800 text-sm group-hover:text-civic-700 transition-colors">
-                    {card.phase}
-                  </p>
+                  <p className="font-semibold text-slate-800 text-sm group-hover:text-civic-700 transition-colors">{card.phase}</p>
                   <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">{card.summary}</p>
                 </div>
               </div>
@@ -171,26 +166,18 @@ export default function OverviewPhase({ setActivePhase }) {
       <motion.div variants={itemVariants} className="section-card">
         <h3 className="font-display text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-civic-600 rounded-full" />
-          Historical Timeline
+          {timelineTitle}
         </h3>
         <div className="relative">
           <div className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-slate-100" />
           <div className="space-y-5">
             {overviewData.timeline.map((item, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                className="flex items-start gap-4"
-              >
+              <motion.div key={idx} variants={itemVariants} className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-9 h-9 rounded-full bg-civic-600 text-white flex items-center justify-center z-10">
-                  <span className="text-[10px] font-bold leading-none">
-                    {item.year.split('–')[0].slice(2)}
-                  </span>
+                  <span className="text-[10px] font-bold leading-none">{item.year.split('–')[0].slice(2)}</span>
                 </div>
                 <div className="flex-1 pb-2">
-                  <span className="text-xs font-bold text-civic-600 uppercase tracking-wide">
-                    {item.year}
-                  </span>
+                  <span className="text-xs font-bold text-civic-600 uppercase tracking-wide">{item.year}</span>
                   <p className="text-sm text-slate-700 mt-0.5 leading-relaxed">{item.event}</p>
                 </div>
               </motion.div>
@@ -201,8 +188,8 @@ export default function OverviewPhase({ setActivePhase }) {
 
       {/* ── DID YOU KNOW ── */}
       <motion.div variants={itemVariants} className="did-you-know">
-        <p className="text-sm font-bold uppercase tracking-wider mb-2">💡 Did You Know? — Pune Edition</p>
-        <p className="text-sm leading-relaxed">{overviewData.didYouKnow}</p>
+        <p className="text-sm font-bold uppercase tracking-wider mb-2">{dykLabel}</p>
+        <p className="text-sm leading-relaxed">{dykText}</p>
       </motion.div>
     </motion.div>
   );
