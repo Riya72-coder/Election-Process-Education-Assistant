@@ -10,15 +10,6 @@ const LANG_OPTIONS = [
   { code: 'te', label: 'తెలుగు' },
 ];
 
-const phaseLabels = {
-  en: { overview: 'Overview', registration: 'Voter Registration', campaigning: 'Campaigning & MCC', polling: 'Polling Day', results: 'Results & Government', quiz: 'Voter Eligibility Quiz' },
-  hi: { overview: 'सिंहावलोकन', registration: 'मतदाता पंजीकरण', campaigning: 'चुनाव प्रचार', polling: 'मतदान दिवस', results: 'परिणाम', quiz: 'प्रश्नोत्तरी' },
-  mr: { overview: 'आढावा', registration: 'मतदार नोंदणी', campaigning: 'प्रचार', polling: 'मतदान दिन', results: 'निकाल', quiz: 'प्रश्नमंजुषा' },
-  bn: { overview: 'সংক্ষিপ্ত', registration: 'ভোটার নিবন্ধন', campaigning: 'প্রচারণা', polling: 'ভোটের দিন', results: 'ফলাফল', quiz: 'কুইজ' },
-  ta: { overview: 'கண்ணோட்டம்', registration: 'வாக்காளர் பதிவு', campaigning: 'பிரசாரம்', polling: 'வாக்களிப்பு நாள்', results: 'முடிவுகள்', quiz: 'வினாடி வினா' },
-  te: { overview: 'అవలోకనం', registration: 'ఓటర్ నమోదు', campaigning: 'ప్రచారం', polling: 'పోలింగ్ రోజు', results: 'ఫలితాలు', quiz: 'క్విజ్' },
-};
-
 export default function Header({ activePhase, setMobileOpen, currentLanguage, setLanguage, header }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);

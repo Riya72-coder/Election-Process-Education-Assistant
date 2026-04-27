@@ -140,16 +140,16 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
           {journeyTitle}
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
-          {overviewData.journeyCards.map((card, idx) => (
+          {(ov.journey ?? overviewData.journeyCards).map((card, idx) => (
             <motion.button
-              key={card.phase}
+              key={card.phaseId || idx}
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => setActivePhase(card.phaseId)}
+              onClick={() => setActivePhase(card.phaseId || 'overview')}
               className="text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-civic-200 bg-white hover:bg-civic-50 transition-all duration-200 group"
             >
               <div className="flex items-start gap-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-sm ${card.color}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-sm ${card.color || 'bg-civic-600'}`}>
                   {idx + 1}
                 </div>
                 <div>
@@ -171,10 +171,10 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
         <div className="relative">
           <div className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-slate-100" />
           <div className="space-y-5">
-            {overviewData.timeline.map((item, idx) => (
+            {(ov.timeline ?? overviewData.timeline).map((item, idx) => (
               <motion.div key={idx} variants={itemVariants} className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-9 h-9 rounded-full bg-civic-600 text-white flex items-center justify-center z-10">
-                  <span className="text-[10px] font-bold leading-none">{item.year.split('–')[0].slice(2)}</span>
+                  <span className="text-[10px] font-bold leading-none">{item.year.split('–')[0].slice(-2)}</span>
                 </div>
                 <div className="flex-1 pb-2">
                   <span className="text-xs font-bold text-civic-600 uppercase tracking-wide">{item.year}</span>

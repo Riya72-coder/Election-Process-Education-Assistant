@@ -98,14 +98,17 @@ export default function App() {
             header={langContent.header}
           />
 
-          <main className="flex-1 overflow-y-auto p-4 lg:p-8 relative">
-            <AnimatePresence mode="wait" initial={false}>
+          <main id="main-content" className="flex-1 overflow-y-auto p-4 lg:p-8 relative">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={activePhase + language}
+                key={`${activePhase}-${language}`}
                 variants={pageVariants}
                 initial="initial"
                 animate="animate"
                 exit="exit"
+                onAnimationComplete={() => {
+                  document.getElementById('main-content')?.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
               >
                 <ActiveComponent
                   setActivePhase={setActivePhase}

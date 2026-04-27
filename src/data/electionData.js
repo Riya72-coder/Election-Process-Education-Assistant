@@ -1,292 +1,139 @@
 export const phases = [
-  { id: 'overview',      label: 'Overview',        icon: 'Home',          color: 'civic' },
-  { id: 'registration',  label: 'Registration',     icon: 'ClipboardList', color: 'teal' },
-  { id: 'campaigning',   label: 'Campaigning',      icon: 'Megaphone',     color: 'saffron' },
-  { id: 'polling',       label: 'Polling Day',      icon: 'Vote',          color: 'civic' },
-  { id: 'results',       label: 'Results',          icon: 'BarChart3',     color: 'teal' },
-  { id: 'quiz',          label: 'Eligibility Quiz', icon: 'HelpCircle',    color: 'saffron' },
+  { id: 'overview', label: 'Overview', icon: 'Home', color: 'civic' },
+  { id: 'registration', label: 'Registration', icon: 'ClipboardList', color: 'teal' },
+  { id: 'campaigning', label: 'Campaigning', icon: 'Megaphone', color: 'saffron' },
+  { id: 'polling', label: 'Polling Day', icon: 'Vote', color: 'civic' },
+  { id: 'results', label: 'Results', icon: 'BarChart3', color: 'teal' },
+  { id: 'quiz', label: 'Eligibility Quiz', icon: 'HelpCircle', color: 'saffron' },
 ];
 
 // ──────────────────────────────────────────────
-// OVERVIEW
+// DEFAULT FALLBACK DATA (English)
 // ──────────────────────────────────────────────
 export const overviewData = {
-  title: "India's Democratic Journey",
-  subtitle: "The World's Largest Democracy",
-  description:
-    'India conducts the largest democratic elections on the planet. With over 97 crore registered voters and nearly 10 lakh polling stations, every election is a massive civic enterprise. The Election Commission of India (ECI) oversees free and fair elections for the Lok Sabha, State Assemblies, and local bodies.',
-
+  description: 'India conducts the largest democratic elections on the planet. With over 97 crore registered voters and nearly 10 lakh polling stations, every election is a massive civic enterprise.',
   stats: [
     { label: 'Registered Voters', value: '97 Crore+', icon: 'Users' },
-    { label: 'Polling Stations',  value: '10.5 Lakh+', icon: 'MapPin' },
-    { label: 'Lok Sabha Seats',   value: '543',         icon: 'Building2' },
-    { label: 'State Assemblies',  value: '28 States',   icon: 'Flag' },
+    { label: 'Polling Stations', value: '10.5 Lakh+', icon: 'MapPin' },
+    { label: 'Lok Sabha Seats', value: '543', icon: 'Building2' },
+    { label: 'State Assemblies', value: '28 States', icon: 'Flag' },
   ],
-
-  // Journey cards on the Overview page — each one navigates to a phase
   journeyCards: [
-    {
-      phase: 'Voter Registration',
-      phaseId: 'registration',
-      summary: 'Get your EPIC (Voter ID) card and enrol in the Electoral Roll. Takes just 5 minutes online!',
-      color: 'bg-teal-600',
-    },
-    {
-      phase: 'Campaigning & MCC',
-      phaseId: 'campaigning',
-      summary: 'How parties campaign, what candidates can and cannot do, and expense limits.',
-      color: 'bg-orange-500',
-    },
-    {
-      phase: 'Polling Day',
-      phaseId: 'polling',
-      summary: 'The EVM and VVPAT process, indelible ink, and your rights inside the booth.',
-      color: 'bg-civic-600',
-    },
-    {
-      phase: 'Results & Government',
-      phaseId: 'results',
-      summary: 'How votes are counted, FPTP system, and how the new government is formed.',
-      color: 'bg-teal-700',
-    },
+    { phase: 'Voter Registration', phaseId: 'registration', summary: 'Get your EPIC card and enrol in the Electoral Roll.', color: 'bg-teal-600' },
+    { phase: 'Campaigning & MCC', phaseId: 'campaigning', summary: 'Rules for parties and candidates during elections.', color: 'bg-orange-500' },
+    { phase: 'Polling Day', phaseId: 'polling', summary: 'The EVM process, indelible ink, and booth rights.', color: 'bg-civic-600' },
+    { phase: 'Results & Government', phaseId: 'results', summary: 'How votes are counted and governments formed.', color: 'bg-teal-700' },
   ],
-
   timeline: [
-    { year: '1950',    event: 'Constitution of India adopted; Election Commission of India (ECI) established' },
-    { year: '1951–52', event: 'First General Election — 17.3 crore voters participated across 489 constituencies' },
-    { year: '1989',    event: 'Voting age lowered from 21 to 18 years — crores of young Indians gained the right to vote' },
-    { year: '1994',    event: 'Photo Electoral Rolls introduced; EPIC (Voter ID) cards issued for the first time' },
-    { year: '2004',    event: 'EVMs used nationwide for the first time in a General Election' },
-    { year: '2013',    event: 'NOTA (None of the Above) option introduced by Supreme Court directive' },
-    { year: '2019',    event: 'Largest election in human history — 61.4 crore votes cast; VVPAT deployed nationwide' },
-    { year: '2024',    event: '18th Lok Sabha election with record voter enrolment; Pune district records 58.2% turnout' },
+    { year: '1950', event: 'ECI established; Constitution adopted' },
+    { year: '1951', event: 'First General Election held' },
+    { year: '1989', event: 'Voting age lowered to 18' },
+    { year: '2004', event: 'EVMs used nationwide' },
   ],
-
-  // Pune-specific fact
-  didYouKnow:
-    '🏙️ Pune has over 82 lakh registered voters across its Lok Sabha constituencies (Pune & Baramati). ' +
-    'The Pune district Collectorate serves as the nodal Zonal Office and coordinates all election logistics — ' +
-    'from EVM allocation to Booth Level Officer (BLO) assignments — across 21 Vidhan Sabha segments. ' +
-    'In the 2024 General Election, Pune city\'s voter turnout was approximately 58%, with first-time voters ' +
-    'aged 18–19 making up the fastest-growing enrolment segment. 🗳️',
+  didYouKnow: 'Pune has over 82 lakh registered voters. The Collectorate coordinates election logistics across 21 segments.',
 };
 
-// ──────────────────────────────────────────────
-// REGISTRATION
-// ──────────────────────────────────────────────
 export const registrationData = {
   title: 'Voter Registration',
   subtitle: 'Your First Step to Democracy',
-  description:
-    'Before you can cast your vote, you must be enrolled in the Electoral Roll — the official list of eligible voters in your constituency. Once enrolled, you receive your EPIC (Electors\' Photo Identity Card), commonly known as the Voter ID card.',
-
+  description: 'Before you can cast your vote, you must be enrolled in the Electoral Roll.',
   epicHighlight: {
-    title: 'EPIC — Electors\' Photo Identity Card',
+    title: 'EPIC — Voter ID Card',
     points: [
-      'Introduced in 1993 by the ECI to reduce impersonation at polling booths',
-      'Contains your name, serial number, constituency, photo, and a unique EPIC number',
-      'Now available as a digital e-EPIC (PDF) downloadable from voters.eci.gov.in',
-      'Accepted as a valid ID for banking, SIM registration, and other KYC purposes',
-      'Lost your EPIC? Apply for a duplicate online using Form 002 on the Voter Helpline App',
+      'Introduced in 1993 to reduce impersonation',
+      'Now available as digital e-EPIC from voters.eci.gov.in',
+      'Accepted for banking and official KYC purposes',
     ],
   },
-
   eligibility: [
-    { label: 'Age',              detail: 'Must be 18 years or older on the qualifying date (1st January of that year)' },
-    { label: 'Citizenship',      detail: 'Must be a citizen of India' },
-    { label: 'Residence',        detail: 'Must be ordinarily resident in the constituency where applying' },
-    { label: 'Mental Capacity',  detail: 'Must not be of unsound mind as declared by a competent court' },
-    { label: 'Not Disqualified', detail: 'Must not be disqualified under any law relating to corrupt practices or election offences' },
+    { label: 'Age', detail: '18+ on 1st January of the election year' },
+    { label: 'Citizenship', detail: 'Must be an Indian citizen' },
+    { label: 'Residence', detail: 'Must reside in the constituency' },
   ],
-
   steps: [
-    { step: 1, title: 'Fill Form 6', detail: 'Apply online at voters.eci.gov.in or via the Voter Helpline App. Offline: collect Form 6 from your local BLO (Booth Level Officer) or ERO office.' },
-    { step: 2, title: 'Submit Documents', detail: 'Attach proof of age (Aadhaar, birth certificate, school leaving certificate) and address proof (utility bill, rent agreement).' },
-    { step: 3, title: 'BLO Verification', detail: 'A Booth Level Officer will visit your residence to physically verify your details. Keep your documents handy.' },
-    { step: 4, title: 'Receive EPIC', detail: 'Your EPIC (Voter ID) is dispatched by post. You can also download the e-EPIC (digital Voter ID) on the Voter Helpline App immediately after approval.' },
-    { step: 5, title: 'Verify in Roll', detail: 'Always confirm your name appears in the final Electoral Roll at voters.eci.gov.in before election day.' },
+    { step: 1, title: 'Fill Form 6', detail: 'Apply online at voters.eci.gov.in' },
+    { step: 2, title: 'Submit Documents', detail: 'Provide proof of age and address' },
+    { step: 3, title: 'Verification', detail: 'BLO verifies your residence' },
   ],
-
   forms: [
-    { form: 'Form 6',  purpose: 'New voter registration (Indian citizens)' },
-    { form: 'Form 6A', purpose: 'Registration for Indian citizens living abroad (NRIs)' },
-    { form: 'Form 7',  purpose: 'Objection to inclusion or request for deletion' },
-    { form: 'Form 8',  purpose: 'Correction/update of existing entries in Electoral Roll' },
-    { form: 'Form 8A', purpose: 'Transposition to a different polling station within same constituency' },
+    { form: 'Form 6', purpose: 'New registration' },
+    { form: 'Form 8', purpose: 'Correction of entries' },
   ],
-
-  // Pune-specific
-  didYouKnow:
-    '📱 You can register as a voter entirely online — no office visit needed! ' +
-    'In Pune, you can also walk into the District Election Office at Collector\'s Office, Shivajinagar, ' +
-    'for in-person assistance. e-EPIC download is instant once your application is approved — ' +
-    'save it to your phone and use it at the polling booth. No need to carry the physical plastic card!',
 };
 
-// ──────────────────────────────────────────────
-// CAMPAIGNING
-// ──────────────────────────────────────────────
 export const campaigningData = {
-  title: 'Campaigning & Model Code of Conduct',
-  subtitle: 'Democracy in Action',
-  description:
-    'Campaigning is how candidates and political parties communicate their vision to voters. Once elections are announced, the Model Code of Conduct (MCC) kicks in immediately to ensure a level playing field.',
-
+  title: 'Campaigning & MCC',
+  subtitle: 'Rules of Engagement',
+  description: 'Campaigning is how candidates communicate. The MCC ensures a level playing field.',
   mccPoints: [
-    { title: 'No Hate Speech',                   detail: 'Candidates cannot make appeals based on religion, caste, community, or language to gain votes' },
-    { title: 'No Bribery',                        detail: 'Distributing cash, gifts, liquor, or any material inducement to voters is a criminal offence' },
-    { title: 'Equal Use of Government Resources', detail: 'The ruling party cannot use government machinery, vehicles, or funds for campaign activities' },
-    { title: 'Silence Period',                    detail: '48 hours before polling, all campaigning — print, electronic, outdoor — must completely stop' },
-    { title: 'Polling Day Rules',                 detail: 'No campaign materials within 200 metres of any polling station on polling day' },
+    { title: 'No Hate Speech', detail: 'No appeals based on religion or caste' },
+    { title: 'No Bribery', detail: 'Distributing cash or gifts is a crime' },
+    { title: 'Silence Period', detail: '48 hours before polling, all campaigning stops' },
   ],
-
   expenses: [
-    { category: 'Lok Sabha Candidate',        limit: '₹95 Lakh (General States) / ₹75 Lakh (Smaller States)' },
-    { category: 'State Assembly Candidate',   limit: '₹40 Lakh (General States) / ₹28 Lakh (Smaller States)' },
+    { category: 'Lok Sabha', limit: '₹95 Lakh' },
+    { category: 'State Assembly', limit: '₹40 Lakh' },
   ],
-
   timeline: [
-    { phase: 'Announcement',    detail: 'ECI releases election schedule; MCC comes into effect immediately' },
-    { phase: 'Nomination',      detail: 'Candidates file nomination papers with the Returning Officer within the specified window' },
-    { phase: 'Scrutiny',        detail: 'Returning Officer scrutinises all nominations for eligibility and document completeness' },
-    { phase: 'Withdrawal',      detail: 'Last date for candidates to withdraw their candidature' },
-    { phase: 'Campaign Period', detail: 'Active campaigning through rallies, door-to-door visits, media, and social media' },
-    { phase: 'Silence Period',  detail: '48 hours before polling day — all campaigning activities stop' },
+    { phase: 'Announcement', detail: 'MCC comes into effect' },
+    { phase: 'Nomination', detail: 'Candidates file papers' },
+    { phase: 'Silence Period', detail: '48h before voting' },
   ],
-
-  didYouKnow:
-    'The Model Code of Conduct is not a law — it is a voluntary code of ethics agreed upon by political parties. ' +
-    'The ECI has zero tolerance for violations and has ordered re-polling in the past based solely on MCC breaches!',
 };
 
-// ──────────────────────────────────────────────
-// POLLING
-// ──────────────────────────────────────────────
 export const pollingData = {
   title: 'Polling Day',
-  subtitle: 'Exercise Your Democratic Right',
-  description:
-    'Polling Day is when India\'s democratic spirit truly shines. Millions of voters head to their polling stations to cast votes using Electronic Voting Machines (EVMs) — verified by a paper trail through the VVPAT system.',
-
+  subtitle: 'Your Day to Vote',
+  description: 'Cast your vote using EVMs, verified by VVPAT paper trail.',
   evmVvpat: {
-    title: 'EVM + VVPAT — How They Work Together',
-    evm: [
-      'EVM stands for Electronic Voting Machine. It has two units: a Control Unit (with the Presiding Officer) and a Ballot Unit (inside your voting compartment).',
-      'When you press the button next to your chosen candidate\'s name and symbol, the EVM records your vote electronically.',
-      'A green LED lights up and you hear a beep — confirmation that your vote has been registered.',
-      'EVMs store votes without any network connection, making hacking impossible.',
-    ],
-    vvpat: [
-      'VVPAT stands for Voter Verifiable Paper Audit Trail — your paper receipt of democracy.',
-      'After you press the EVM button, the VVPAT unit prints a slip showing the candidate\'s symbol, name, and serial number.',
-      'The slip is visible through a glass window for exactly 7 seconds, then drops into a sealed box automatically.',
-      'This paper trail allows independent verification of EVM count during disputes, as mandated by the Supreme Court of India.',
-    ],
+    title: 'EVM + VVPAT',
+    evm: ['Press button next to your candidate', 'Beep sound confirms vote'],
+    vvpat: ['Slip shows symbol for 7 seconds', 'Drops into sealed box'],
   },
-
   indelibleInk: {
-    title: 'The Indelible Ink — Your Badge of Democracy',
-    facts: [
-      'Applied to the left index finger after voting to prevent double voting',
-      'Developed by the National Physical Laboratory of India (NPLI) in Pune\'s own scientific ecosystem',
-      'Supplied exclusively by Mysuru Paints & Varnish Ltd. (a Government of Karnataka enterprise)',
-      'Cannot be washed off — stays visible for 2 to 3 weeks',
-      'First used in Indian elections in 1962; now exported to over 25 countries for their elections',
-    ],
+    title: 'Indelible Ink',
+    facts: ['Prevents double voting', 'Lasts 2-3 weeks', 'Developed at NPLI'],
   },
-
   whatToBring: [
-    { item: 'Voter ID (EPIC)',     desc: 'Primary document — physical card or e-EPIC on your phone' },
-    { item: 'Aadhaar Card',        desc: 'Accepted as alternative photo ID' },
-    { item: 'Passport',            desc: 'Accepted as alternative photo ID' },
-    { item: 'Driving Licence',     desc: 'Accepted as alternative photo ID' },
-    { item: 'MNREGA Job Card',     desc: 'Accepted with photograph' },
-    { item: 'Pension Document',    desc: 'With photograph — alternative photo ID' },
+    { item: 'Voter ID', desc: 'EPIC card' },
+    { item: 'Aadhaar', desc: 'Valid photo ID' },
   ],
-
   steps: [
-    { step: 1, title: 'Find Your Polling Station', detail: 'Check voters.eci.gov.in or your Voter Slip from the BLO. In Pune, stations are typically schools and community halls in your ward.' },
-    { step: 2, title: 'Arrive & Join the Queue',   detail: 'Separate queues for senior citizens, persons with disabilities, and women. PwD voters get priority access.' },
-    { step: 3, title: 'Identity Verification',     detail: 'Show your EPIC or alternative ID. The Polling Officer marks your name in the Electoral Roll register.' },
-    { step: 4, title: 'Receive Voter Slip',         detail: 'A Polling Officer activates the Ballot Unit of the EVM specifically for you.' },
-    { step: 5, title: 'Enter Voting Compartment',  detail: 'Step into the screened compartment. No mobile phones allowed. Your ballot is completely secret.' },
-    { step: 6, title: 'Cast Your Vote on EVM',     detail: 'Press the blue button next to your chosen candidate. A beep + green LED confirms your vote is registered.' },
-    { step: 7, title: 'Check the VVPAT Slip',      detail: 'View the VVPAT paper slip through the window (7 seconds). It shows your candidate\'s name and symbol — your verifiable proof.' },
-    { step: 8, title: 'Collect Indelible Ink Mark', detail: 'Indelible ink is applied to your left index finger. Wear it proudly — it\'s your badge of civic participation!' },
+    { step: 1, title: 'Find Booth', detail: 'Check booth on ECI website' },
+    { step: 2, title: 'Verification', detail: 'Show ID to Polling Officer' },
+    { step: 3, title: 'Ink & Slip', detail: 'Get ink mark and voter slip' },
+    { step: 4, title: 'Vote', detail: 'Press button on EVM' },
   ],
-
   rights: [
-    'You have the right to a completely secret ballot — no one can know who you voted for.',
-    'If you accidentally press the wrong button before it registers, inform the Presiding Officer immediately.',
-    'NOTA (None of the Above) is available on every EVM if you prefer not to vote for any candidate.',
-    'Persons with Disabilities (PwD) have the right to a companion of their choice for assistance.',
-    'Report any violations, booth capturing, or inducement: ECI Toll-Free Helpline 1950.',
+    'Right to secret ballot',
+    'NOTA option available',
   ],
-
-  // Pune-specific
-  didYouKnow:
-    '🖊️ The indelible ink used in Indian elections is manufactured at Mysuru Paints & Varnish Ltd., ' +
-    'but the original research was done at India\'s National Physical Laboratory. ' +
-    'Pune\'s own NPLI connection: the formula was validated by NPL researchers in collaboration with scientists ' +
-    'from Pune University\'s Chemistry Department. The ink has been exported to over 25 countries, ' +
-    'including South Africa, Malaysia, and Ghana, for use in their national elections! ' +
-    'In Pune\'s 2024 Lok Sabha election, over 4,800 polling stations used EVMs across the city and its outskirts.',
 };
 
-// ──────────────────────────────────────────────
-// RESULTS
-// ──────────────────────────────────────────────
 export const resultsData = {
-  title: 'Results & Government Formation',
-  subtitle: 'Democracy Delivers Its Verdict',
-  description:
-    'After polling ends, EVMs are sealed and stored in strong rooms under 24/7 CCTV surveillance and armed security. On counting day, every vote is meticulously tallied and results are declared by Returning Officers.',
-
+  title: 'Results',
+  subtitle: 'The Verdict of the People',
+  description: 'Counting of votes is conducted in a transparent manner under strict security.',
   countingSteps: [
-    { step: 1, title: 'Counting Day',        detail: 'EVMs are transported from strong rooms to counting centres under strict security. Counting agents of all candidates are present.' },
-    { step: 2, title: 'Postal Ballot Count', detail: 'Postal ballots (armed forces, essential services, NRIs, PWDs) are counted first before EVM counting begins.' },
-    { step: 3, title: 'EVM Round Counting',  detail: 'EVMs from each polling station are counted one at a time. Results are displayed on a large screen after each round.' },
-    { step: 4, title: 'VVPAT Matching',      detail: 'As per Supreme Court directive, VVPAT slips are matched with EVM count for mandatory verification rounds.' },
-    { step: 5, title: 'Winner Declared',     detail: 'The candidate with the highest votes under the First-Past-The-Post (FPTP) system wins — no majority needed.' },
-    { step: 6, title: 'Return of Election',  detail: 'Returning Officer officially certifies and publicly declares the winner. Results are uploaded to ECI\'s website in real-time.' },
+    { step: 1, title: 'Strong Rooms', detail: 'EVMs stored under armed guard' },
+    { step: 2, title: 'Counting', detail: 'Votes tallied in rounds' },
+    { step: 3, title: 'Declaration', detail: 'Returning Officer announces winner' },
   ],
-
   governmentFormation: [
-    { title: 'Simple Majority',      detail: 'To form a government, the alliance/party must win 272+ seats (majority in the 543-seat Lok Sabha)' },
-    { title: "President's Role",     detail: "The President invites the leader of the majority party/alliance to form the government and be sworn in as Prime Minister" },
-    { title: 'PM & Cabinet',         detail: "Prime Minister sworn in; Cabinet ministers allocated portfolios; Council of Ministers takes charge of governance" },
-    { title: 'Official Opposition',  detail: 'The second largest party (with at least 10% of seats) becomes the Official Opposition with a Leader of Opposition' },
+    { title: 'Majority', detail: '272+ seats needed for Lok Sabha' },
+    { title: 'Coalition', detail: 'Parties can join to reach majority' },
   ],
-
   keyConcepts: [
-    { term: 'FPTP',           meaning: 'First Past The Post — the candidate with the most votes wins, even without an absolute majority' },
-    { term: 'Hung Parliament', meaning: 'When no single party wins a clear majority, requiring coalition-building to form a government' },
-    { term: 'By-election',    meaning: 'Mid-term election held when a sitting MP/MLA seat becomes vacant due to death, disqualification, or resignation' },
-    { term: 'Re-polling',     meaning: 'Fresh polling ordered by ECI in specific booths due to booth capturing, violence, or EVM technical failure' },
-    { term: 'NOTA',           meaning: 'None of the Above — option on EVM allowing voters to formally reject all candidates' },
+    { term: 'FPTP', meaning: 'First Past The Post' },
+    { term: 'Deposit', meaning: 'Security amount for candidates' },
   ],
-
-  didYouKnow:
-    'India uses one of the fastest election result declaration systems in the world. ' +
-    'Results for all 543 Lok Sabha seats are typically declared within 24 hours of counting starting! ' +
-    'In the 2024 general election, the ECI\'s Results Monitoring System updated seat tallies every 30 minutes, ' +
-    'with millions of citizens tracking progress live on the ECI website and the Voter Helpline App.',
+  didYouKnow: 'The counting of votes for the entire country is usually completed in a single day.',
 };
 
 // ─────────────────────────────────────────────────────────────
 // GLOBAL i18n CONTENT OBJECT
-// Top-level keys are BCP-47 language codes (en, hi, mr, bn …).
-// Components use:  const lang = content[currentLanguage] ?? content.en
-//
-// HOW TO ADD A NEW LANGUAGE (e.g. Bengali 'bn'):
-//   1. Copy the entire 'en' block below.
-//   2. Change the key to 'bn' and translate every string value.
-//   3. Add 'bn' to the SUPPORTED_LANGS array at the bottom.
-//   All wired components update automatically — no other changes needed.
 // ─────────────────────────────────────────────────────────────
 export const content = {
-
-  // ── ENGLISH ──────────────────────────────────────────────
   en: {
     sidebar: {
       title: 'ElectionEdu',
@@ -295,39 +142,67 @@ export const content = {
       footerVote: '🗳️ Your vote is your voice',
       footerEvent: 'Hack2Skills PromptWars 2026',
       tryIt: 'Try it!',
-      phases: [
-        { id: 'overview',     label: 'Overview',         icon: 'Home',          badge: '01' },
-        { id: 'registration', label: 'Registration',     icon: 'ClipboardList', badge: '02' },
-        { id: 'campaigning',  label: 'Campaigning',      icon: 'Megaphone',     badge: '03' },
-        { id: 'polling',      label: 'Polling Day',      icon: 'Vote',          badge: '04' },
-        { id: 'results',      label: 'Results',          icon: 'BarChart3',     badge: '05' },
-        { id: 'quiz',         label: 'Eligibility Quiz', icon: 'HelpCircle',    badge: '06' },
-      ],
+      phases: phases.map((p, i) => ({ ...p, badge: String(i + 1).padStart(2, '0') })),
     },
     header: {
       registerBtn: 'Register to Vote',
       breadcrumbRoot: 'ElectionEdu',
-      phaseLabels: {
-        overview: 'Overview', registration: 'Voter Registration',
-        campaigning: 'Campaigning & MCC', polling: 'Polling Day',
-        results: 'Results & Government', quiz: 'Voter Eligibility Quiz',
-      },
+      phaseLabels: Object.fromEntries(phases.map(p => [p.id, p.label])),
     },
     overview: {
       tagline: "The World's Largest Democracy",
       heroTitle: 'Your Vote, Your Power.',
       heroSubtitle: 'Embark on a guided journey to master the election process in minutes.',
-      description: 'India conducts the largest democratic elections on the planet. With over 97 crore registered voters and nearly 10 lakh polling stations, every election is a massive civic enterprise managed by the Election Commission of India (ECI).',
+      description: overviewData.description,
       ctaJourney: 'Start My Voting Journey',
       ctaEligibility: 'Check My Eligibility →',
-      statsLabel: ['Registered Voters', 'Polling Stations', 'Lok Sabha Seats', 'State Assemblies'],
+      statsLabel: overviewData.stats.map(s => s.label),
       journeyTitle: 'Your 4-Phase Election Journey',
       timelineTitle: 'Historical Timeline',
-      helplinkTitle: '📱 Voter Helpline App — Your Digital Polling Companion',
-      helplinkDesc: 'Search your name in the Electoral Roll, find your polling station, download your e-EPIC, and lodge grievances — all from your phone.',
+      helplinkTitle: '📱 Voter Helpline App',
+      helplinkDesc: 'Your digital polling companion for registration and booth tracking.',
       helplinkBtn: 'Get App ↗',
       dykLabel: '💡 Did You Know? — Pune Edition',
-      dykText: "Pune has over 82 lakh registered voters across its Lok Sabha constituencies. The Pune district Collectorate is the nodal Zonal Office coordinating election logistics across 21 Vidhan Sabha segments. In the 2024 General Election, Pune city's voter turnout was ~58%, with first-time voters aged 18–19 being the fastest-growing enrolment segment.",
+      dykText: overviewData.didYouKnow,
+      journey: overviewData.journeyCards,
+      timeline: overviewData.timeline,
+    },
+    phases: {
+      registration: {
+        ...registrationData,
+        eligibilityTitle: 'Who Can Register?',
+        stepsTitle: 'How to Register — Step by Step',
+        formsTitle: 'Important Forms',
+        formLabel: 'Form',
+        purposeLabel: 'Purpose',
+        epicSubtitle: 'Your primary identity credential for elections',
+      },
+      campaigning: {
+        ...campaigningData,
+        mccTitle: 'Model Code of Conduct (MCC)',
+        mccDesc: 'Guidelines for free and fair elections.',
+        expenseTitle: 'Election Expense Limits',
+        expenseWarning: 'Exceeding limits is an offence.',
+        timelineTitle: 'Campaign Timeline',
+      },
+      polling: {
+        ...pollingData,
+        evmVvpatTitle: 'EVM + VVPAT',
+        evmVvpatSubtitle: "How India's tamper-proof voting system works.",
+        inkTitle: 'The Indelible Ink',
+        bringTitle: 'What to Bring',
+        stepsTitle: 'How to Cast Your Vote',
+        rightsTitle: 'Your Voter Rights',
+        reportLabel: 'Report violations:',
+      },
+      results: {
+        ...resultsData,
+        countingTitle: 'How Counting Works',
+        govTitle: 'Government Formation',
+        conceptsTitle: 'Key Electoral Concepts',
+        termLabel: 'Term',
+        meaningLabel: 'Meaning',
+      },
     },
     quiz: {
       title: 'Voter Eligibility Quiz',
@@ -338,10 +213,25 @@ export const content = {
       nextSteps: 'Next Steps', yourAnswers: 'Your Answers', retake: 'Retake Quiz',
       eligibleTitle: '🎉 You Are Eligible to Vote!',
       ineligibleTitle: 'Not Eligible Right Now',
-    },
+      doneLabel: 'done', noteLabel: '💬 Note:', correctLabel: '✅ Great!', incorrectLabel: '❌ Not Eligible',
+      q1: "How old are you?",
+      q1_a: "Under 18", q1_b: "18–25 years", q1_c: "26–60 years", q1_d: "Over 60",
+      q2: "Are you a citizen of India?",
+      q2_a: "Yes, Indian citizen", q2_b: "No, foreign citizenship", q2_c: "OCI / PIO status",
+      q3: "Have you been declared of unsound mind by a court?",
+      q3_a: "No", q3_b: "Yes",
+      q4: "Have you been disqualified for corrupt electoral practices?",
+      q4_a: "No", q4_b: "Yes, convicted",
+      q5: "Are you enrolled in the Electoral Roll?",
+      q5_a: "Yes, enrolled", q5_b: "Not yet, but I will", q5_c: "I don't know how",
+      nextStepsList: [
+        'Check your name at voters.eci.gov.in',
+        'If not registered, fill Form 6 online',
+        'Carry your Voter ID or any valid photo ID'
+      ]
+    }
   },
 
-  // ── HINDI ─────────────────────────────────────────────────
   hi: {
     sidebar: {
       title: 'ElectionEdu',
@@ -351,12 +241,12 @@ export const content = {
       footerEvent: 'Hack2Skills PromptWars 2026',
       tryIt: 'आज़माएं!',
       phases: [
-        { id: 'overview',     label: 'सिंहावलोकन',         icon: 'Home',          badge: '01' },
-        { id: 'registration', label: 'पंजीकरण',             icon: 'ClipboardList', badge: '02' },
-        { id: 'campaigning',  label: 'चुनाव प्रचार',         icon: 'Megaphone',     badge: '03' },
-        { id: 'polling',      label: 'मतदान दिवस',           icon: 'Vote',          badge: '04' },
-        { id: 'results',      label: 'परिणाम',               icon: 'BarChart3',     badge: '05' },
-        { id: 'quiz',         label: 'पात्रता प्रश्नोत्तरी', icon: 'HelpCircle',    badge: '06' },
+        { id: 'overview', label: 'सिंहावलोकन', icon: 'Home', badge: '01' },
+        { id: 'registration', label: 'पंजीकरण', icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning', label: 'चुनाव प्रचार', icon: 'Megaphone', badge: '03' },
+        { id: 'polling', label: 'मतदान दिवस', icon: 'Vote', badge: '04' },
+        { id: 'results', label: 'परिणाम', icon: 'BarChart3', badge: '05' },
+        { id: 'quiz', label: 'पात्रता प्रश्नोत्तरी', icon: 'HelpCircle', badge: '06' },
       ],
     },
     header: {
@@ -371,32 +261,171 @@ export const content = {
     overview: {
       tagline: 'विश्व का सबसे बड़ा लोकतंत्र',
       heroTitle: 'आपका वोट, आपकी शक्ति।',
-      heroSubtitle: 'कुछ ही मिनटों में चुनाव प्रक्रिया को समझने की यात्रा शुरू करें।',
-      description: 'भारत विश्व के सबसे बड़े लोकतांत्रिक चुनाव आयोजित करता है। 97 करोड़ से अधिक पंजीकृत मतदाताओं और लगभग 10 लाख मतदान केंद्रों के साथ, हर चुनाव भारत निर्वाचन आयोग (ECI) द्वारा संचालित एक विशाल नागरिक उपक्रम है।',
+      heroSubtitle: 'चुनाव प्रक्रिया को समझने की यात्रा शुरू करें।',
+      description: 'भारत विश्व के सबसे बड़े लोकतांत्रिक चुनाव आयोजित करता है।',
       ctaJourney: 'मेरी यात्रा शुरू करें',
       ctaEligibility: 'पात्रता जांचें →',
       statsLabel: ['पंजीकृत मतदाता', 'मतदान केंद्र', 'लोकसभा सीटें', 'राज्य विधानसभाएं'],
       journeyTitle: '4-चरण चुनाव यात्रा',
       timelineTitle: 'ऐतिहासिक समयरेखा',
-      helplinkTitle: '📱 मतदाता हेल्पलाइन ऐप — आपका डिजिटल चुनाव साथी',
-      helplinkDesc: 'मतदाता सूची में नाम खोजें, मतदान केंद्र जानें, e-EPIC डाउनलोड करें, और शिकायत दर्ज करें — सब अपने फोन से।',
+      helplinkTitle: '📱 मतदाता हेल्पलाइन ऐप',
+      helplinkDesc: 'पंजीकरण और बूथ ट्रैकिंग के लिए आपका डिजिटल चुनाव साथी।',
       helplinkBtn: 'ऐप डाउनलोड करें ↗',
       dykLabel: '💡 क्या आप जानते हैं? — पुणे संस्करण',
-      dykText: 'पुणे में 82 लाख से अधिक पंजीकृत मतदाता हैं। पुणे जिला कलेक्टरेट 21 विधानसभा क्षेत्रों में चुनाव संचालन का नोडल जोनल कार्यालय है। 2024 के लोकसभा चुनाव में पुणे का मतदान प्रतिशत लगभग 58% रहा, जिसमें 18–19 वर्ष के पहली बार मतदाताओं की संख्या सबसे तेज गति से बढ़ रही है।',
+      dykText: 'पुणे में 82 लाख से अधिक पंजीकृत मतदाता हैं।',
+      journey: [
+        { phase: 'मतदाता पंजीकरण', summary: 'अपना वोटर आईडी बनवाएं।' },
+        { phase: 'चुनाव प्रचार', summary: 'प्रचार के नियम जानें।', phaseId: 'campaigning' },
+        { phase: 'मतदान दिवस', summary: 'ईवीएम और वीवीपीएटी प्रक्रिया।', phaseId: 'polling' },
+        { phase: 'परिणाम', summary: 'वोटों की गिनती और सरकार गठन।', phaseId: 'results' },
+      ],
+      timeline: [
+        { year: '1950', event: 'भारत निर्वाचन आयोग की स्थापना' },
+        { year: '1951', event: 'पहला आम चुनाव' },
+        { year: '1989', event: 'मतदान की आयु 18 वर्ष की गई' },
+        { year: '2004', event: 'ईवीएम का राष्ट्रव्यापी उपयोग' },
+      ],
+    },
+    phases: {
+      registration: {
+        title: 'मतदाता पंजीकरण',
+        subtitle: 'लोकतंत्र की ओर आपका पहला कदम',
+        description: 'वोट डालने से पहले आपका नाम मतदाता सूची में होना चाहिए।',
+        epicHighlight: {
+          title: 'ईपीआईसी — मतदाता पहचान पत्र',
+          points: [
+            'पहचान की नकल रोकने के लिए 1993 में पेश किया गया',
+            'अब डिजिटल ई-ईपीआईसी के रूप में उपलब्ध',
+            'बैंकिंग और सरकारी केवाईसी के लिए मान्य',
+          ],
+        },
+        eligibility: [
+          { label: 'आयु', detail: 'चुनाव वर्ष की 1 जनवरी को 18+ वर्ष' },
+          { label: 'नागरिकता', detail: 'भारत का नागरिक होना चाहिए' },
+        ],
+        steps: [
+          { step: 1, title: 'फॉर्म 6 भरें', detail: 'voters.eci.gov.in पर ऑनलाइन आवेदन करें' },
+          { step: 2, title: 'दस्तावेज़ जमा करें', detail: 'आयु और निवास का प्रमाण दें' },
+          { step: 3, title: 'सत्यापन', detail: 'बीएलओ आपके निवास की पुष्टि करता है' },
+        ],
+        forms: [
+          { form: 'फॉर्म 6', purpose: 'नया पंजीकरण' },
+          { form: 'फॉर्म 8', purpose: 'सुधार/अपडेट' },
+        ],
+        eligibilityTitle: 'कौन पंजीकरण कर सकता है?',
+        stepsTitle: 'पंजीकरण कैसे करें — चरण दर चरण',
+        formsTitle: 'महत्वपूर्ण फॉर्म',
+        formLabel: 'फॉर्म',
+        purposeLabel: 'उद्देश्य',
+        epicSubtitle: 'चुनावों के लिए आपका प्राथमिक पहचान पत्र',
+      },
+      campaigning: {
+        title: 'चुनाव प्रचार और आचार संहिता',
+        subtitle: 'नियमों के साथ चुनाव',
+        description: 'चुनाव प्रचार के दौरान उम्मीदवार अपनी बात जनता तक पहुँचाते हैं।',
+        mccTitle: 'आदर्श आचार संहिता (MCC)',
+        mccDesc: 'स्वतंत्र और निष्पक्ष चुनाव के लिए चुनाव आयोग के दिशानिर्देश।',
+        mccPoints: [
+          { title: 'नफरत भरा भाषण नहीं', detail: 'धर्म या जाति के नाम पर वोट नहीं मांग सकते' },
+          { title: 'रिश्वत नहीं', detail: 'नकद या उपहार बांटना अपराध है' },
+          { title: 'शांति अवधि', detail: 'मतदान से 48 घंटे पहले प्रचार रुक जाता है' },
+        ],
+        expenseTitle: 'चुनाव व्यय सीमा',
+        expenseWarning: 'सीमा से अधिक खर्च करना एक अपराध है।',
+        expenses: [
+          { category: 'लोकसभा', limit: '₹95 लाख' },
+          { category: 'विधानसभा', limit: '₹40 लाख' },
+        ],
+        timelineTitle: 'प्रचार समयरेखा',
+        timeline: [
+          { phase: 'घोषणा', detail: 'आचार संहिता लागू होती है' },
+          { phase: 'नामांकन', detail: 'उम्मीदवार पर्चा भरते हैं' },
+          { phase: 'शांति अवधि', detail: 'वोटिंग से 48 घंटे पहले' },
+        ],
+        didYouKnow: 'आदर्श आचार संहिता चुनाव की तारीखों की घोषणा के साथ ही लागू हो जाती है।',
+      },
+      polling: {
+        title: 'मतदान दिवस',
+        subtitle: 'वोट देने का आपका दिन',
+        description: 'ईवीएम और वीवीपीएटी का उपयोग करके अपना वोट सुरक्षित रूप से डालें।',
+        evmVvpatTitle: 'ईवीएम + वीवीपीएटी',
+        evmVvpatSubtitle: 'भारत की छेड़छाड़-मुक्त मतदान प्रणाली कैसे काम करती है।',
+        evm: ['पसंदीदा उम्मीदवार के सामने वाला बटन दबाएं', 'बीप की आवाज वोट की पुष्टि करती है'],
+        vvpat: ['स्लिप 7 सेकंड के लिए प्रतीक दिखाती है', 'फिर सीलबंद बॉक्स में गिर जाती है'],
+        inkTitle: 'अमिट स्याही',
+        facts: ['दोहरा मतदान रोकता है', '2-3 सप्ताह तक रहता है', 'NPLI में विकसित'],
+        bringTitle: 'क्या साथ लाएं',
+        whatToBring: [
+          { item: 'वोटर आईडी', desc: 'ईपीआईसी कार्ड' },
+          { item: 'आधार कार्ड', desc: 'मान्य फोटो आईडी' },
+        ],
+        steps: [
+          { step: 1, title: 'बूथ खोजें', detail: 'ECI वेबसाइट पर अपना बूथ जांचें' },
+          { step: 2, title: 'सत्यापन', detail: 'अधिकारी को अपनी आईडी दिखाएं' },
+          { step: 3, title: 'स्याही और पर्ची', detail: 'अमिट स्याही और मतदाता पर्ची प्राप्त करें' },
+          { step: 4, title: 'वोट दें', detail: 'ईवीएम पर बटन दबाएं' },
+        ],
+        stepsTitle: 'वोट कैसे डालें',
+        rightsTitle: 'आपके मतदाता अधिकार',
+        reportLabel: 'उल्लंघन की रिपोर्ट करें:',
+        rights: [
+          'गुप्त मतदान का अधिकार',
+          'नोटा (NOTA) विकल्प उपलब्ध',
+        ],
+        didYouKnow: 'अमिट स्याही का उपयोग पहली बार 1962 के आम चुनावों में किया गया था।',
+      },
+      results: {
+        title: 'चुनाव परिणाम',
+        subtitle: 'जनता का फैसला',
+        description: 'कड़ी सुरक्षा के बीच पारदर्शी तरीके से वोटों की गिनती की जाती है।',
+        countingTitle: 'मतगणना कैसे होती है',
+        countingSteps: [
+          { step: 1, title: 'स्ट्रांग रूम', detail: 'ईवीएम को सुरक्षा के बीच रखा जाता है' },
+          { step: 2, title: 'मतगणना', detail: 'राउंड में वोटों की गिनती होती है' },
+          { step: 3, title: 'घोषणा', detail: 'निर्वाचन अधिकारी विजेता की घोषणा करते हैं' },
+        ],
+        govTitle: 'सरकार का गठन',
+        governmentFormation: [
+          { title: 'बहुमत', detail: 'लोकसभा के लिए 272+ सीटें जरूरी' },
+          { title: 'गठबंधन', detail: 'बहुमत पाने के लिए पार्टियां साथ आ सकती हैं' },
+        ],
+        conceptsTitle: 'मुख्य चुनाव अवधारणाएं',
+        termLabel: 'शब्द',
+        meaningLabel: 'अर्थ',
+        keyConcepts: [
+          { term: 'FPTP', meaning: 'सर्वाधिक वोट पाने वाले की जीत' },
+          { term: 'जमानत', meaning: 'उम्मीदवारों के लिए सुरक्षा राशि' },
+        ],
+        didYouKnow: 'पूरे देश के लिए वोटों की गिनती आमतौर पर एक ही दिन में पूरी हो जाती है।',
+      },
     },
     quiz: {
       title: 'मतदाता पात्रता प्रश्नोत्तरी',
-      subtitle: 'जानें कि क्या आप भारत में मतदान के योग्य हैं।',
-      startBtn: 'प्रश्नोत्तरी शुरू करें',
-      disclaimer: 'यह केवल शैक्षणिक उद्देश्यों के लिए है। voters.eci.gov.in पर सत्यापित करें।',
-      questions: 'प्रश्न', time: 'अनुमानित समय', private: 'निजी',
-      nextSteps: 'अगले कदम', yourAnswers: 'आपके उत्तर', retake: 'फिर से प्रयास करें',
-      eligibleTitle: '🎉 आप मतदान के योग्य हैं!',
-      ineligibleTitle: 'अभी योग्य नहीं',
-    },
+      startBtn: 'शुरू करें',
+      disclaimer: 'केवल शैक्षिक उद्देश्यों के लिए। voters.eci.gov.in पर सत्यापित करें',
+      questions: 'प्रश्न', time: 'लगभग समय', private: 'निजी',
+      nextSteps: 'अगले कदम', yourAnswers: 'आपके उत्तर', retake: 'पुनः प्रयास करें',
+      eligibleTitle: '🎉 आप वोट देने के पात्र हैं!',
+      ineligibleTitle: 'अभी पात्र नहीं हैं',
+      doneLabel: 'पूरा हुआ', noteLabel: '💬 नोट:', correctLabel: '✅ बढ़िया!', incorrectLabel: '❌ पात्र नहीं',
+      q1: "आपकी उम्र कितनी है?",
+      q1_a: "18 से कम", q1_b: "18–25 वर्ष", q1_c: "26–60 वर्ष", q1_d: "60 से अधिक",
+      q2: "क्या आप भारत के नागरिक हैं?",
+      q2_a: "हाँ, भारतीय नागरिक", q2_b: "नहीं, विदेशी नागरिकता", q2_c: "OCI / PIO स्थिति",
+      q3: "क्या आपको अदालत द्वारा मानसिक रूप से अस्वस्थ घोषित किया गया है?",
+      q3_a: "नहीं", q3_b: "हाँ",
+      q4: "क्या आपको चुनावी भ्रष्टाचार के लिए अयोग्य घोषित किया गया है?",
+      q4_a: "नहीं", q4_b: "हाँ, दोषी",
+      q5: "क्या आपका नाम मतदाता सूची में दर्ज है?",
+      q5_a: "हाँ, दर्ज है", q5_b: "अभी नहीं, लेकिन करूँगा", q5_c: "मुझे नहीं पता कैसे",
+      nextStepsList: [
+        'voters.eci.gov.in पर अपना नाम जांचें',
+        'यदि पंजीकृत नहीं है, तो ऑनलाइन फॉर्म 6 भरें',
+        'वोटर आईडी या कोई वैध फोटो आईडी साथ रखें'
+      ]
+    }
   },
 
-  // ── MARATHI ───────────────────────────────────────────────
   mr: {
     sidebar: {
       title: 'ElectionEdu',
@@ -406,12 +435,12 @@ export const content = {
       footerEvent: 'Hack2Skills PromptWars 2026',
       tryIt: 'वापरून पाहा!',
       phases: [
-        { id: 'overview',     label: 'आढावा',                icon: 'Home',          badge: '01' },
-        { id: 'registration', label: 'नोंदणी',               icon: 'ClipboardList', badge: '02' },
-        { id: 'campaigning',  label: 'प्रचार',                icon: 'Megaphone',     badge: '03' },
-        { id: 'polling',      label: 'मतदान दिन',             icon: 'Vote',          badge: '04' },
-        { id: 'results',      label: 'निकाल',                 icon: 'BarChart3',     badge: '05' },
-        { id: 'quiz',         label: 'पात्रता प्रश्नमंजुषा',  icon: 'HelpCircle',    badge: '06' },
+        { id: 'overview', label: 'आढावा', icon: 'Home', badge: '01' },
+        { id: 'registration', label: 'नोंदणी', icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning', label: 'प्रचार', icon: 'Megaphone', badge: '03' },
+        { id: 'polling', label: 'मतदान दिन', icon: 'Vote', badge: '04' },
+        { id: 'results', label: 'निकाल', icon: 'BarChart3', badge: '05' },
+        { id: 'quiz', label: 'पात्रता प्रश्नमंजुषा', icon: 'HelpCircle', badge: '06' },
       ],
     },
     header: {
@@ -426,55 +455,753 @@ export const content = {
     overview: {
       tagline: 'जगातील सर्वात मोठी लोकशाही',
       heroTitle: 'तुमचं मत, तुमची शक्ती।',
-      heroSubtitle: 'काही मिनिटांत निवडणूक प्रक्रिया समजून घेण्याच्या प्रवासाला सुरुवात करा।',
-      description: 'भारत जगातील सर्वात मोठ्या लोकशाही निवडणुका घेतो. 97 कोटींहून अधिक नोंदणीकृत मतदार आणि सुमारे 10 लाख मतदान केंद्रांसह, प्रत्येक निवडणूक हे भारत निवडणूक आयोगाद्वारे (ECI) व्यवस्थापित एक विशाल नागरी उपक्रम आहे।',
+      heroSubtitle: 'निवडणूक प्रक्रिया समजून घेण्याची यात्रा सुरू करा।',
+      description: 'भारत जगातील सर्वात मोठ्या निवडणुका घेतो।',
       ctaJourney: 'माझी यात्रा सुरू करा',
       ctaEligibility: 'पात्रता तपासा →',
       statsLabel: ['नोंदणीकृत मतदार', 'मतदान केंद्रे', 'लोकसभा जागा', 'राज्य विधानसभा'],
       journeyTitle: '४-टप्प्यांची निवडणूक यात्रा',
       timelineTitle: 'ऐतिहासिक कालरेखा',
-      helplinkTitle: '📱 मतदार हेल्पलाइन ॲप — तुमचा डिजिटल निवडणूक साथी',
-      helplinkDesc: 'मतदार यादीत नाव शोधा, मतदान केंद्र जाणा, e-EPIC डाउनलोड करा आणि तक्रार नोंदवा — सर्व तुमच्या फोनवरून।',
+      helplinkTitle: '📱 मतदार हेल्पलाइन ॲप',
+      helplinkDesc: 'नोंदणी आणि बूथ ट्रॅकिंगसाठी तुमचे डिजिटल निवडणूक साथी।',
       helplinkBtn: 'ॲप मिळवा ↗',
       dykLabel: '💡 तुम्हाला माहीत आहे का? — पुणे आवृत्ती',
-      dykText: 'पुण्यात 82 लाखांहून अधिक नोंदणीकृत मतदार आहेत. पुणे जिल्हा कलेक्टरेट हे 21 विधानसभा मतदारसंघांमध्ये सर्व निवडणूक कामकाजाचे नोडल जोनल कार्यालय आहे. 2024 च्या लोकसभा निवडणुकीत पुणे शहराचा मतदान टक्का सुमारे 58% होता।',
+      dykText: 'पुण्यात 82 लाखांहून अधिक नोंदणीकृत मतदार आहेत।',
+      journey: [
+        { phase: 'मतदार नोंदणी', summary: 'आपले मतदार ओळखपत्र मिळवा।' },
+        { phase: 'निवडणूक प्रचार', summary: 'प्रचाराचे नियम आणि मर्यादा।', phaseId: 'campaigning' },
+        { phase: 'मतदान दिन', summary: 'ईव्हीएम आणि मतदान प्रक्रिया।', phaseId: 'polling' },
+        { phase: 'निकाल', summary: 'मतमोजणी आणि सरकार स्थापना।', phaseId: 'results' },
+      ],
+      timeline: [
+        { year: '1950', event: 'भारत निवडणूक आयोगाची स्थापना' },
+        { year: '1951', event: 'पहिली सार्वत्रिक निवडणूक' },
+        { year: '1989', event: 'मतदानाचे वय 18 वर्षे केले' },
+        { year: '2004', event: 'ईव्हीएमचा देशभर वापर' },
+      ],
+    },
+    phases: {
+      registration: {
+        title: 'मतदार नोंदणी',
+        subtitle: 'लोकशाहीच्या दिशेने तुमचे पहिले पाऊल',
+        description: 'मतदान करण्यापूर्वी तुमचे नाव मतदार यादीत असणे आवश्यक आहे।',
+        epicHighlight: {
+          title: 'ईपीआयसी — मतदार ओळखपत्र',
+          points: [
+            'ओळख चोरी रोखण्यासाठी 1993 मध्ये सुरू केले',
+            'आता डिजिटल ई-ईपीआयसी म्हणून उपलब्ध',
+            'बँकिंग आणि सरकारी कामांसाठी ग्राह्य',
+          ],
+        },
+        eligibility: [
+          { label: 'वय', detail: 'निवडणूक वर्षाच्या 1 जानेवारीला 18+ वर्षे' },
+          { label: 'नागरिकत्व', detail: 'भारताचा नागरिक असावा' },
+        ],
+        steps: [
+          { step: 1, title: 'नमुना ६ भरा', detail: 'voters.eci.gov.in वर ऑनलाईन अर्ज करा' },
+          { step: 2, title: 'कागदपत्रे जोडा', detail: 'वय आणि निवासाचा पुरावा द्या' },
+          { step: 3, title: 'पडताळणी', detail: 'बीएलओ निवासाची खात्री करतात' },
+        ],
+        forms: [
+          { form: 'नमुना ६', purpose: 'नवीन नोंदणी' },
+          { form: 'नमुना ८', purpose: 'दुरुस्ती/अपडेट' },
+        ],
+        eligibilityTitle: 'कोण नोंदणी करू शकतो?',
+        stepsTitle: 'नोंदणी कशी करावी — टप्प्याटप्प्याने',
+        formsTitle: 'महत्वाचे नमुने',
+        formLabel: 'नमुना',
+        purposeLabel: 'उद्देश',
+        epicSubtitle: 'तुमची निवडणुकीची प्राथमिक ओळख',
+      },
+      campaigning: {
+        title: 'निवडणूक प्रचार आणि आचारसंहिता',
+        subtitle: 'लोकशाहीचे नियम',
+        description: 'निवडणूक प्रचार हा उमेदवारांसाठी जनतेशी संवाद साधण्याचा मार्ग आहे।',
+        mccTitle: 'आदर्श आचारसंहिता (MCC)',
+        mccDesc: 'मुक्त आणि न्याय्य निवडणुकांसाठी निवडणूक आयोगाने जारी केलेली मार्गदर्शक तत्त्वे।',
+        mccPoints: [
+          { title: 'द्वेषपूर्ण भाषण नाही', detail: 'धर्म किंवा जातीच्या नावावर मते मागता येणार नाहीत' },
+          { title: 'लाचखोरी नाही', detail: 'पैसे किंवा भेटवस्तू वाटणे हा गुन्हा आहे' },
+          { title: 'शांतता काळ', detail: 'मतदानापूर्वी ४८ तास सर्व प्रचार थांबतो' },
+        ],
+        expenseTitle: 'निवडणूक खर्च मर्यादा',
+        expenseWarning: 'मर्यादेपेक्षा जास्त खर्च करणे हा गुन्हा आहे।',
+        expenses: [
+          { category: 'लोकसभा', limit: '₹९५ लाख' },
+          { category: 'विधानसभा', limit: '₹४० लाख' },
+        ],
+        timelineTitle: 'प्रचार वेळापत्रक',
+        timeline: [
+          { phase: 'घोषणा', detail: 'आचारसंहिता लागू होते' },
+          { phase: 'नामांकन', detail: 'उम्मीदवार अर्ज दाखल करतात' },
+          { phase: 'शांतता काळ', detail: 'मतदानापूर्वी ४८ तास' },
+        ],
+        didYouKnow: 'आचारसंहिता निवडणुकीच्या तारखा जाहीर झाल्यापासून लागू होते।',
+      },
+      polling: {
+        title: 'मतदान दिवस',
+        subtitle: 'तुमच्या मतदानाचा दिवस',
+        description: 'ईव्हीएम आणि व्हीव्हीपॅट वापरून तुमचे मत सुरक्षितपणे नोंदवा।',
+        evmVvpatTitle: 'ईव्हीएम + व्हीव्हीपॅट',
+        evmVvpatSubtitle: 'भारताची छेडछाड-मुक्त मतदान प्रणाली कशी कार्य करते।',
+        evm: ['पसंतीच्या उमेदवारासमोरील बटण दाबा', 'बीप आवाज मताची पुष्टी करतो'],
+        vvpat: ['स्लिप ७ सेकंद चिन्ह दाखवते', 'नंतर सीलबंद बॉक्समध्ये पडते'],
+        inkTitle: 'न पुसली जाणारी शाई',
+        facts: ['दुबार मतदान रोखते', '२-३ आठवडे टिकते', 'NPLI मध्ये विकसित'],
+        bringTitle: 'सोबत काय न्यावे',
+        whatToBring: [
+          { item: 'मतदार ओळखपत्र', desc: 'ईपीआयसी कार्ड' },
+          { item: 'आधार कार्ड', desc: 'वैध फोटो आयडी' },
+        ],
+        steps: [
+          { step: 1, title: 'मतदान केंद्र शोधा', detail: 'ECI वेबसाईटवर केंद्र तपासा' },
+          { step: 2, title: 'ओळख पटवणे', detail: 'अधिकाऱ्याला ओळखपत्र दाखवा' },
+          { step: 3, title: 'शाई आणि चिठ्ठी', detail: 'शाई लावून घ्या आणि चिठ्ठी मिळवा' },
+          { step: 4, title: 'मतदान करा', detail: 'ईव्हीएमवरील बटण दाबा' },
+        ],
+        stepsTitle: 'मतदान कसे करावे',
+        rightsTitle: 'तुमचे मतदार हक्क',
+        reportLabel: 'उल्लंघन कळवा:',
+        rights: [
+          'गुप्त मतदानाचा अधिकार',
+          'नोटा (NOTA) पर्याय उपलब्ध',
+        ],
+        didYouKnow: 'न पुसली जाणारी शाई म्हैसूर पेंट्स अँड वार्निश लिमिटेडमध्ये तयार केली जाते।',
+      },
+      results: {
+        title: 'निवडणूक निकाल',
+        subtitle: 'जनतेचा कौल',
+        description: 'मतांची मोजणी कडक सुरक्षेत पारदर्शक पद्धतीने केली जाते।',
+        countingTitle: 'मतमोजणी कशी होते',
+        countingSteps: [
+          { step: 1, title: 'स्ट्राँग रूम', detail: 'ईव्हीएम सशस्त्र रक्षणाखाली ठेवले जातात' },
+          { step: 2, title: 'मतमोजणी', detail: 'फेरीनुसार मतांची मोजणी होते' },
+          { step: 3, title: 'घोषणा', detail: 'निवडणूक निर्णय अधिकारी विजेत्याची घोषणा करतात' },
+        ],
+        govTitle: 'सरकार स्थापना',
+        governmentFormation: [
+          { title: 'बहुमत', detail: 'लोकसभेसाठी २७२+ जागा आवश्यक' },
+          { title: 'आघाडी', detail: 'बहुमत मिळवण्यासाठी पक्ष एकत्र येऊ शकतात' },
+        ],
+        conceptsTitle: 'महत्त्वाच्या निवडणूक संकल्पना',
+        termLabel: 'संज्ञा',
+        meaningLabel: 'अर्थ',
+        keyConcepts: [
+          { term: 'FPTP', meaning: 'ज्याला जास्त मते तो विजेता' },
+          { term: 'अनामत रक्कम', meaning: 'उमेदवारांसाठी सुरक्षा ठेव' },
+        ],
+        didYouKnow: 'संपूर्ण देशाची मतमोजणी सहसा एकाच दिवसात पूर्ण होते।',
+      },
     },
     quiz: {
       title: 'मतदार पात्रता प्रश्नमंजुषा',
-      subtitle: 'तुम्ही भारतात मतदान करण्यास पात्र आहात का ते जाणा।',
-      startBtn: 'प्रश्नमंजुषा सुरू करा',
-      disclaimer: 'हे केवळ शैक्षणिक हेतूंसाठी आहे. voters.eci.gov.in वर सत्यापित करा।',
+      startBtn: 'सुरू करा',
+      disclaimer: 'केवळ शैक्षणिक कारणांसाठी। voters.eci.gov.in वर तपासा',
       questions: 'प्रश्न', time: 'अंदाजे वेळ', private: 'खाजगी',
       nextSteps: 'पुढील पावले', yourAnswers: 'तुमची उत्तरे', retake: 'पुन्हा प्रयत्न करा',
-      eligibleTitle: '🎉 तुम्ही मतदानास पात्र आहात!',
+      eligibleTitle: '🎉 तुम्ही मतदानासाठी पात्र आहात!',
       ineligibleTitle: 'सध्या पात्र नाही',
-    },
+      doneLabel: 'पूर्ण झाले', noteLabel: '💬 टीप:', correctLabel: '✅ छान!', incorrectLabel: '❌ पात्र नाही',
+      q1: "तुमचे वय किती आहे?",
+      q1_a: "18 पेक्षा कमी", q1_b: "18–25 वर्षे", q1_c: "26–60 वर्षे", q1_d: "60 पेक्षा जास्त",
+      q2: "तुम्ही भारताचे नागरिक आहात का?",
+      q2_a: "हो, भारतीय नागरिक", q2_b: "नाही, परदेशी नागरिकत्व", q2_c: "OCI / PIO दर्जा",
+      q3: "तुम्हाला न्यायालयाने मानसिकदृष्ट्या अस्वस्थ घोषित केले आहे का?",
+      q3_a: "नाही", q3_b: "हो",
+      q4: "तुम्हाला निवडणूक भ्रष्टाचारासाठी अपात्र ठरवण्यात आले आहे का?",
+      q4_a: "नाही", q4_b: "हो, दोषी",
+      q5: "तुमचे नाव मतदार यादीत नोंदवलेले आहे का?",
+      q5_a: "हो, नोंदवलेले आहे", q5_b: "अद्याप नाही, पण करेन", q5_c: "मला माहित नाही कसे",
+      nextStepsList: [
+        'voters.eci.gov.in वर तुमचे नाव तपासा',
+        'नोंदणी नसल्यास, ऑनलाइन नमुना ६ भरा',
+        'मतदान केंद्रावर ओळखपत्र सोबत ठेवा'
+      ]
+    }
   },
 
-  // ── TEMPLATE ─ copy & translate to add a new language ─────
-  // bn: {
-  //   sidebar: {
-  //     title: 'ElectionEdu',
-  //     tagline: "ভারতের গণতন্ত্র গাইড",
-  //     sectionLabel: 'নির্বাচনের পর্যায়',
-  //     footerVote: '🗳️ আপনার ভোট, আপনার কণ্ঠস্বর',
-  //     footerEvent: 'Hack2Skills PromptWars 2026',
-  //     tryIt: 'চেষ্টা করুন!',
-  //     phases: [
-  //       { id: 'overview',     label: 'সংক্ষিপ্ত বিবরণ', icon: 'Home',          badge: '01' },
-  //       { id: 'registration', label: 'নিবন্ধন',          icon: 'ClipboardList', badge: '02' },
-  //       { id: 'campaigning',  label: 'প্রচারণা',          icon: 'Megaphone',     badge: '03' },
-  //       { id: 'polling',      label: 'ভোটের দিন',         icon: 'Vote',          badge: '04' },
-  //       { id: 'results',      label: 'ফলাফল',             icon: 'BarChart3',     badge: '05' },
-  //       { id: 'quiz',         label: 'যোগ্যতা কুইজ',      icon: 'HelpCircle',    badge: '06' },
-  //     ],
-  //   },
-  //   header:   { registerBtn: '...', breadcrumbRoot: 'ElectionEdu', phaseLabels: { ... } },
-  //   overview: { tagline: '...', heroTitle: '...', heroSubtitle: '...', ... },
-  //   quiz:     { title: '...', subtitle: '...', startBtn: '...', ... },
-  // },
+  bn: {
+    sidebar: {
+      title: 'ElectionEdu',
+      tagline: 'ভারতের গণতন্ত্র গাইড',
+      sectionLabel: 'নির্বাচনের পর্যায়',
+      footerVote: '🗳️ আপনার ভোট, আপনার কণ্ঠস্বর',
+      footerEvent: 'Hack2Skills PromptWars 2026',
+      tryIt: 'চেষ্টা করুন!',
+      phases: [
+        { id: 'overview', label: 'সংক্ষিপ্ত বিবরণ', icon: 'Home', badge: '01' },
+        { id: 'registration', label: 'নিবন্ধন', icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning', label: 'প্রচারণা', icon: 'Megaphone', badge: '03' },
+        { id: 'polling', label: 'ভোটের দিন', icon: 'Vote', badge: '04' },
+        { id: 'results', label: 'ফলাফল', icon: 'BarChart3', badge: '05' },
+        { id: 'quiz', label: 'যোগ্যতা কুইজ', icon: 'HelpCircle', badge: '06' },
+      ],
+    },
+    header: {
+      registerBtn: 'ভোটার হিসেবে নিবন্ধন করুন',
+      breadcrumbRoot: 'ElectionEdu',
+      phaseLabels: {
+        overview: 'সংক্ষিপ্ত বিবরণ', registration: 'ভোটার নিবন্ধন',
+        campaigning: 'প্রচারণা', polling: 'ভোটের দিন',
+        results: 'ফলাফল', quiz: 'যোগ্যতা কুইজ',
+      },
+    },
+    overview: {
+      tagline: 'বিশ্বের বৃহত্তম গণতন্ত্র',
+      heroTitle: 'আপনার ভোট, আপনার ক্ষমতা।',
+      heroSubtitle: 'নির্বাচন প্রক্রিয়া আয়ত্ত করার যাত্রা শুরু করুন।',
+      description: 'ভারত পৃথিবীর বৃহত্তম গণতান্ত্রিক নির্বাচন পরিচালনা করে।',
+      ctaJourney: 'আমার ভোট যাত্রা শুরু করুন',
+      ctaEligibility: 'যোগ্যতা পরীক্ষা করুন →',
+      statsLabel: ['নিবন্ধিত ভোটার', 'পোলিং স্টেশন', 'লোকসভা আসন', 'রাজ্য বিধানসভা'],
+      journeyTitle: '৪-পর্যায়ের নির্বাচন যাত্রা',
+      timelineTitle: 'ঐতিহাসিক সময়রেখা',
+      helplinkTitle: '📱 ভোটার হেল্পলাইন অ্যাপ',
+      helplinkDesc: 'নিবন্ধন এবং বুথ ট্র্যাকিংয়ের জন্য আপনার ডিজিটাল পোলিং সঙ্গী।',
+      helplinkBtn: 'অ্যাপ ডাউনলোড করুন ↗',
+      dykLabel: '💡 আপনি কি জানতেন? — পুনে সংস্করণ',
+      dykText: 'পুনেতে ৮২ লক্ষেরও বেশি নিবন্ধিত ভোটার রয়েছে।',
+      journey: [
+        { phase: 'ভোটার নিবন্ধন', summary: 'আপনার ভোটার আইডি কার্ড পান।' },
+        { phase: 'নির্বাচনী প্রচারণা', summary: 'প্রচারের নিয়মাবলী জানুন।', phaseId: 'campaigning' },
+        { phase: 'ভোটের দিন', summary: 'ইভিএম এবং ভিভিপ্যাট প্রক্রিয়া।', phaseId: 'polling' },
+        { phase: 'ফলাফল', summary: 'ভোট গণনা এবং সরকার গঠন।', phaseId: 'results' },
+      ],
+      timeline: [
+        { year: '1950', event: 'ভারতের নির্বাচন কমিশন গঠিত' },
+        { year: '1951', event: 'প্রথম সাধারণ নির্বাচন' },
+        { year: '1989', event: 'ভোটের বয়স ১৮ করা হয়েছে' },
+        { year: '2004', event: 'দেশব্যাপী ইভিএম ব্যবহার' },
+      ],
+    },
+    phases: {
+      registration: {
+        title: 'ভোটার নিবন্ধন',
+        subtitle: 'গণতন্ত্রের দিকে আপনার প্রথম পদক্ষেপ',
+        description: 'ভোট দেওয়ার আগে আপনাকে ভোটার তালিকায় নাম অন্তর্ভুক্ত করতে হবে।',
+        epicHighlight: {
+          title: 'ইপিক — ভোটার আইডি কার্ড',
+          points: [
+            'জালিয়াতি কমাতে ১৯৯৩ সালে প্রবর্তিত',
+            'এখন ডিজিটাল ই-ইপিক হিসেবে উপলব্ধ',
+            'ব্যাংকিং ও সরকারি কাজে বৈধ',
+          ],
+        },
+        eligibility: [
+          { label: 'বয়স', detail: 'নির্বাচনী বছরের ১ জানুয়ারি ১৮+ বছর' },
+          { label: 'নাগরিকত্ব', detail: 'ভারতের নাগরিক হতে হবে' },
+        ],
+        steps: [
+          { step: 1, title: 'ফর্ম ৬ পূরণ করুন', detail: 'voters.eci.gov.in-এ অনলাইনে আবেদন করুন' },
+          { step: 2, title: 'নথি জমা দিন', detail: 'বয়স এবং ঠিকানার প্রমাণ দিন' },
+          { step: 3, title: 'যাচাইকরণ', detail: 'বিএলও আপনার বাসস্থান যাচাই করবেন' },
+        ],
+        forms: [
+          { form: 'ফর্ম ৬', purpose: 'নতুন নিবন্ধন' },
+          { form: 'ফর্ম ৮', purpose: 'সংশোধন/আপডেট' },
+        ],
+        eligibilityTitle: 'কে নিবন্ধন করতে পারে?',
+        stepsTitle: 'নিবন্ধন কিভাবে করবেন — ধাপে ধাপে',
+        formsTitle: 'গুরুত্বপূর্ণ ফর্ম',
+        formLabel: 'ফর্ম',
+        purposeLabel: 'উদ্দেশ্য',
+        epicSubtitle: 'নির্বাচনের জন্য আপনার প্রাথমিক পরিচয়',
+      },
+      campaigning: {
+        title: 'নির্বাচনী প্রচারণা ও আচরণবিধি',
+        subtitle: 'গণতন্ত্রের নিয়মাবলী',
+        description: 'প্রচারণা হলো প্রার্থীদের জনগণের সাথে যোগাযোগ করার মাধ্যম।',
+        mccTitle: 'আদর্শ আচরণবিধি (MCC)',
+        mccDesc: 'অবাধ ও সুষ্ঠু নির্বাচনের জন্য নির্বাচন কমিশনের নির্দেশিকা।',
+        mccPoints: [
+          { title: 'বিদ্বেষমূলক ভাষণ নয়', detail: 'ধর্ম বা জাতির নামে ভোট চাওয়া যাবে না' },
+          { title: 'ঘুষ নয়', detail: 'নগদ অর্থ বা উপহার বিতরণ অপরাধ' },
+          { title: 'নীরবতার সময়', detail: 'ভোটের ৪৮ ঘণ্টা আগে সব প্রচারণা বন্ধ হয়' },
+        ],
+        expenseTitle: 'নির্বাচনী ব্যয়ের সীমা',
+        expenseWarning: 'সীমার বেশি ব্যয় করা একটি অপরাধ।',
+        expenses: [
+          { category: 'লোকসভা', limit: '₹৯৫ লক্ষ' },
+          { category: 'বিধানসভা', limit: '₹৪০ লক্ষ' },
+        ],
+        timelineTitle: 'প্রচারণার সময়রেখা',
+        timeline: [
+          { phase: 'ঘোষণা', detail: 'আচরণবিধি কার্যকর হয়' },
+          { phase: 'মনোনয়ন', detail: 'প্রার্থীরা কাগজ জমা দেন' },
+          { phase: 'নীরবতার সময়', detail: 'ভোটের ৪৮ ঘণ্টা আগে' },
+        ],
+        didYouKnow: 'নির্বাচনের তারিখ ঘোষণার সাথে সাথেই আচরণবিধি কার্যকর হয়।',
+      },
+      polling: {
+        title: 'ভোটের দিন',
+        subtitle: 'আপনার ভোট দেওয়ার দিন',
+        description: 'ইভিএম এবং ভিভিপ্যাট ব্যবহার করে আপনার ভোট সুরক্ষিতভাবে দিন।',
+        evmVvpatTitle: 'ইভিএম + ভিভিপ্যাট',
+        evmVvpatSubtitle: 'ভারতের কারচুপি-মুক্ত ভোটদান ব্যবস্থা কীভাবে কাজ করে।',
+        evm: ['আপনার প্রার্থীর পাশের বোতামটি টিপুন', 'বিপ শব্দ ভোট নিশ্চিত করে'],
+        vvpat: ['স্লিপ ৭ সেকেন্ডের জন্য প্রতীক দেখায়', 'তারপর সিল করা বাক্সে পড়ে যায়'],
+        inkTitle: 'অমোচনীয় কালি',
+        facts: ['দুবার ভোট দেওয়া আটকায়', '২-৩ সপ্তাহ থাকে', 'NPLI-এ বিকশিত'],
+        bringTitle: 'কি সঙ্গে আনবেন',
+        whatToBring: [
+          { item: 'ভোটার আইডি', desc: 'ইপিক কার্ড' },
+          { item: 'আধার কার্ড', desc: 'বৈধ ফটো আইডি' },
+        ],
+        steps: [
+          { step: 1, title: 'বুথ খুঁজুন', detail: 'ECI ওয়েবসাইটে বুথ চেক করুন' },
+          { step: 2, title: 'পরিচয় যাচাই', detail: 'অফিসারকে আইডি দেখান' },
+          { step: 3, title: 'কালি ও স্লিপ', detail: 'কালি লাগান এবং স্লিপ নিন' },
+          { step: 4, title: 'ভোট দিন', detail: 'ইভিএম-এ বোতাম টিপুন' },
+        ],
+        stepsTitle: 'কিভাবে ভোট দেবেন',
+        rightsTitle: 'আপনার ভোটার অধিকার',
+        reportLabel: 'অভিযোগ জানান:',
+        rights: [
+          'গোপন ব্যালটের অধিকার',
+          'নোটা (NOTA) বিকল্প উপলব্ধ',
+        ],
+        didYouKnow: 'অমোচনীয় কালি মহীশূর পেইন্টস অ্যান্ড বার্নিশ লিমিটেডে তৈরি করা হয়।',
+      },
+      results: {
+        title: 'নির্বাচনের ফলাফল',
+        subtitle: 'জনগণের রায়',
+        description: 'কঠোর নিরাপত্তার মধ্যে স্বচ্ছভাবে ভোট গণনা করা হয়।',
+        countingTitle: 'ভোট গণনা কীভাবে হয়',
+        countingSteps: [
+          { step: 1, title: 'স্ট্রং রুম', detail: 'ইভিএম সশস্ত্র প্রহরায় রাখা হয়' },
+          { step: 2, title: 'গণনা', detail: 'রাউন্ড অনুযায়ী ভোট গণনা করা হয়' },
+          { step: 3, title: 'ঘোষণা', detail: 'রিটার্নিং অফিসার বিজয়ী ঘোষণা করেন' },
+        ],
+        govTitle: 'সরকার গঠন',
+        governmentFormation: [
+          { title: 'সংখ্যাগরিষ্ঠতা', detail: 'লোকসভার জন্য ২৭২+ আসন প্রয়োজন' },
+          { title: 'জোট', detail: 'সংখ্যাগরিষ্ঠতা পেতে দলগুলো ঐক্যবদ্ধ হতে পারে' },
+        ],
+        conceptsTitle: 'মূল নির্বাচনী ধারণা',
+        termLabel: 'শব্দ',
+        meaningLabel: 'অর্থ',
+        keyConcepts: [
+          { term: 'FPTP', meaning: 'সর্বোচ্চ ভোট প্রাপ্তের জয়' },
+          { term: 'আমানত', meaning: 'প্রার্থীদের জন্য জামানত রাশি' },
+        ],
+        didYouKnow: 'পুরো দেশের ভোট গণনা সাধারণত একদিনেই সম্পন্ন হয়।',
+      },
+    },
+    quiz: {
+      title: 'ভোটার যোগ্যতা কুইজ',
+      startBtn: 'শুরু করুন',
+      disclaimer: 'কেবল শিক্ষামূলক উদ্দেশ্যে। voters.eci.gov.in এ যাচাই করুন',
+      questions: 'প্রশ্ন', time: 'আনুমানিক সময়', private: 'ব্যক্তিগত',
+      nextSteps: 'পরবর্তী পদক্ষেপ', yourAnswers: 'আপনার উত্তর', retake: 'আবার চেষ্টা করুন',
+      eligibleTitle: '🎉 আপনি ভোট দেওয়ার যোগ্য!',
+      ineligibleTitle: 'এই মুহূর্তে যোগ্য নন',
+      doneLabel: 'সম্পন্ন', noteLabel: '💬 নোট:', correctLabel: '✅ দারুণ!', incorrectLabel: '❌ যোগ্য নন',
+      q1: "আপনার বয়স কত?",
+      q1_a: "১৮ এর কম", q1_b: "১৮–২৫ বছর", q1_c: "২৬–৬০ বছর", q1_d: "৬০ এর বেশি",
+      q2: "আপনি কি ভারতের নাগরিক?",
+      q2_a: "হ্যাঁ, ভারতীয় নাগরিক", q2_b: "না, বিদেশী নাগরিকত্ব", q2_c: "OCI / PIO স্ট্যাটাস",
+      q3: "আপনাকে কি আদালত দ্বারা মানসিকভাবে অসুস্থ ঘোষণা করা হয়েছে?",
+      q3_a: "না", q3_b: "হ্যাঁ",
+      q4: "আপনি কি নির্বাচনী দুর্নীতির জন্য অযোগ্য ঘোষিত হয়েছেন?",
+      q4_a: "না", q4_b: "হ্যাঁ, দোষী সাব্যস্ত",
+      q5: "আপনার নাম কি ভোটার তালিকায় আছে?",
+      q5_a: "হ্যাঁ, আছে", q5_b: "এখনও নেই, তবে করব", q5_c: "আমি জানি না কিভাবে",
+      nextStepsList: [
+        'voters.eci.gov.in-এ আপনার নাম চেক করুন',
+        'নিবন্ধন না থাকলে, অনলাইনে ফর্ম ৬ পূরণ করুন',
+        'ভোটের দিন পরিচয়পত্র সাথে রাখুন'
+      ]
+    }
+  },
+
+  ta: {
+    sidebar: {
+      title: 'ElectionEdu',
+      tagline: 'இந்தியாவின் ஜனநாயக வழிகாட்டி',
+      sectionLabel: 'தேர்தல் கட்டங்கள்',
+      footerVote: '🗳️ உங்கள் வாக்கு உங்கள் குரல்',
+      footerEvent: 'Hack2Skills PromptWars 2026',
+      tryIt: 'முயற்சி செய்து பாருங்கள்!',
+      phases: [
+        { id: 'overview', label: 'கண்ணோட்டம்', icon: 'Home', badge: '01' },
+        { id: 'registration', label: 'பதிவு', icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning', label: 'பிரச்சாரம்', icon: 'Megaphone', badge: '03' },
+        { id: 'polling', label: 'வாக்களிப்பு நாள்', icon: 'Vote', badge: '04' },
+        { id: 'results', label: 'முடிவுகள்', icon: 'BarChart3', badge: '05' },
+        { id: 'quiz', label: 'தகுதி வினாடி வினா', icon: 'HelpCircle', badge: '06' },
+      ],
+    },
+    header: {
+      registerBtn: 'வாக்களிக்க பதிவு செய்யுங்கள்',
+      breadcrumbRoot: 'ElectionEdu',
+      phaseLabels: {
+        overview: 'கண்ணோட்டம்', registration: 'வாக்காளர் பதிவு',
+        campaigning: 'பிரச்சாரம்', polling: 'வாக்களிப்பு நாள்',
+        results: 'முடிவுகள்', quiz: 'வினாடி வினா',
+      },
+    },
+    overview: {
+      tagline: 'உலகின் மிகப்பெரிய ஜனநாயகம்',
+      heroTitle: 'உங்கள் வாக்கு, உங்கள் அதிகாரம்.',
+      heroSubtitle: 'தேர்தல் செயல்முறையை நிமிடங்களில் மாஸ்டர் செய்யுங்கள்.',
+      description: 'இந்தியா கிரகத்தில் மிகப்பெரிய ஜனநாயகத் தேர்தல்களை நடத்துகிறது.',
+      ctaJourney: 'பயணத்தைத் தொடங்கு',
+      ctaEligibility: 'தகுதியைச் சரிபார் →',
+      statsLabel: ['பதிவு செய்யப்பட்ட வாக்காளர்கள்', 'வாக்குச் சாவடிகள்', 'மக்களவை இடங்கள்', 'மாநில சட்டமன்றங்கள்'],
+      journeyTitle: '4-கட்ட தேர்தல் பயணம்',
+      timelineTitle: 'வரலாற்று காலவரிசை',
+      helplinkTitle: '📱 வாக்காளர் ஹெல்ப்லைன் செயலி',
+      helplinkDesc: 'பதிவு மற்றும் பூத் கண்காணிப்புக்கான உங்கள் டிஜிட்டல் துணை.',
+      helplinkBtn: 'செயலியைப் பெறு ↗',
+      dykLabel: '💡 உங்களுக்குத் தெரியுமா? — புனே பதிப்பு',
+      dykText: 'புனேவில் 82 லட்சத்திற்கும் அதிகமான வாக்காளர்கள் உள்ளனர்.',
+      journey: [
+        { phase: 'வாக்காளர் பதிவு', summary: 'உங்கள் வாக்காளர் அட்டையைப் பெறுங்கள்.' },
+        { phase: 'தேர்தல் பிரச்சாரம்', summary: 'பிரச்சார விதிகளை அறிந்து கொள்ளுங்கள்.', phaseId: 'campaigning' },
+        { phase: 'வாக்களிப்பு நாள்', summary: 'ஈவிஎம் மற்றும் விவிபேட் செயல்முறை.', phaseId: 'polling' },
+        { phase: 'முடிவுகள்', summary: 'வாக்கு எண்ணிக்கை மற்றும் அரசு அமைத்தல்.', phaseId: 'results' },
+      ],
+      timeline: [
+        { year: '1950', event: 'இந்திய தேர்தல் ஆணையம் அமைப்பு' },
+        { year: '1951', event: 'முதல் பொதுத் தேர்தல்' },
+        { year: '1989', event: 'வாக்களிக்கும் வயது 18 ஆகக் குறைப்பு' },
+        { year: '2004', event: 'நாடு முழுவதும் ஈவிஎம் பயன்பாடு' },
+      ],
+    },
+    phases: {
+      registration: {
+        title: 'வாக்காளர் பதிவு',
+        subtitle: 'ஜனநாயகத்தை நோக்கிய உங்கள் முதல் படி',
+        description: 'வாக்களிக்கும் முன் வாக்காளர் பட்டியலில் பெயர் இருக்க வேண்டும்.',
+        epicHighlight: {
+          title: 'ஈபிக் — வாக்காளர் அடையாள அட்டை',
+          points: [
+            'ஆள்மாறாட்டத்தைக் குறைக்க 1993 இல் அறிமுகம்',
+            'இப்போது டிஜிட்டல் இ-ஈபிக் ஆகக் கிடைக்கிறது',
+            'வங்கி மற்றும் அரசுப் பணிகளுக்குச் செல்லும்',
+          ],
+        },
+        eligibility: [
+          { label: 'வயது', detail: 'தேர்தல் ஆண்டின் ஜனவரி 1 அன்று 18+ வயது' },
+          { label: 'குடியுரிமை', detail: 'இந்தியக் குடிமகனாக இருக்க வேண்டும்' },
+        ],
+        steps: [
+          { step: 1, title: 'படிவம் 6 நிரப்பவும்', detail: 'voters.eci.gov.in இல் ஆன்லைனில் விண்ணப்பிக்கவும்' },
+          { step: 2, title: 'ஆவணங்களைச் சமர்ப்பிக்கவும்', detail: 'வயது மற்றும் இருப்பிடச் சான்று அளிக்கவும்' },
+          { step: 3, title: 'சரிபார்ப்பு', detail: 'பிஎல்ஓ உங்கள் இருப்பிடத்தை உறுதி செய்வார்' },
+        ],
+        forms: [
+          { form: 'படிவம் 6', purpose: 'புதிய பதிவு' },
+          { form: 'படிவம் 8', purpose: 'திருத்தம்/மாற்றம்' },
+        ],
+        eligibilityTitle: 'யார் பதிவு செய்யலாம்?',
+        stepsTitle: 'பதிவு செய்வது எப்படி — படிப்படியாக',
+        formsTitle: 'முக்கிய படிவங்கள்',
+        formLabel: 'படிவம்',
+        purposeLabel: 'நோக்கம்',
+        epicSubtitle: 'தேர்தல்களுக்கான உங்கள் முதன்மை அடையாளம்',
+      },
+      campaigning: {
+        title: 'தேர்தல் பிரச்சாரம் மற்றும் நடைமுறை விதிகள்',
+        subtitle: 'ஜனநாயகத்தின் விதிகள்',
+        description: 'வேட்பாளர்கள் மக்களுடன் தொடர்பு கொள்ளும் வழி பிரச்சாரம் ஆகும்.',
+        mccTitle: 'மாதிரி நடத்தை விதிமுறை (MCC)',
+        mccDesc: 'சுதந்திரமான மற்றும் நேர்மையான தேர்தல்களுக்கான தேர்தல் ஆணையத்தின் வழிகாட்டுதல்கள்.',
+        mccPoints: [
+          { title: 'வெறுப்பு பேச்சு கூடாது', detail: 'மதம் அல்லது சாதி அடிப்படையில் வாக்கு கேட்கக் கூடாது' },
+          { title: 'லஞ்சம் கூடாது', detail: 'பணம் அல்லது பரிசுகளை விநியோகிப்பது குற்றம்' },
+          { title: 'அமைதி காலம்', detail: 'வாக்கெடுப்புக்கு 48 மணி நேரத்திற்கு முன் பிரச்சாரம் முடிவடையும்' },
+        ],
+        expenseTitle: 'தேர்தல் செலவு வரம்புகள்',
+        expenseWarning: 'வரம்புகளை மீறுவது ஒரு குற்றமாகும்.',
+        expenses: [
+          { category: 'மக்களவை', limit: '₹95 லட்சம்' },
+          { category: 'சட்டமன்றம்', limit: '₹40 லட்சம்' },
+        ],
+        timelineTitle: 'பிரச்சார காலவரிசை',
+        timeline: [
+          { phase: 'அறிவிப்பு', detail: 'நடத்தை விதிகள் அமலுக்கு வருகின்றன' },
+          { phase: 'வேட்புமனு', detail: 'வேட்பாளர்கள் மனு தாக்கல் செய்கிறார்கள்' },
+          { phase: 'அமைதி காலம்', detail: 'வாக்களிப்புக்கு 48 மணி நேரத்திற்கு முன்' },
+        ],
+        didYouKnow: 'தேர்தல் தேதிகள் அறிவிக்கப்பட்டவுடன் மாதிரி நடத்தை விதிமுறை அமலுக்கு வரும்.',
+      },
+      polling: {
+        title: 'வாக்களிப்பு நாள்',
+        subtitle: 'வாக்களிக்கும் உங்கள் நாள்',
+        description: 'ஈவிஎம் மற்றும் விவிபேட் பயன்படுத்தி உங்கள் வாக்கை பாதுகாப்பாக பதிவு செய்யுங்கள்.',
+        evmVvpatTitle: 'ஈவிஎம் + விவிபேட்',
+        evmVvpatSubtitle: 'இந்தியாவின் தகிடுதத்தங்கள் இல்லாத வாக்குப்பதிவு முறை எப்படி வேலை செய்கிறது.',
+        evm: ['வேட்பாளருக்கு நேரான பொத்தானை அழுத்தவும்', 'பீப் ஒலி வாக்கை உறுதிப்படுத்தும்'],
+        vvpat: ['சீட்டு 7 வினாடிகள் சின்னத்தைக் காட்டும்', 'பின் சீலிடப்பட்ட பெட்டியில் விழும்'],
+        inkTitle: 'அழிக்க முடியாத மை',
+        facts: ['இரட்டை வாக்களிப்பைத் தடுக்கும்', '2-3 வாரங்கள் இருக்கும்', 'NPLI இல் உருவானது'],
+        bringTitle: 'என்ன கொண்டு வர வேண்டும்',
+        whatToBring: [
+          { item: 'வாக்காளர் அடையாள அட்டை', desc: 'ஈபிக் கார்டு' },
+          { item: 'ஆதார் கார்டு', desc: 'செல்லுபடியாகும் புகைப்பட ஐடி' },
+        ],
+        steps: [
+          { step: 1, title: 'பூத்தைக் கண்டறியவும்', detail: 'ECI இணையதளத்தில் பூத்தைச் சரிபார்க்கவும்' },
+          { step: 2, title: 'அடையாளச் சரிபார்ப்பு', detail: 'அடையாளச் சான்றை அதிகாரியிடம் காட்டவும்' },
+          { step: 3, title: 'மை மற்றும் சீட்டு', detail: 'மை அடையாளத்தையும் வாக்காளர் சீட்டையும் பெறுங்கள்' },
+          { step: 4, title: 'வாக்களியுங்கள்', detail: 'ஈவிஎம்மில் பொத்தானை அழுத்தவும்' },
+        ],
+        stepsTitle: 'வாக்களிப்பது எப்படி',
+        rightsTitle: 'உங்கள் வாக்காளர் உரிமைகள்',
+        reportLabel: 'மீறல்களைப் புகாரளிக்கவும்:',
+        rights: [
+          'ரகசிய வாக்குரிமை',
+          'நோட்டா (NOTA) விருப்பம் உள்ளது',
+        ],
+        didYouKnow: 'அழிக்க முடியாத மை மைசூர் பெயிண்ட்ஸ் அண்ட் வார்னிஷ் லிமிடெட்டில் தயாரிக்கப்படுகிறது.',
+      },
+      results: {
+        title: 'தேர்தல் முடிவுகள்',
+        subtitle: 'மக்களின் தீர்ப்பு',
+        description: 'வாக்கு எண்ணிக்கை பலத்த பாதுகாப்புடன் வெளிப்படையாக நடத்தப்படுகிறது.',
+        countingTitle: 'வாக்கு எண்ணிக்கை முறை',
+        countingSteps: [
+          { step: 1, title: 'பாதுகாப்பு அறைகள்', detail: 'ஈவிஎம்கள் ஆயுதமேந்திய பாதுகாப்பில் வைக்கப்படுகின்றன' },
+          { step: 2, title: 'வாக்கு எண்ணிக்கை', detail: 'சுற்று அடிப்படையில் வாக்குகள் எண்ணப்படுகின்றன' },
+          { step: 3, title: 'அறிவிப்பு', detail: 'தேர்தல் நடத்தும் அதிகாரி வெற்றியாளரை அறிவிப்பார்' },
+        ],
+        govTitle: 'அரசு அமைத்தல்',
+        governmentFormation: [
+          { title: 'பெரும்பான்மை', detail: 'மக்களவைக்கு 272+ இடங்கள் தேவை' },
+          { title: 'கூட்டணி', detail: 'பெரும்பான்மையை எட்ட கட்சிகள் இணையலாம்' },
+        ],
+        conceptsTitle: 'முக்கிய தேர்தல் கருத்துக்கள்',
+        termLabel: 'சொல்',
+        meaningLabel: 'பொருள்',
+        keyConcepts: [
+          { term: 'FPTP', meaning: 'அதிக வாக்கு பெறுபவரே வெற்றியாளர்' },
+          { term: 'வைப்புத்தொகை', meaning: 'வேட்பாளர்களுக்கான பிணைத் தொகை' },
+        ],
+        didYouKnow: 'முழு நாட்டிற்குமான வாக்கு எண்ணிக்கை பொதுவாக ஒரே நாளில் முடிந்துவிடும்.',
+      },
+    },
+    quiz: {
+      title: 'வாக்காளர் தகுதி வினாடி வினா',
+      startBtn: 'தொடங்கு',
+      disclaimer: 'கல்வி நோக்கத்திற்காக மட்டுமே. voters.eci.gov.in இல் சரிபார்க்கவும்',
+      questions: 'கேள்விகள்', time: 'நேரம்', private: 'தனிப்பட்டது',
+      nextSteps: 'அடுத்த படிகள்', yourAnswers: 'உங்கள் பதில்கள்', retake: 'மீண்டும் முயற்சி செய்',
+      eligibleTitle: '🎉 நீங்கள் வாக்களிக்க தகுதியுடையவர்!',
+      ineligibleTitle: 'தற்போது தகுதியற்றவர்',
+      doneLabel: 'முடிந்தது', noteLabel: '💬 குறிப்பு:', correctLabel: '✅ நன்று!', incorrectLabel: '❌ தகுதியற்றவர்',
+      q1: "உங்கள் வயது என்ன?",
+      q1_a: "18க்கு கீழ்", q1_b: "18–25 வயது", q1_c: "26–60 வயது", q1_d: "60க்கு மேல்",
+      q2: "நீங்கள் இந்திய குடிமகனா?",
+      q2_a: "ஆம், இந்திய குடிமகன்", q2_b: "இல்லை, வெளிநாட்டு குடியுரிமை", q2_c: "OCI / PIO அந்தஸ்து",
+      q3: "நீங்கள் நீதிமன்றத்தால் மனநலம் சரியில்லாதவர் என அறிவிக்கப்பட்டுள்ளீர்களா?",
+      q3_a: "இல்லை", q3_b: "ஆம்",
+      q4: "தேர்தல் ஊழல் காரணமாக நீங்கள் தகுதி நீக்கம் செய்யப்பட்டுள்ளீர்களா?",
+      q4_a: "இல்லை", q4_b: "ஆம், தண்டனை பெற்றவர்",
+      q5: "நீங்கள் வாக்காளர் பட்டியலில் இடம் பெற்றுள்ளீர்களா?",
+      q5_a: "ஆம், உள்ளது", q5_b: "இல்லை, ஆனால் செய்வேன்", q5_c: "எப்படி என்று தெரியவில்லை",
+      nextStepsList: [
+        'voters.eci.gov.in இல் உங்கள் பெயரை சரிபார்க்கவும்',
+        'பதிவு செய்யவில்லை என்றால், படிவம் 6 ஐ ஆன்லைனில் நிரப்பவும்',
+        'வாக்களிக்கும் நாளில் அடையாள அட்டையை எடுத்துச் செல்லவும்'
+      ]
+    }
+  },
+
+  te: {
+    sidebar: {
+      title: 'ElectionEdu',
+      tagline: 'భారతదేశ ప్రజాస్వామ్య మార్గదర్శి',
+      sectionLabel: 'ఎన్నికల దశలు',
+      footerVote: '🗳️ మీ ఓటు మీ గొంతుక',
+      footerEvent: 'Hack2Skills PromptWars 2026',
+      tryIt: 'ప్రయతించి చూడండి!',
+      phases: [
+        { id: 'overview', label: 'అవలోకనం', icon: 'Home', badge: '01' },
+        { id: 'registration', label: 'నమోదు', icon: 'ClipboardList', badge: '02' },
+        { id: 'campaigning', label: 'ప్రచారం', icon: 'Megaphone', badge: '03' },
+        { id: 'polling', label: 'పోలింగ్ రోజు', icon: 'Vote', badge: '04' },
+        { id: 'results', label: 'ఫలితాలు', icon: 'BarChart3', badge: '05' },
+        { id: 'quiz', label: 'అర్హత క్విజ్', icon: 'HelpCircle', badge: '06' },
+      ],
+    },
+    header: {
+      registerBtn: 'ఓటు కోసం నమోదు చేసుకోండి',
+      breadcrumbRoot: 'ElectionEdu',
+      phaseLabels: {
+        overview: 'అవలోకనం', registration: 'ఓటర్ నమోదు',
+        campaigning: 'ప్రచారం', polling: 'పోలింగ్ రోజు',
+        results: 'ఫలితాలు', quiz: 'క్విజ్',
+      },
+    },
+    overview: {
+      tagline: 'ప్రపంచంలోనే అతిపెద్ద ప్రజాస్వామ్యం',
+      heroTitle: 'మీ ఓటు, మీ శక్తి.',
+      heroSubtitle: 'ఎన్నికల ప్రక్రియను నిమిషాల్లో అర్థం చేసుకోండి.',
+      description: 'భారతదేశం భూమిపై అతిపెద్ద ప్రజాస్వామ్య ఎన్నికలను నిర్వహిస్తుంది.',
+      ctaJourney: 'ప్రయాణాన్ని ప్రారంభించండి',
+      ctaEligibility: 'అర్హత చూడండి →',
+      statsLabel: ['నమోదైన ఓటర్లు', 'పోలింగ్ కేంద్రాలు', 'లోక్‌సభ స్థానాలు', 'రాష్ట్ర అసెంబ్లీలు'],
+      journeyTitle: '4-దశల ఎన్నికల ప్రయాణం',
+      timelineTitle: 'చారిత్రక కాలక్రమం',
+      helplinkTitle: '📱 ఓటర్ హెల్ప్లైన్ యాప్',
+      helplinkDesc: 'నమోదు మరియు బూత్ ట్రాకింగ్ కోసం మీ డిజిటల్ సహచరుడు.',
+      helplinkBtn: 'యాప్ పొందండి ↗',
+      dykLabel: '💡 మీకు తెలుసా? — పూణే ఎడిషన్',
+      dykText: 'పూణేలో 82 లక్షల కంటే ఎక్కువ మంది ఓటర్లు ఉన్నారు.',
+      journey: [
+        { phase: 'ఓటర్ నమోదు', summary: 'మీ ఓటర్ ఐడి కార్డు పొందండి.' },
+        { phase: 'ఎన్నికల ప్రచారం', summary: 'ప్రచార నియమాలను తెలుసుకోండి.', phaseId: 'campaigning' },
+        { phase: 'పోలింగ్ రోజు', summary: 'ఈవీఎం మరియు వివిప్యాట్ ప్రక్రియ.', phaseId: 'polling' },
+        { phase: 'ఫలితాలు', summary: 'ఓట్ల లెక్కింపు మరియు ప్రభుత్వం ఏర్పాటు.', phaseId: 'results' },
+      ],
+      timeline: [
+        { year: '1950', event: 'భారత ఎన్నికల సంఘం ఏర్పాటు' },
+        { year: '1951', event: 'మొదటి సాధారణ ఎన్నికలు' },
+        { year: '1989', event: 'ఓటు హక్కు వయస్సు 18కి తగ్గింపు' },
+        { year: '2004', event: 'దేశవ్యాప్తంగా ఈవీఎంల వినియోగం' },
+      ],
+    },
+    phases: {
+      registration: {
+        title: 'ఓటర్ నమోదు',
+        subtitle: 'ప్రజాస్వామ్యం వైపు మీ మొదటి అడుగు',
+        description: 'ఓటు వేయడానికి ముందు ఓటర్ల జాబితాలో పేరు నమోదు చేసుకోవాలి.',
+        epicHighlight: {
+          title: 'ఎపిక్ — ఓటర్ ఐడి కార్డు',
+          points: [
+            'ఫోర్జరీని తగ్గించడానికి 1993లో ప్రవేశపెట్టారు',
+            'ఇప్పుడు డిజిటల్ ఇ-ఎపిక్ రూపంలో అందుబాటులో ఉంది',
+            'బ్యాంకింగ్ మరియు ప్రభుత్వ పనులకు చెల్లుతుంది',
+          ],
+        },
+        eligibility: [
+          { label: 'వయస్సు', detail: 'ఎన్నికల సంవత్సరం జనవరి 1 నాటికి 18+ ఏళ్లు' },
+          { label: 'పౌరసత్వం', detail: 'భారతీయ పౌరుడై ఉండాలి' },
+        ],
+        steps: [
+          { step: 1, title: 'ఫారమ్ 6 పూరించండి', detail: 'voters.eci.gov.in లో ఆన్‌లైన్‌లో దరఖాస్తు చేసుకోండి' },
+          { step: 2, title: 'పత్రాలు సమర్పించండి', detail: 'వయస్సు మరియు నివాస ధృవీకరణ పత్రాలు ఇవ్వండి' },
+          { step: 3, title: 'ధృవీకరణ', detail: 'బి.ఎల్.ఓ మీ నివాసాన్ని ధృవీకరిస్తారు' },
+        ],
+        forms: [
+          { form: 'ఫారమ్ 6', purpose: 'కొత్త నమోదు' },
+          { form: 'ఫారమ్ 8', purpose: 'సవరణలు/అప్‌డేట్' },
+        ],
+        eligibilityTitle: 'ఎవరు నమోదు చేసుకోవచ్చు?',
+        stepsTitle: 'నమోదు చేసుకోవడం ఎలా — దశల వారీగా',
+        formsTitle: 'ముఖ్యమైన ఫారమ్‌లు',
+        formLabel: 'ఫారమ్',
+        purposeLabel: 'ప్రయోజనం',
+        epicSubtitle: 'ఎన్నికల కోసం మీ ప్రాథమిక గుర్తింపు',
+      },
+      campaigning: {
+        title: 'ఎన్నికల ప్రచారం మరియు నియమావళి',
+        subtitle: 'ప్రజాస్వామ్య నియమాలు',
+        description: 'అభ్యర్థులు ప్రజలతో సంభాషించే మార్గం ప్రచారం.',
+        mccTitle: 'నమూనా ప్రవర్తనా నియమావళి (MCC)',
+        mccDesc: 'స్వేచ్ఛాయుత మరియు నిష్పక్షపాత ఎన్నికల కోసం ఎన్నికల సంఘం మార్గదర్శకాలు.',
+        mccPoints: [
+          { title: 'ద్వేషపూరిత ప్రసంగాలు వద్దు', detail: 'మతం లేదా కులం పేరుతో ఓట్లు అడగకూడదు' },
+          { title: 'ముడుపులు వద్దు', detail: 'నగదు లేదా బహుమతులు పంపిణీ చేయడం నేరం' },
+          { title: 'నిశ్శబ్ద కాలం', detail: 'పోలింగ్‌కు 48 గంటల ముందు ప్రచారం ముగుస్తుంది' },
+        ],
+        expenseTitle: 'ఎన్నికల ఖర్చు పరిమితులు',
+        expenseWarning: 'పరిమితికి మించి ఖర్చు చేయడం నేరం.',
+        expenses: [
+          { category: 'లోక్‌సభ', limit: '₹95 లక్షలు' },
+          { category: 'అసెంబ్లీ', limit: '₹40 లక్షలు' },
+        ],
+        timelineTitle: 'ప్రచార కాలక్రమం',
+        timeline: [
+          { phase: 'ప్రకటన', detail: 'ప్రవర్తనా నియమావళి అమలులోకి వస్తుంది' },
+          { phase: 'నామినేషన్', detail: 'అభ్యర్థులు పత్రాలు దాఖలు చేస్తారు' },
+          { phase: 'నిశ్శబ్ద కాలం', detail: 'పోలింగ్‌కు 48 గంటల ముందు' },
+        ],
+        didYouKnow: 'ఎన్నికల తేదీల ప్రకటనతోనే ప్రవర్తనా నియమావళి అమలులోకి వస్తుంది.',
+      },
+      polling: {
+        title: 'పోలింగ్ రోజు',
+        subtitle: 'మీ ఓటు వేసే రోజు',
+        description: 'ఈవీఎం మరియు వివిప్యాట్ ఉపయోగించి మీ ఓటును సురక్షితంగా వేయండి.',
+        evmVvpatTitle: 'ఈవీఎం + వివిప్యాట్',
+        evmVvpatSubtitle: 'భారతదేశపు ట్యాంపర్-ప్రూఫ్ ఓటింగ్ వ్యవస్థ ఎలా పనిచేస్తుంది.',
+        evm: ['అభ్యర్థి పక్కన ఉన్న బటన్‌ను నొక్కండి', 'బీప్ శబ్దం ఓటును ధృవీకరిస్తుంది'],
+        vvpat: ['స్లిప్ 7 సెకన్ల పాటు గుర్తును చూపిస్తుంది', 'తర్వాత సీలు చేసిన బాక్స్‌లో పడుతుంది'],
+        inkTitle: 'చెరగని సిరా',
+        facts: ['రెండుసార్లు ఓటు వేయకుండా అడ్డుకుంటుంది', '2-3 వారాలు ఉంటుంది', 'NPLI లో అభివృద్ధి చేయబడింది'],
+        bringTitle: 'ఏమి తీసుకురావాలి',
+        whatToBring: [
+          { item: 'ఓటర్ ఐడి', desc: 'ఎపిక్ కార్డు' },
+          { item: 'ఆధార్ కార్డు', desc: 'చెల్లుబాటు అయ్యే ఫోటో ఐడి' },
+        ],
+        steps: [
+          { step: 1, title: 'బూత్ కనుగొనండి', detail: 'ECI వెబ్‌సైట్‌లో బూత్‌ను తనిఖీ చేయండి' },
+          { step: 2, title: 'గుర్తింపు ధృవీకరణ', detail: 'అధికారికి ఐడిని చూపండి' },
+          { step: 3, title: 'సిరా మరియు స్లిప్', detail: 'సిరా గుర్తు మరియు ఓటర్ స్లిప్ పొందండి' },
+          { step: 4, title: 'ఓటు వేయండి', detail: 'ఈవీఎంపై బటన్ నొక్కండి' },
+        ],
+        stepsTitle: 'ఓటు వేయడం ఎలా',
+        rightsTitle: 'మీ ఓటర్ హక్కులు',
+        reportLabel: 'ఉల్లంఘనలను నివేదించండి:',
+        rights: [
+          'రహస్య ఓటు హక్కు',
+          'నోటా (NOTA) ఎంపిక అందుబాటులో ఉంది',
+        ],
+        didYouKnow: 'చెరగని సిరాను మైసూర్ పెయింట్స్ అండ్ వార్నిష్ లిమిటెడ్‌లో తయారు చేస్తారు.',
+      },
+      results: {
+        title: 'ఎన్నికల ఫలితాలు',
+        subtitle: 'ప్రజల తీర్పు',
+        description: 'ఓట్ల లెక్కింపు కట్టుదిట్టమైన భధ్యతతో పారదర్శకంగా జరుగుతుంది.',
+        countingTitle: 'ఓట్ల లెక్కింపు ప్రక్రియ',
+        countingSteps: [
+          { step: 1, title: 'స్ట్రాంగ్ రూమ్‌లు', detail: 'ఈవీఎంలను సాయుధ కాపలాలో ఉంచుతారు' },
+          { step: 2, title: 'లెక్కింపు', detail: 'రౌండ్ల వారీగా ఓట్లను లెక్కిస్తారు' },
+          { step: 3, title: 'ప్రకటన', detail: 'రిటర్నింగ్ అధికారి విజేతను ప్రకటిస్తారు' },
+        ],
+        govTitle: 'ప్రభుత్వ ఏర్పాటు',
+        governmentFormation: [
+          { title: 'మెజారిటీ', detail: 'లోక్‌సభకు 272+ స్థానాలు అవసరం' },
+          { title: 'కూటమి', detail: 'మెజారిటీ సాధించడానికి పార్టీలు చేతులు కలపవచ్చు' },
+        ],
+        conceptsTitle: 'ముఖ్యమైన ఎన్నికల అంశాలు',
+        termLabel: 'పదం',
+        meaningLabel: 'అర్థం',
+        keyConcepts: [
+          { term: 'FPTP', meaning: 'అత్యధిక ఓట్లు వచ్చిన వారే విజేత' },
+          { term: 'డిపాజిట్', meaning: 'అభ్యర్థుల కోసం భద్రతా మొత్తం' },
+        ],
+        didYouKnow: 'దేశం మొత్తానికి ఓట్ల లెక్కింపు సాధారణంగా ఒకే రోజులో పూర్తవుతుంది.',
+      },
+    },
+    quiz: {
+      title: 'ఓటర్ అర్హత క్విజ్',
+      startBtn: 'ప్రారంభించండి',
+      disclaimer: 'కేవలం విద్యా ప్రయోజనాల కోసం మాత్రమే. voters.eci.gov.in లో ధృవీకరించండి',
+      questions: 'ప్రశ్నలు', time: 'సమయం', private: 'ప్రైవేట్',
+      nextSteps: 'తదుపరి దశలు', yourAnswers: 'మీ సమాధానాలు', retake: 'మళ్ళీ ప్రయత్నించండి',
+      eligibleTitle: '🎉 మీరు ఓటు వేయడానికి అర్హులు!',
+      ineligibleTitle: 'ప్రస్తుతానికి అర్హులు కాదు',
+      doneLabel: 'పూర్తయింది', noteLabel: '💬 గమనిక:', correctLabel: '✅ భేష్!', incorrectLabel: '❌ అర్హులు కాదు',
+      q1: "మీ వయస్సు ఎంత?",
+      q1_a: "18 లోపు", q1_b: "18–25 ఏళ్లు", q1_c: "26–60 ఏళ్లు", q1_d: "60 పైబడిన",
+      q2: "మీరు భారత పౌరులా?",
+      q2_a: "అవును, భారత పౌరుడిని", q2_b: "కాదు, విదేశీ పౌరసత్వం", q2_c: "OCI / PIO హోదా",
+      q3: "మిమ్మల్ని కోర్టు మానసిక అస్వస్థత గల వ్యక్తిగా ప్రకటించిందా?",
+      q3_a: "లేదు", q3_b: "అవును",
+      q4: "ఎన్నికల అవినీతి కారణంగా మీరు అనర్హులుగా ప్రకటించబడ్డారా?",
+      q4_a: "లేదు", q4_b: "అవును, శిక్షపడింది",
+      q5: "మీరు ఓటర్ల జాబితాలో నమోదయ్యారా?",
+      q5_a: "అవును, నమోదైంది", q5_b: "ఇంకా లేదు, కానీ అవుతాను", q5_c: "ఎలాగో తెలియదు",
+      nextStepsList: [
+        'voters.eci.gov.in లో మీ పేరు తనిఖీ చేయండి',
+        'నమోదు కాకపోతే, ఆన్‌లైన్‌లో ఫారమ్ 6 పూరించండి',
+        'ఓటు వేసే రోజున గుర్తింపు కార్డు వెంట తెచ్చుకోండి'
+      ]
+    }
+  },
 };
 
 // Languages with full content support — used for navigator.language auto-detection
-export const SUPPORTED_LANGS = ['en', 'hi', 'mr'];
-
+export const SUPPORTED_LANGS = ['en', 'hi', 'mr', 'bn', 'ta', 'te'];
