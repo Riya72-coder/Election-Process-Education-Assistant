@@ -12,6 +12,7 @@ import VoterEligibilityQuiz from './components/quiz/VoterEligibilityQuiz';
 import { getScriptConfig, isRTL } from './data/languages';
 import ChatAssistant from './components/chat/ChatAssistant';
 import { ChatProvider } from './components/chat/ChatContext';
+import { JourneyProvider } from './components/journey/JourneyContext';
 
 const phaseComponents = {
   overview: OverviewPhase,
@@ -46,6 +47,7 @@ export default function App() {
   const ActiveComponent = phaseComponents[activePhase] || OverviewPhase;
 
   return (
+    <JourneyProvider>
     <ChatProvider>
     <div className="flex h-screen overflow-hidden bg-slate-50">
       <Sidebar
@@ -81,5 +83,6 @@ export default function App() {
       <ChatAssistant />
     </div>
     </ChatProvider>
+    </JourneyProvider>
   );
 }

@@ -4,19 +4,25 @@ import { useTranslation } from 'react-i18next';
 import { overviewData } from '../../data/electionData';
 import AISummaryCard from '../chat/AISummaryCard';
 import PageAIBar from '../chat/PageAIBar';
+import { useJourney } from '../journey/JourneyContext';
+import VotingJourney from '../journey/VotingJourney';
+import ProfileModal from '../journey/ProfileModal';
+import { useState } from 'react';
 
 const iconMap = { Users, MapPin, Building2, Flag };
 
-// Journey cards: phaseId lets the button navigate; colour matched to sidebar
-const JOURNEY_PHASES = [
-  { phaseId: 'registration', color: 'bg-teal-600' },
-  { phaseId: 'campaigning',  color: 'bg-orange-500' },
-  { phaseId: 'polling',      color: 'bg-civic-600' },
-  { phaseId: 'results',      color: 'bg-teal-600' },
-];
+const JOURNEY_PHASES = ['registration', 'campaigning', 'polling', 'results'];
 
 // Aligned to overviewData.stats array order in electionData.js
 const STAT_KEYS = ['voters', 'stations', 'seats', 'assemblies'];
+
+// Static map so Tailwind keeps all classes in the bundle
+const PHASE_STYLES = {
+  registration: { badge: 'bg-teal-600 text-white',   ring: 'hover:border-teal-300' },
+  campaigning:  { badge: 'bg-orange-500 text-white', ring: 'hover:border-orange-300' },
+  polling:      { badge: 'bg-blue-700 text-white',   ring: 'hover:border-blue-300' },
+  results:      { badge: 'bg-teal-600 text-white',   ring: 'hover:border-teal-300' },
+};
 
 const containerVariants = {
   hidden:  { opacity: 0 },
@@ -29,6 +35,8 @@ const itemVariants = {
 
 export default function OverviewPhase({ setActivePhase }) {
   const { t } = useTranslation();
+  const { profile } = useJourney();
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <motion.div
@@ -76,6 +84,16 @@ export default function OverviewPhase({ setActivePhase }) {
               {t('overview.ctaJourney')}
               <ArrowRight size={17} className="transition-transform duration-200 group-hover:translate-x-1" />
             </motion.button>
+            {!profile && (
+              <motion.button
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center gap-2 bg-white text-civic-800 font-bold px-7 py-3.5 rounded-xl shadow-lg text-sm"
+              >
+                🚀 Start My AI Voting Journey
+              </motion.button>
+            )}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
@@ -86,16 +104,26 @@ export default function OverviewPhase({ setActivePhase }) {
             </motion.button>
           </div>
 
+
           {/* AI Bar inside hero */}
           <div className="mt-6">
             <PageAIBar
               askLabel="How does voting work?"
-              askQuery="Give me a simple overview of how the Indian election process works from start to finish."
-              pageType="Indian election process overview"
+              askQuery="Give me an overview of how the Indian election process works."
+              pageType="election process"
             />
           </div>
         </div>
       </motion.div>
+
+      {/* Profile modal — outside hero so it doesn't inherit text-white */}
+      <ProfileModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
+      {profile && (
+        <motion.div variants={itemVariants}>
+          <VotingJourney setActivePhase={setActivePhase} />
+        </motion.div>
+      )}
 
       {/* ── STATS GRID ── */}
       <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -155,29 +183,32 @@ export default function OverviewPhase({ setActivePhase }) {
           {t('overview.journeyTitle')}
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
-          {JOURNEY_PHASES.map(({ phaseId, color }, idx) => (
-            <motion.button
-              key={phaseId}
-              whileHover={{ y: -3 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setActivePhase(phaseId)}
-              className="text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-civic-200 bg-white hover:bg-civic-50 transition-all duration-200 group"
-            >
-              <div className="flex items-start gap-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-sm ${color}`}>
-                  {idx + 1}
+          {JOURNEY_PHASES.map((phaseId, idx) => {
+            const styles = PHASE_STYLES[phaseId];
+            return (
+              <motion.button
+                key={phaseId}
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setActivePhase(phaseId)}
+                className={`text-left p-5 rounded-2xl border-2 border-slate-100 bg-white transition-all duration-200 group ${styles.ring}`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-sm ${styles.badge}`}>
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-800 text-sm group-hover:text-civic-700 transition-colors">
+                      {t(`overview.journey.${phaseId}.phase`)}
+                    </p>
+                    <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">
+                      {t(`overview.journey.${phaseId}.summary`)}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold text-slate-800 text-sm group-hover:text-civic-700 transition-colors">
-                    {t(`overview.journey.${phaseId}.phase`)}
-                  </p>
-                  <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">
-                    {t(`overview.journey.${phaseId}.summary`)}
-                  </p>
-                </div>
-              </div>
-            </motion.button>
-          ))}
+              </motion.button>
+            );
+          })}
         </div>
       </motion.div>
 
