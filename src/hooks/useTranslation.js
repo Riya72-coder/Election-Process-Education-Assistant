@@ -1,15 +1,15 @@
-import { translations, PRIMARY_LANGS } from '../data/translations';
-
 /**
- * useTranslation(currentLanguage)
- * Returns t(key) — resolves key from the active language,
- * falls back to English for any missing key.
+ * @deprecated
+ * This custom hook was part of the old manual translation system.
+ * The project now uses react-i18next exclusively.
+ * Use `import { useTranslation } from 'react-i18next'` instead.
+ *
+ * Kept in place to avoid breaking any external references during transition.
+ * Safe to delete once all consumers have been confirmed removed.
  */
-export function useTranslation(currentLanguage) {
-  const lang = PRIMARY_LANGS.includes(currentLanguage) ? currentLanguage : 'en';
-  const langData = translations[lang] || translations.en;
-
-  const t = (key) => langData[key] ?? translations.en[key] ?? key;
-
-  return { t, lang };
+export function useTranslation() {
+  throw new Error(
+    '[useTranslation] This custom hook is deprecated. ' +
+    "Import useTranslation from 'react-i18next' instead."
+  );
 }

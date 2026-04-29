@@ -1,51 +1,17 @@
-import { useState, useEffect } from 'react';
-import { PRIMARY_LANGS, detectedLangNames } from '../data/translations';
-
 /**
- * useLanguageDetect()
+ * @deprecated
+ * This hook was part of the old manual translation system.
+ * Language detection is now handled inside `src/i18n.js` via the
+ * built-in browser-language detection in i18next.
  *
- * Reads navigator.language (e.g. "gu-IN", "pa", "ml-IN").
- * - If the browser lang is one of the Big 6  → auto-select it silently.
- * - If it's another Scheduled Language        → show the "We detected…" banner.
- * - Otherwise                                 → default to 'en', no banner.
+ * The LanguageBanner component (for non-Big-6 Scheduled Languages)
+ * should be wired via App.jsx if needed in future.
  *
- * Returns:
- *   detectedLang      — ISO code of what the browser reported (or null)
- *   detectedNativeName — native-script name for the banner (e.g. 'ગુજરાતી')
- *   showBanner        — whether to render the suggestion banner
- *   dismissBanner     — call to hide the banner
+ * Safe to delete once all consumers have been confirmed removed.
  */
-export function useLanguageDetect(setLanguage) {
-  const [detectedLang, setDetectedLang] = useState(null);
-  const [detectedNativeName, setDetectedNativeName] = useState('');
-  const [showBanner, setShowBanner] = useState(false);
-
-  useEffect(() => {
-    const raw = navigator.language || navigator.languages?.[0] || '';
-    // Normalise: 'gu-IN' → 'gu', 'zh-Hant-TW' → 'zh'
-    const code = raw.split('-')[0].toLowerCase();
-
-    if (!code) return;
-
-    if (PRIMARY_LANGS.includes(code)) {
-      // Auto-apply the detected Big-6 language
-      setLanguage(code);
-    } else if (detectedLangNames[code]) {
-      // Non-Big-6 Scheduled Language → show banner
-      setDetectedLang(code);
-      setDetectedNativeName(detectedLangNames[code]);
-      setShowBanner(true);
-    }
-    // Otherwise: unknown language → silently use English
-  }, [setLanguage]);
-
-  const dismissBanner = () => setShowBanner(false);
-
-  const acceptTranslation = () => {
-    // In future: call translateWithAPI and switch content
-    // For now, just dismiss gracefully
-    setShowBanner(false);
-  };
-
-  return { detectedLang, detectedNativeName, showBanner, dismissBanner, acceptTranslation };
+export function useLanguageDetect() {
+  throw new Error(
+    '[useLanguageDetect] This custom hook is deprecated. ' +
+    'Language detection is now handled by i18next in src/i18n.js.'
+  );
 }

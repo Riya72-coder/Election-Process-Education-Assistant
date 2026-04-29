@@ -1,12 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Languages } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * LanguageBanner
- * Shown when browser language is a non-Big-6 Scheduled Language.
+ * Shown when the browser language is a Scheduled Language not in the Big 6.
  * Props: nativeName, onAccept, onDismiss
  */
 export default function LanguageBanner({ nativeName, onAccept, onDismiss }) {
+  const { t } = useTranslation();
+
   return (
     <AnimatePresence>
       <motion.div
@@ -21,10 +24,10 @@ export default function LanguageBanner({ nativeName, onAccept, onDismiss }) {
           <div className="flex items-center gap-3">
             <Languages size={18} className="flex-shrink-0 text-teal-300" />
             <p className="text-sm">
-              We detected your browser language as{' '}
+              {t('banner.detected')}{' '}
               <span className="font-bold text-teal-200">{nativeName}</span>.{' '}
-              Would you like to translate this journey?{' '}
-              <span className="text-white/50 text-xs">(API plug-in ready)</span>
+              {t('banner.question')}{' '}
+              <span className="text-white/50 text-xs">{t('banner.apiNote')}</span>
             </p>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
@@ -32,13 +35,13 @@ export default function LanguageBanner({ nativeName, onAccept, onDismiss }) {
               onClick={onAccept}
               className="text-xs font-semibold bg-teal-400 hover:bg-teal-300 text-teal-950 px-3 py-1.5 rounded-lg transition-colors"
             >
-              Yes, translate
+              {t('banner.accept')}
             </button>
             <button
               onClick={onDismiss}
               className="text-xs text-white/70 hover:text-white px-2 py-1.5 rounded-lg transition-colors"
             >
-              No thanks
+              {t('banner.dismiss')}
             </button>
             <button onClick={onDismiss} className="text-white/50 hover:text-white ml-1">
               <X size={16} />
