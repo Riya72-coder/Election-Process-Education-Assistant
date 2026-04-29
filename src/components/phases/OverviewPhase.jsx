@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { Users, MapPin, Building2, Flag, ArrowRight, Smartphone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { overviewData } from '../../data/electionData';
+import AISummaryCard from '../chat/AISummaryCard';
+import PageAIBar from '../chat/PageAIBar';
 
 const iconMap = { Users, MapPin, Building2, Flag };
 
@@ -83,6 +85,15 @@ export default function OverviewPhase({ setActivePhase }) {
               {t('overview.ctaEligibility')}
             </motion.button>
           </div>
+
+          {/* AI Bar inside hero */}
+          <div className="mt-6">
+            <PageAIBar
+              askLabel="How does voting work?"
+              askQuery="Give me a simple overview of how the Indian election process works from start to finish."
+              pageType="Indian election process overview"
+            />
+          </div>
         </div>
       </motion.div>
 
@@ -107,6 +118,9 @@ export default function OverviewPhase({ setActivePhase }) {
           );
         })}
       </motion.div>
+
+      {/* AI Summary Card */}
+      <AISummaryCard pageType="overview" accentColor="border-civic-600" />
 
       {/* ── VOTER HELPLINE APP ── */}
       <motion.div

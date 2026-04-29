@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, FileText, CreditCard } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import AISummaryCard from '../chat/AISummaryCard';
+import PageAIBar from '../chat/PageAIBar';
 
 const containerVariants = {
   hidden:  { opacity: 0 },
@@ -37,8 +39,19 @@ export default function RegistrationPhase() {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('registration.title')}</h2>
           <p className="text-teal-100 font-medium mb-2">{t('registration.subtitle')}</p>
           <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('registration.description')}</p>
+          {/* AI Bar inside hero */}
+          <div className="mt-5">
+            <PageAIBar
+              askLabel="Can I register?"
+              askQuery="I want to register to vote. What are the steps and documents needed?"
+              pageType="voter registration"
+            />
+          </div>
         </div>
       </motion.div>
+
+      {/* AI Summary Card */}
+      <AISummaryCard pageType="registration" accentColor="border-teal-500" />
 
       {/* EPIC Highlight */}
       <motion.div variants={itemVariants} className="section-card border-l-4 border-teal-500 rounded-2xl">

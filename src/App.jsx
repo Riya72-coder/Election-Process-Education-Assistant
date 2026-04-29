@@ -10,6 +10,8 @@ import PollingPhase from './components/phases/PollingPhase';
 import ResultsPhase from './components/phases/ResultsPhase';
 import VoterEligibilityQuiz from './components/quiz/VoterEligibilityQuiz';
 import { getScriptConfig, isRTL } from './data/languages';
+import ChatAssistant from './components/chat/ChatAssistant';
+import { ChatProvider } from './components/chat/ChatContext';
 
 const phaseComponents = {
   overview: OverviewPhase,
@@ -44,6 +46,7 @@ export default function App() {
   const ActiveComponent = phaseComponents[activePhase] || OverviewPhase;
 
   return (
+    <ChatProvider>
     <div className="flex h-screen overflow-hidden bg-slate-50">
       <Sidebar
         activePhase={activePhase}
@@ -73,6 +76,10 @@ export default function App() {
           </AnimatePresence>
         </main>
       </div>
+
+      {/* ── AI Chat Assistant — fixed overlay, does not affect layout ── */}
+      <ChatAssistant />
     </div>
+    </ChatProvider>
   );
 }

@@ -1,5 +1,7 @@
 import { ShieldCheck, DollarSign, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import AISummaryCard from '../chat/AISummaryCard';
+import PageAIBar from '../chat/PageAIBar';
 
 export default function CampaigningPhase() {
   const { t } = useTranslation();
@@ -18,8 +20,19 @@ export default function CampaigningPhase() {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('campaigning.title')}</h2>
           <p className="text-orange-100 font-medium mb-2">{t('campaigning.subtitle')}</p>
           <p className="text-orange-50 text-sm max-w-2xl leading-relaxed">{t('campaigning.description')}</p>
+          {/* AI Bar inside hero */}
+          <div className="mt-5">
+            <PageAIBar
+              askLabel="Is this activity allowed?"
+              askQuery="What are the Model Code of Conduct rules during election campaigning in India?"
+              pageType="election campaigning"
+            />
+          </div>
         </div>
       </div>
+
+      {/* AI Summary Card */}
+      <AISummaryCard pageType="campaigning" accentColor="border-orange-500" />
 
       {/* MCC */}
       <div className="section-card">

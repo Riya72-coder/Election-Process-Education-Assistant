@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { CreditCard, ShieldCheck, Star, Cpu, FileText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import AISummaryCard from '../chat/AISummaryCard';
+import PageAIBar from '../chat/PageAIBar';
 
 const containerVariants = {
   hidden:  { opacity: 0 },
@@ -39,8 +41,19 @@ export default function PollingPhase() {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('polling.title')}</h2>
           <p className="text-civic-200 font-medium mb-2">{t('polling.subtitle')}</p>
           <p className="text-civic-100 text-sm max-w-2xl leading-relaxed">{t('polling.description')}</p>
+          {/* AI Bar inside hero */}
+          <div className="mt-5">
+            <PageAIBar
+              askLabel="What to bring on polling day?"
+              askQuery="What should I bring to the polling booth on voting day in India?"
+              pageType="polling day voting"
+            />
+          </div>
         </div>
       </motion.div>
+
+      {/* AI Summary Card */}
+      <AISummaryCard pageType="polling" accentColor="border-civic-600" />
 
       {/* EVM + VVPAT deep dive */}
       <motion.div variants={itemVariants} className="section-card">
