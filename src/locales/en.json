@@ -1,0 +1,266 @@
+{
+  "sidebar": {
+    "title": "ElectionEdu",
+    "tagline": "India's Democracy Guide",
+    "sectionLabel": "Election Phases",
+    "footerVote": "🗳️ Your vote is your voice",
+    "footerEvent": "Hack2Skills PromptWars 2026",
+    "tryIt": "Try it!",
+    "phases": {
+      "overview": "Overview",
+      "registration": "Registration",
+      "campaigning": "Campaigning",
+      "polling": "Polling Day",
+      "results": "Results",
+      "quiz": "Eligibility Quiz"
+    }
+  },
+  "header": {
+    "registerBtn": "Register to Vote",
+    "breadcrumbRoot": "ElectionEdu",
+    "autoDetectNote": "Other languages auto-detected from your browser."
+  },
+  "overview": {
+    "tagline": "The World's Largest Democracy",
+    "heroTitle": "Your Vote, Your Power.",
+    "heroSubtitle": "Embark on a guided journey to master the election process in minutes.",
+    "description": "India conducts the largest democratic elections on the planet. With over 97 crore registered voters and nearly 10 lakh polling stations, every election is a massive civic enterprise.",
+    "ctaJourney": "Start My Voting Journey",
+    "ctaEligibility": "Check My Eligibility →",
+    "stats": {
+      "voters": "Registered Voters",
+      "stations": "Polling Stations",
+      "seats": "Lok Sabha Seats",
+      "assemblies": "State Assemblies"
+    },
+    "journeyTitle": "Your 4-Phase Election Journey",
+    "journey": {
+      "registration": { "phase": "Voter Registration", "summary": "Get your EPIC card and enrol in the Electoral Roll." },
+      "campaigning":  { "phase": "Campaigning & MCC",  "summary": "Rules for parties and candidates during elections." },
+      "polling":      { "phase": "Polling Day",         "summary": "The EVM process, indelible ink, and booth rights." },
+      "results":      { "phase": "Results & Government","summary": "How votes are counted and governments formed." }
+    },
+    "timelineTitle": "Historical Timeline",
+    "timeline": [
+      { "year": "1950", "event": "ECI established; Constitution adopted" },
+      { "year": "1951", "event": "First General Election held" },
+      { "year": "1989", "event": "Voting age lowered to 18" },
+      { "year": "2004", "event": "EVMs used nationwide" }
+    ],
+    "helplinkTitle": "📱 Voter Helpline App",
+    "helplinkDesc": "Your digital polling companion for registration and booth tracking.",
+    "helplinkBtn": "Get App ↗",
+    "dykLabel": "💡 Did You Know? — Pune Edition",
+    "dykText": "Pune has over 82 lakh registered voters. The Collectorate coordinates election logistics across 21 segments."
+  },
+  "registration": {
+    "title": "Voter Registration",
+    "subtitle": "Your First Step to Democracy",
+    "description": "Before you can cast your vote, you must be enrolled in the Electoral Roll.",
+    "phase": "Phase 1",
+    "epicTitle": "EPIC — Voter ID Card",
+    "epicSubtitle": "Your primary identity credential for elections",
+    "epicPoints": [
+      "Introduced in 1993 to reduce impersonation",
+      "Now available as digital e-EPIC from voters.eci.gov.in",
+      "Accepted for banking and official KYC purposes"
+    ],
+    "eligibilityTitle": "Who Can Register?",
+    "eligibility": [
+      { "label": "Age",        "detail": "18+ on 1st January of the election year" },
+      { "label": "Citizenship","detail": "Must be an Indian citizen" },
+      { "label": "Residence",  "detail": "Must reside in the constituency" }
+    ],
+    "stepsTitle": "How to Register — Step by Step",
+    "steps": [
+      { "title": "Fill Form 6",        "detail": "Apply online at voters.eci.gov.in" },
+      { "title": "Submit Documents",   "detail": "Provide proof of age and address" },
+      { "title": "Verification",       "detail": "BLO verifies your residence" }
+    ],
+    "formsTitle": "Important Forms",
+    "formLabel": "Form",
+    "purposeLabel": "Purpose",
+    "forms": [
+      { "form": "Form 6", "purpose": "New registration" },
+      { "form": "Form 8", "purpose": "Correction of entries" }
+    ]
+  },
+  "campaigning": {
+    "title": "Campaigning & Model Code of Conduct",
+    "subtitle": "Rules of Engagement",
+    "description": "Campaigning is how candidates communicate their vision. The MCC ensures elections remain free, fair, and peaceful.",
+    "phase": "Phase 2",
+    "mccTitle": "Model Code of Conduct (MCC)",
+    "mccDesc": "Guidelines issued by the Election Commission to ensure free and fair elections.",
+    "mccPoints": [
+      { "title": "No Hate Speech",  "detail": "No appeals based on religion or caste" },
+      { "title": "No Bribery",      "detail": "Distributing cash or gifts is a crime" },
+      { "title": "Silence Period",  "detail": "48 hours before polling, all campaigning stops" }
+    ],
+    "expenseTitle": "Election Expense Limits",
+    "expenseWarning": "Exceeding these limits is an electoral offence.",
+    "expenses": [
+      { "category": "Lok Sabha",      "limit": "₹95 Lakh" },
+      { "category": "State Assembly", "limit": "₹40 Lakh" }
+    ],
+    "timelineTitle": "Campaign Timeline",
+    "timeline": [
+      { "phase": "Announcement", "detail": "MCC comes into effect" },
+      { "phase": "Nomination",   "detail": "Candidates file papers" },
+      { "phase": "Silence Period","detail": "48h before voting" }
+    ],
+    "dykLabel": "💡 Did You Know?",
+    "dykText": "The MCC comes into force the moment election dates are announced by the ECI."
+  },
+  "polling": {
+    "title": "Polling Day",
+    "subtitle": "Your Day to Vote",
+    "description": "Cast your vote using EVMs, verified by VVPAT paper trail.",
+    "phase": "Phase 3",
+    "evmVvpatTitle": "EVM + VVPAT",
+    "evmVvpatSubtitle": "How India's tamper-proof voting system works.",
+    "evmLabel": "EVM (Electronic Voting Machine)",
+    "vvpatLabel": "VVPAT (Voter Verifiable Paper Audit Trail)",
+    "evm": [
+      "Press button next to your candidate",
+      "Beep sound confirms vote"
+    ],
+    "vvpat": [
+      "Slip shows symbol for 7 seconds",
+      "Drops into sealed box"
+    ],
+    "inkTitle": "The Indelible Ink",
+    "inkFacts": [
+      "Prevents double voting",
+      "Lasts 2–3 weeks",
+      "Developed at NPLI, Mysore"
+    ],
+    "bringTitle": "What to Bring",
+    "whatToBring": [
+      { "item": "Voter ID", "desc": "EPIC card" },
+      { "item": "Aadhaar",  "desc": "Valid photo ID" }
+    ],
+    "stepsTitle": "How to Cast Your Vote",
+    "steps": [
+      { "title": "Find Booth",    "detail": "Check booth on ECI website" },
+      { "title": "Verification", "detail": "Show ID to Polling Officer" },
+      { "title": "Ink & Slip",   "detail": "Get ink mark and voter slip" },
+      { "title": "Vote",         "detail": "Press button on EVM" }
+    ],
+    "rightsTitle": "Your Voter Rights",
+    "rights": [
+      "Right to secret ballot",
+      "NOTA option available"
+    ],
+    "reportLabel": "Report violations:",
+    "dykLabel": "💡 Did You Know?",
+    "dykText": "The indelible ink has been used in Indian elections since 1962."
+  },
+  "results": {
+    "title": "Election Results",
+    "subtitle": "The Verdict of the People",
+    "description": "Counting of votes is conducted transparently under strict security.",
+    "phase": "Phase 4",
+    "countingTitle": "How Counting Works",
+    "countingSteps": [
+      { "title": "Strong Rooms", "detail": "EVMs stored under armed guard" },
+      { "title": "Counting",     "detail": "Votes tallied in rounds" },
+      { "title": "Declaration",  "detail": "Returning Officer announces winner" }
+    ],
+    "govTitle": "Government Formation",
+    "governmentFormation": [
+      { "title": "Majority",  "detail": "272+ seats needed for Lok Sabha" },
+      { "title": "Coalition", "detail": "Parties can join to reach majority" }
+    ],
+    "conceptsTitle": "Key Electoral Concepts",
+    "termLabel": "Term",
+    "meaningLabel": "Meaning",
+    "keyConcepts": [
+      { "term": "FPTP",    "meaning": "First Past The Post — highest votes wins" },
+      { "term": "Deposit", "meaning": "Security amount for candidates" }
+    ],
+    "dykLabel": "💡 Did You Know?",
+    "dykText": "The counting of votes for the entire country is usually completed in a single day."
+  },
+  "quiz": {
+    "title": "Voter Eligibility Quiz",
+    "subtitle": "Find out if you are eligible to vote in India.",
+    "startBtn": "Start Quiz",
+    "disclaimer": "For educational purposes only. Verify at voters.eci.gov.in",
+    "questions": "Questions",
+    "time": "Approx. Time",
+    "private": "Private",
+    "nextSteps": "Next Steps",
+    "yourAnswers": "Your Answers",
+    "retake": "Retake Quiz",
+    "eligibleTitle": "🎉 You Are Eligible to Vote!",
+    "ineligibleTitle": "Not Eligible Right Now",
+    "noteLabel": "💬 Note:",
+    "correctLabel": "✅ Great!",
+    "incorrectLabel": "❌ Not Eligible",
+    "doneLabel": "done",
+    "nextStepsList": [
+      "Check your name at voters.eci.gov.in",
+      "If not registered, fill Form 6 online",
+      "Carry your Voter ID or any valid photo ID"
+    ],
+    "questions_data": [
+      {
+        "id": 1,
+        "question": "How old are you?",
+        "subtext": "You must be 18 years or older on January 1 of the year you register.",
+        "options": [
+          { "label": "Under 18",    "value": "under18", "eligible": false, "feedback": "You're on your way! You need to be at least 18 years old to vote. 🌟" },
+          { "label": "18–25 years", "value": "18to25",  "eligible": true,  "feedback": "First-time voters are the heart of democracy! 🎉" },
+          { "label": "26–60 years", "value": "26to60",  "eligible": true,  "feedback": "You're in the prime of your civic life! 💪" },
+          { "label": "Over 60",     "value": "over60",  "eligible": true,  "feedback": "Senior voters bring decades of wisdom. Your voice matters! 🌺" }
+        ]
+      },
+      {
+        "id": 2,
+        "question": "Are you a citizen of India?",
+        "subtext": "Only Indian citizens are entitled to vote in Indian elections.",
+        "options": [
+          { "label": "Yes, Indian citizen",    "value": "citizen", "eligible": true,  "feedback": "Wonderful! As an Indian citizen, you are entitled to vote. 🇮🇳" },
+          { "label": "No, foreign citizenship","value": "foreign", "eligible": false, "feedback": "Voting is reserved for Indian citizens. You can still engage with democracy through civic education!" },
+          { "label": "OCI / PIO status",       "value": "oci",     "eligible": false, "feedback": "OCI / PIO cardholders are not eligible to vote. Indian nationality can be taken up formally." }
+        ]
+      },
+      {
+        "id": 3,
+        "question": "Have you been declared of unsound mind by a court?",
+        "subtext": "Section 16 of the Representation of the People Act, 1950.",
+        "options": [
+          { "label": "No",  "value": "no",  "eligible": true,  "feedback": "Great! This criterion doesn't apply to you. Let's continue." },
+          { "label": "Yes", "value": "yes", "eligible": false, "feedback": "A legal declaration of unsound mind creates a temporary disqualification. If revoked, eligibility is restored." }
+        ]
+      },
+      {
+        "id": 4,
+        "question": "Have you been disqualified for corrupt electoral practices?",
+        "subtext": "E.g., convicted of election offences under the RPA 1951.",
+        "options": [
+          { "label": "No",           "value": "no",  "eligible": true,  "feedback": "Excellent! You're clear on this criterion. Nearly there!" },
+          { "label": "Yes, convicted","value": "yes", "eligible": false, "feedback": "A conviction for election offences leads to a disqualification period. Once it lapses, you become eligible again." }
+        ]
+      },
+      {
+        "id": 5,
+        "question": "Are you enrolled in the Electoral Roll?",
+        "subtext": "Your name must appear in the Electoral Roll to cast a valid vote.",
+        "options": [
+          { "label": "Yes, enrolled",         "value": "enrolled", "eligible": true, "feedback": "You're all set! Verify at voters.eci.gov.in. See you at the polling booth!" },
+          { "label": "Not yet, but I will",   "value": "plan",     "eligible": true, "feedback": "Visit voters.eci.gov.in or fill Form 6 to register. It takes just minutes!" },
+          { "label": "I don't know how",      "value": "dunno",    "eligible": true, "feedback": "Don't worry — visit voters.eci.gov.in and click 'Register as New Voter'. Your BLO can also help!" }
+        ]
+      }
+    ]
+  },
+  "banner": {
+    "detected": "We detected your browser language as",
+    "question": "Would you like to translate this journey?",
+    "apiNote": "(API plug-in ready)",
+    "accept": "Yes, translate",
+    "dismiss": "No thanks"
+  }
+}
