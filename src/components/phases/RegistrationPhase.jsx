@@ -1,28 +1,23 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, FileText, CreditCard } from 'lucide-react';
-import { registrationData } from '../../data/electionData';
+import { useTranslation } from 'react-i18next';
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden:  { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
 };
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden:  { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export default function RegistrationPhase({ langContent }) {
-  const reg = langContent?.phases?.registration ?? {};
-  const {
-    title = registrationData.title,
-    steps = registrationData.steps,
-    eligibility = registrationData.eligibility,
-  } = reg;
+export default function RegistrationPhase() {
+  const { t } = useTranslation();
 
-  // For sections not yet fully translated in all languages, we use the original data as fallback
-  const subtitle = reg.subtitle ?? registrationData.subtitle;
-  const description = reg.description ?? registrationData.description;
-  const didYouKnow = reg.didYouKnow ?? registrationData.didYouKnow;
+  const epicPoints   = t('registration.epicPoints',  { returnObjects: true });
+  const eligibility  = t('registration.eligibility', { returnObjects: true });
+  const steps        = t('registration.steps',       { returnObjects: true });
+  const forms        = t('registration.forms',       { returnObjects: true });
 
   return (
     <motion.div
@@ -38,10 +33,10 @@ export default function RegistrationPhase({ langContent }) {
       >
         <div className="absolute -top-12 -right-12 w-56 h-56 bg-white/10 rounded-full" />
         <div className="relative">
-          <span className="phase-badge bg-white/20 text-white mb-4">Phase 1</span>
-          <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{title}</h2>
-          <p className="text-teal-100 font-medium mb-2">{subtitle}</p>
-          <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{description}</p>
+          <span className="phase-badge bg-white/20 text-white mb-4">{t('registration.phase')}</span>
+          <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('registration.title')}</h2>
+          <p className="text-teal-100 font-medium mb-2">{t('registration.subtitle')}</p>
+          <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('registration.description')}</p>
         </div>
       </motion.div>
 
@@ -53,15 +48,15 @@ export default function RegistrationPhase({ langContent }) {
           </div>
           <div>
             <h3 className="font-display text-base font-bold text-teal-800">
-              {reg.epicHighlight?.title ?? registrationData.epicHighlight.title}
+              {t('registration.epicTitle')}
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
-              {langContent?.phases?.registration?.epicSubtitle ?? "Your primary identity credential for elections"}
+              {t('registration.epicSubtitle')}
             </p>
           </div>
         </div>
         <ul className="space-y-2.5">
-          {(reg.epicHighlight?.points ?? registrationData.epicHighlight.points).map((pt, idx) => (
+          {epicPoints.map((pt, idx) => (
             <li key={idx} className="flex items-start gap-2.5 text-sm text-slate-700">
               <CheckCircle size={15} className="text-teal-500 flex-shrink-0 mt-0.5" />
               {pt}
@@ -74,14 +69,11 @@ export default function RegistrationPhase({ langContent }) {
       <motion.div variants={itemVariants} className="section-card">
         <h3 className="font-display text-lg font-bold text-slate-800 mb-5 flex items-center gap-2">
           <CheckCircle size={20} className="text-teal-600" />
-          {langContent?.phases?.registration?.eligibilityTitle ?? "Who Can Register?"}
+          {t('registration.eligibilityTitle')}
         </h3>
         <div className="space-y-3">
           {eligibility.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex items-start gap-3 p-3 rounded-xl bg-teal-50 border border-teal-100"
-            >
+            <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-teal-50 border border-teal-100">
               <CheckCircle size={18} className="text-teal-600 flex-shrink-0 mt-0.5" />
               <div>
                 <span className="text-sm font-bold text-teal-800">{item.label}: </span>
@@ -96,13 +88,13 @@ export default function RegistrationPhase({ langContent }) {
       <motion.div variants={itemVariants} className="section-card">
         <h3 className="font-display text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-teal-600 rounded-full" />
-          {langContent?.phases?.registration?.stepsTitle ?? "How to Register — Step by Step"}
+          {t('registration.stepsTitle')}
         </h3>
         <div className="space-y-5">
-          {steps.map((item) => (
-            <div key={item.step} className="flex items-start gap-4">
+          {steps.map((item, idx) => (
+            <div key={idx} className="flex items-start gap-4">
               <div className="flex-shrink-0 w-9 h-9 rounded-full bg-teal-600 text-white flex items-center justify-center text-sm font-bold shadow-md">
-                {item.step}
+                {idx + 1}
               </div>
               <div>
                 <p className="font-semibold text-slate-800 text-sm">{item.title}</p>
@@ -117,22 +109,22 @@ export default function RegistrationPhase({ langContent }) {
       <motion.div variants={itemVariants} className="section-card">
         <h3 className="font-display text-lg font-bold text-slate-800 mb-5 flex items-center gap-2">
           <FileText size={20} className="text-teal-600" />
-          {langContent?.phases?.registration?.formsTitle ?? "Important Forms"}
+          {t('registration.formsTitle')}
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-teal-50">
                 <th className="text-left px-4 py-3 text-teal-700 font-semibold rounded-l-lg">
-                  {langContent?.phases?.registration?.formLabel ?? "Form"}
+                  {t('registration.formLabel')}
                 </th>
                 <th className="text-left px-4 py-3 text-teal-700 font-semibold rounded-r-lg">
-                  {langContent?.phases?.registration?.purposeLabel ?? "Purpose"}
+                  {t('registration.purposeLabel')}
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {(reg.forms ?? registrationData.forms).map((row, idx) => (
+              {forms.map((row, idx) => (
                 <tr key={idx} className="hover:bg-slate-50 transition-colors">
                   <td className="px-4 py-3 font-bold text-teal-700">{row.form}</td>
                   <td className="px-4 py-3 text-slate-600">{row.purpose}</td>
@@ -143,12 +135,12 @@ export default function RegistrationPhase({ langContent }) {
         </div>
       </motion.div>
 
-      {/* Did You Know — Pune */}
+      {/* Did You Know */}
       <motion.div variants={itemVariants} className="did-you-know">
         <p className="text-sm font-bold uppercase tracking-wider mb-2">
-          {langContent?.overview?.dykLabel ?? "💡 Did You Know? — Pune Edition"}
+          {t('overview.dykLabel')}
         </p>
-        <p className="text-sm leading-relaxed">{didYouKnow}</p>
+        <p className="text-sm leading-relaxed">{t('overview.dykText')}</p>
       </motion.div>
     </motion.div>
   );

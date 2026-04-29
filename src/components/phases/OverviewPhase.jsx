@@ -1,37 +1,32 @@
 import { motion } from 'framer-motion';
 import { Users, MapPin, Building2, Flag, ArrowRight, Smartphone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { overviewData } from '../../data/electionData';
 
 const iconMap = { Users, MapPin, Building2, Flag };
 
+// Journey cards: phaseId lets the button navigate; colour matched to sidebar
+const JOURNEY_PHASES = [
+  { phaseId: 'registration', color: 'bg-teal-600' },
+  { phaseId: 'campaigning',  color: 'bg-orange-500' },
+  { phaseId: 'polling',      color: 'bg-civic-600' },
+  { phaseId: 'results',      color: 'bg-teal-600' },
+];
+
+// Aligned to overviewData.stats array order in electionData.js
+const STAT_KEYS = ['voters', 'stations', 'seats', 'assemblies'];
+
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden:  { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
 };
 const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden:  { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export default function OverviewPhase({ setActivePhase, langContent }) {
-  // Pull translated strings from the content object passed by App.jsx
-  const ov = langContent?.overview ?? {};
-  const {
-    tagline        = "The World's Largest Democracy",
-    heroTitle      = 'Your Vote, Your Power.',
-    heroSubtitle   = 'Embark on a guided journey to master the election process in minutes.',
-    description    = overviewData.description,
-    ctaJourney     = 'Start My Voting Journey',
-    ctaEligibility = 'Check My Eligibility →',
-    statsLabel     = overviewData.stats.map(s => s.label),
-    journeyTitle   = 'Your 4-Phase Election Journey',
-    timelineTitle  = 'Historical Timeline',
-    helplinkTitle  = '📱 Voter Helpline App',
-    helplinkDesc   = overviewData.description,
-    helplinkBtn    = 'Get App ↗',
-    dykLabel       = '💡 Did You Know?',
-    dykText        = overviewData.didYouKnow,
-  } = ov;
+export default function OverviewPhase({ setActivePhase }) {
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -55,18 +50,18 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
             <span className="w-4 h-4 rounded-full bg-white/90" />
             <span className="w-4 h-4 rounded-full bg-india-green" />
             <span className="ml-3 text-white/50 text-xs font-semibold uppercase tracking-widest">
-              {tagline}
+              {t('overview.tagline')}
             </span>
           </div>
 
           <h2 className="font-display text-4xl lg:text-6xl font-extrabold leading-tight mb-4">
-            {heroTitle}
+            {t('overview.heroTitle')}
           </h2>
           <p className="text-civic-100 text-base lg:text-lg leading-relaxed mb-3 max-w-xl">
-            {heroSubtitle}
+            {t('overview.heroSubtitle')}
           </p>
           <p className="text-civic-200/70 text-sm leading-relaxed mb-10 max-w-lg">
-            {description}
+            {t('overview.description')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-3">
@@ -76,7 +71,7 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
               onClick={() => setActivePhase('registration')}
               className="group inline-flex items-center gap-2.5 bg-teal-400 hover:bg-teal-300 text-teal-950 font-bold px-7 py-3.5 rounded-xl shadow-lg text-sm transition-colors duration-200"
             >
-              {ctaJourney}
+              {t('overview.ctaJourney')}
               <ArrowRight size={17} className="transition-transform duration-200 group-hover:translate-x-1" />
             </motion.button>
             <motion.button
@@ -85,7 +80,7 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
               onClick={() => setActivePhase('quiz')}
               className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white/80 hover:text-white font-semibold px-5 py-3.5 rounded-xl text-sm transition-all duration-200"
             >
-              {ctaEligibility}
+              {t('overview.ctaEligibility')}
             </motion.button>
           </div>
         </div>
@@ -105,7 +100,9 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
                 {Icon && <Icon size={22} className="text-civic-600" />}
               </div>
               <p className="font-display text-2xl font-bold text-civic-700">{stat.value}</p>
-              <p className="text-xs text-slate-500 mt-1">{statsLabel[idx] ?? stat.label}</p>
+              <p className="text-xs text-slate-500 mt-1">
+                {t(`overview.stats.${STAT_KEYS[idx]}`)}
+              </p>
             </motion.div>
           );
         })}
@@ -120,8 +117,12 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
           <Smartphone size={26} className="text-white" />
         </div>
         <div className="flex-1">
-          <p className="font-display font-bold text-teal-800 text-base mb-1">{helplinkTitle}</p>
-          <p className="text-slate-600 text-sm leading-relaxed">{helplinkDesc}</p>
+          <p className="font-display font-bold text-teal-800 text-base mb-1">
+            {t('overview.helplinkTitle')}
+          </p>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            {t('overview.helplinkDesc')}
+          </p>
         </div>
         <a
           href="https://play.google.com/store/apps/details?id=com.eci.citizen"
@@ -129,7 +130,7 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
           rel="noopener noreferrer"
           className="flex-shrink-0 btn-primary text-xs px-4 py-2"
         >
-          {helplinkBtn}
+          {t('overview.helplinkBtn')}
         </a>
       </motion.div>
 
@@ -137,24 +138,28 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
       <motion.div variants={itemVariants}>
         <h3 className="font-display text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-civic-600 rounded-full" />
-          {journeyTitle}
+          {t('overview.journeyTitle')}
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
-          {(ov.journey ?? overviewData.journeyCards).map((card, idx) => (
+          {JOURNEY_PHASES.map(({ phaseId, color }, idx) => (
             <motion.button
-              key={card.phaseId || idx}
+              key={phaseId}
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => setActivePhase(card.phaseId || 'overview')}
+              onClick={() => setActivePhase(phaseId)}
               className="text-left p-5 rounded-2xl border-2 border-slate-100 hover:border-civic-200 bg-white hover:bg-civic-50 transition-all duration-200 group"
             >
               <div className="flex items-start gap-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-sm ${card.color || 'bg-civic-600'}`}>
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-sm ${color}`}>
                   {idx + 1}
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-800 text-sm group-hover:text-civic-700 transition-colors">{card.phase}</p>
-                  <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">{card.summary}</p>
+                  <p className="font-semibold text-slate-800 text-sm group-hover:text-civic-700 transition-colors">
+                    {t(`overview.journey.${phaseId}.phase`)}
+                  </p>
+                  <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">
+                    {t(`overview.journey.${phaseId}.summary`)}
+                  </p>
                 </div>
               </div>
             </motion.button>
@@ -166,15 +171,17 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
       <motion.div variants={itemVariants} className="section-card">
         <h3 className="font-display text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-civic-600 rounded-full" />
-          {timelineTitle}
+          {t('overview.timelineTitle')}
         </h3>
         <div className="relative">
           <div className="absolute left-[18px] top-0 bottom-0 w-0.5 bg-slate-100" />
           <div className="space-y-5">
-            {(ov.timeline ?? overviewData.timeline).map((item, idx) => (
+            {t('overview.timeline', { returnObjects: true }).map((item, idx) => (
               <motion.div key={idx} variants={itemVariants} className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-9 h-9 rounded-full bg-civic-600 text-white flex items-center justify-center z-10">
-                  <span className="text-[10px] font-bold leading-none">{item.year.split('–')[0].slice(-2)}</span>
+                  <span className="text-[10px] font-bold leading-none">
+                    {item.year.split('–')[0].slice(-2)}
+                  </span>
                 </div>
                 <div className="flex-1 pb-2">
                   <span className="text-xs font-bold text-civic-600 uppercase tracking-wide">{item.year}</span>
@@ -188,8 +195,8 @@ export default function OverviewPhase({ setActivePhase, langContent }) {
 
       {/* ── DID YOU KNOW ── */}
       <motion.div variants={itemVariants} className="did-you-know">
-        <p className="text-sm font-bold uppercase tracking-wider mb-2">{dykLabel}</p>
-        <p className="text-sm leading-relaxed">{dykText}</p>
+        <p className="text-sm font-bold uppercase tracking-wider mb-2">{t('overview.dykLabel')}</p>
+        <p className="text-sm leading-relaxed">{t('overview.dykText')}</p>
       </motion.div>
     </motion.div>
   );
