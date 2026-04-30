@@ -63,18 +63,18 @@ export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMo
               <button
                 key={id}
                 onClick={() => nav(id)}
-                className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 group text-left ${isActive ? c.active : `text-slate-600 ${c.hover}`}`}
+                className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-bold transition-all duration-300 group text-left active:scale-95 ${isActive ? c.active + ' translate-x-1' : `text-slate-600 ${c.hover} hover:translate-x-1`}`}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all ${isActive ? 'bg-white/20' : 'bg-slate-100 group-hover:bg-white'}`}>
-                  <Icon size={16} />
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${isActive ? 'bg-white/20 shadow-inner' : 'bg-slate-100 group-hover:bg-white shadow-sm'}`}>
+                  <Icon size={18} />
                 </div>
                 <span className="flex-1">{t(`sidebar.phases.${id}`)}</span>
                 {id === 'quiz' && (
                   <span className="text-[10px] font-bold uppercase tracking-wide bg-white/20 px-2 py-0.5 rounded-full">{t('sidebar.tryIt')}</span>
                 )}
                 {isActive
-                  ? <ChevronRight size={14} className="opacity-70" />
-                  : <span className="text-xs text-slate-400 font-medium">{badge}</span>
+                  ? <ChevronRight size={16} className="opacity-70" />
+                  : <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">{badge}</span>
                 }
               </button>
             );

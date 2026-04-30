@@ -60,31 +60,31 @@
 
 @layer components {
   .section-card {
-    @apply bg-white rounded-2xl shadow-card border border-slate-100 p-6;
+    @apply bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-6 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:-translate-y-1;
   }
 
   .phase-badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider;
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-slate-100 text-slate-600;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-civic-600 hover:bg-civic-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-civic hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center gap-2 bg-civic-600 hover:bg-civic-700 text-white font-bold px-6 py-3 rounded-2xl transition-all duration-300 shadow-civic hover:shadow-lg hover:shadow-civic-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-95;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 border-2 border-civic-600 text-civic-600 hover:bg-civic-50 font-semibold px-5 py-2.5 rounded-xl transition-all duration-200;
+    @apply inline-flex items-center gap-2 border-2 border-civic-600 text-civic-600 hover:bg-civic-50 font-bold px-6 py-3 rounded-2xl transition-all duration-300 active:scale-95;
   }
 
   .step-number {
-    @apply flex-shrink-0 w-9 h-9 rounded-full bg-civic-600 text-white flex items-center justify-center text-sm font-bold shadow-civic;
+    @apply flex-shrink-0 w-10 h-10 rounded-2xl bg-gradient-to-br from-civic-600 to-teal-50 text-white flex items-center justify-center text-sm font-black shadow-civic;
   }
 
   .fact-card {
-    @apply bg-gradient-to-br from-civic-50 to-blue-50 border border-civic-100 rounded-xl p-4 hover:shadow-civic transition-all duration-200 hover:-translate-y-0.5;
+    @apply bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-2xl p-5 hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
   }
 
   .did-you-know {
-    @apply bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-400 rounded-r-xl p-4 text-amber-900;
+    @apply bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-400 rounded-2xl p-5 text-amber-900 shadow-sm shadow-amber-100;
   }
 
   /* Smooth fade-in for dropdowns */
@@ -125,14 +125,16 @@
   }
 
   @keyframes bounceIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
 
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
+  .animate-pulse-slow {
+    animation: pulseSlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
   }
 }

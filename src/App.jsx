@@ -14,6 +14,8 @@ import { getScriptConfig, isRTL } from './data/languages';
 import ChatAssistant from './components/chat/ChatAssistant';
 import { ChatProvider } from './components/chat/ChatContext';
 import { JourneyProvider } from './components/journey/JourneyContext';
+import Onboarding from './components/ui/Onboarding';
+import QuickToolbar from './components/ui/QuickToolbar';
 
 const phaseComponents = {
   overview: OverviewPhase,
@@ -83,6 +85,10 @@ export default function App() {
 
       {/* ── AI Chat Assistant — fixed overlay, does not affect layout ── */}
       <ChatAssistant />
+
+      {/* ── Final Polish Components ── */}
+      <Onboarding />
+      <QuickToolbar setActivePhase={setActivePhase} />
     </div>
     </ChatProvider>
     </JourneyProvider>

@@ -1,5 +1,6 @@
 // ─── ChatAssistant — floating button + sliding chat panel ───────────────────
 import { useState, useRef, useEffect, useCallback, useContext } from 'react';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MessageCircle, X, Send, Bot, Sparkles } from 'lucide-react';
 import ChatMessage from './ChatMessage';
@@ -47,19 +48,52 @@ export default function ChatAssistant() {
     const userMsg = { id: uid(), role: 'user', content: trimmed };
     setMessages((prev) => [...prev, userMsg]);
     setTyping(true);
-    const delay = 1000 + Math.random() * 800;
+    
+    const delay = 800 + Math.random() * 500;
     setTimeout(() => {
       const aiContent = getAIResponse(trimmed, USER_PROFILE, i18n.language);
-      const aiMsg = { id: uid(), role: 'ai', content: aiMsgFromContent(aiContent) };
-      setMessages((prev) => [...prev, aiMsg]);
       setTyping(false);
+      streamResponse(aiContent);
     }, delay);
   }, [i18n.language]);
 
-  // Helper to ensure content matches the expected structure
-  const aiMsgFromContent = (content) => {
-    if (typeof content === 'string') return { short: content };
-    return content;
+  // Gradually reveal AI response
+  const streamResponse = (fullContent) => {
+    const id = uid();
+    const isFullString = typeof fullContent === 'string';
+    const shortText = isFullString ? fullContent : fullContent.short;
+    
+    // Initial partial message
+    const initialMsg = { 
+      id, 
+      role: 'ai', 
+      content: { short: '', isStreaming: true } 
+    };
+    setMessages(prev => [...prev, initialMsg]);
+
+    let currentText = '';
+    const speed = 20; // ms per char
+    
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < shortText.length) {
+        currentText += shortText[i];
+        setMessages(prev => prev.map(m => 
+          m.id === id 
+            ? { ...m, content: { ...m.content, short: currentText } } 
+            : m
+        ));
+        i++;
+      } else {
+        clearInterval(interval);
+        // Once short text is done, show the full content (steps, checklist, etc.)
+        setMessages(prev => prev.map(m => 
+          m.id === id 
+            ? { ...m, content: { ...(typeof fullContent === 'string' ? { short: fullContent } : fullContent), isStreaming: false } } 
+            : m
+        ));
+      }
+    }, speed);
   };
 
   // Auto-scroll to latest message
@@ -195,21 +229,22 @@ export default function ChatAssistant() {
 
           {/* Typing indicator */}
           {typing && (
-            <div className="flex gap-2.5 items-end">
+            <div className="flex gap-2.5 items-end animate-pulse">
               <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-teal-500 to-civic-600 flex items-center justify-center">
                 <Bot size={14} className="text-white" />
               </div>
-              <div className="bg-white border border-slate-100 rounded-2xl rounded-bl-sm px-3.5 py-2.5 shadow-sm flex items-center gap-1">
-                <span className="text-xs text-slate-500 mr-1">CivicGuide is typing</span>
-                <span className="flex gap-0.5">
+              <div className="bg-white border border-slate-100 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-1.5">
+                <div className="flex gap-1">
                   {[0, 1, 2].map((i) => (
-                    <span
+                    <motion.span
                       key={i}
-                      className="w-1.5 h-1.5 rounded-full bg-civic-400 inline-block animate-bounce"
-                      style={{ animationDelay: `${i * 0.15}s` }}
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
+                      className="w-1.5 h-1.5 rounded-full bg-civic-400"
                     />
                   ))}
-                </span>
+                </div>
+                <span className="text-[10px] font-bold text-civic-500 uppercase tracking-widest ml-1">AI Thinking</span>
               </div>
             </div>
           )}

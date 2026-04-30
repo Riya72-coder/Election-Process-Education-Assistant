@@ -38,14 +38,15 @@ export default function ChatMessage({ role, content }) {
 /** Renders structured AI response: short + optional steps + checklist + tip */
 function AIContent({ content }) {
   if (typeof content === 'string') return <p>{content}</p>;
-  const { short, steps, checklist, tip } = content;
   return (
     <div className="space-y-2">
-      <p className="font-medium leading-snug">{short}</p>
+      <p className={`font-medium leading-snug transition-all duration-300 ${content.isStreaming ? 'border-r-2 border-civic-400 animate-pulse-slow' : ''}`}>
+        {content.short}
+      </p>
 
-      {steps && steps.length > 0 && (
+      {content.steps && content.steps.length > 0 && (
         <ol className="space-y-1 pl-1">
-          {steps.map((s, i) => (
+          {content.steps.map((s, i) => (
             <li key={i} className="flex gap-2 text-slate-700 text-xs leading-snug">
               <span className="flex-shrink-0 w-4 h-4 rounded-full bg-civic-100 text-civic-700 flex items-center justify-center font-bold text-[10px]">
                 {i + 1}
@@ -56,9 +57,9 @@ function AIContent({ content }) {
         </ol>
       )}
 
-      {checklist && checklist.length > 0 && (
+      {content.checklist && content.checklist.length > 0 && (
         <ul className="space-y-1">
-          {checklist.map((item, i) => (
+          {content.checklist.map((item, i) => (
             <li key={i} className="text-xs text-slate-700 leading-snug flex gap-1.5">
               <span className="text-teal-500 mt-0.5">✓</span>
               {item}
@@ -67,9 +68,9 @@ function AIContent({ content }) {
         </ul>
       )}
 
-      {tip && (
+      {content.tip && (
         <div className="bg-amber-50 border-l-2 border-amber-400 pl-2 pr-1 py-1 rounded-r-lg text-xs text-amber-800 italic leading-snug">
-          💡 {tip}
+          💡 {content.tip}
         </div>
       )}
     </div>

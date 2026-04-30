@@ -16,6 +16,17 @@
       "mythbuster": "Myth Buster"
     }
   },
+  "onboarding": {
+    "title": "Welcome to CivicGuide AI 🇮🇳",
+    "subtitle": "Your personal AI assistant for understanding elections",
+    "feature1": "Personalized Voting Guide",
+    "feature1Desc": "Tailored advice based on your age, state, and voter status.",
+    "feature2": "Election Myth Buster",
+    "feature2Desc": "Verify claims and understand the Model Code of Conduct instantly.",
+    "feature3": "Step-by-step Journey",
+    "feature3Desc": "A clear roadmap from registration to seeing the final results.",
+    "button": "Start My Journey"
+  },
   "header": {
     "registerBtn": "Register to Vote",
     "breadcrumbRoot": "ElectionEdu",
