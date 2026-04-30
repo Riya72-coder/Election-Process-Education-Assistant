@@ -9,6 +9,7 @@ import CampaigningPhase from './components/phases/CampaigningPhase';
 import PollingPhase from './components/phases/PollingPhase';
 import ResultsPhase from './components/phases/ResultsPhase';
 import VoterEligibilityQuiz from './components/quiz/VoterEligibilityQuiz';
+import MythBuster from './components/mythbuster/MythBuster';
 import { getScriptConfig, isRTL } from './data/languages';
 import ChatAssistant from './components/chat/ChatAssistant';
 import { ChatProvider } from './components/chat/ChatContext';
@@ -21,6 +22,7 @@ const phaseComponents = {
   polling: PollingPhase,
   results: ResultsPhase,
   quiz: VoterEligibilityQuiz,
+  mythbuster: MythBuster,
 };
 
 const pageVariants = {

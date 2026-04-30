@@ -1,4 +1,5 @@
 import { CheckCircle, Lock, ChevronRight, RotateCcw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useJourney } from './JourneyContext';
 import { useChatTrigger } from '../chat/ChatContext';
 
@@ -24,13 +25,18 @@ const STEP_STYLES = {
   },
 };
 
-const STATUS_LABELS = { completed: '✓ Done', active: '▶ In Progress', locked: '🔒 Locked' };
-
 export default function VotingJourney({ setActivePhase }) {
+  const { t } = useTranslation();
   const { journey, completeStep, profile, resetJourney } = useJourney();
   const openChat = useChatTrigger();
 
   if (!profile) return null;
+
+  const STATUS_LABELS = { 
+    completed: t('journey.doneLabel'), 
+    active: t('journey.activeLabel'), 
+    locked: t('journey.lockedLabel') 
+  };
 
   const completedCount = journey.filter(s => s.status === 'completed').length;
   const progress = Math.round((completedCount / journey.length) * 100);
@@ -39,7 +45,8 @@ export default function VotingJourney({ setActivePhase }) {
   const handleLearn = (step) => {
     if (step.status === 'locked') return;
     setActivePhase(step.phase);
-    openChat(`Guide me through ${step.title.toLowerCase()} in the Indian election process.`);
+    const title = t(`journey.stepTitles.${step.id}`);
+    openChat(`Guide me through ${title.toLowerCase()} in the Indian election process.`);
   };
 
   return (
@@ -48,21 +55,21 @@ export default function VotingJourney({ setActivePhase }) {
       <div className="flex items-start justify-between mb-2">
         <div>
           <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-            🚀 Your AI Voting Journey
+            🚀 {t('journey.title')}
           </h3>
           <p className="text-xs text-slate-500 mt-0.5">
-            Personalized for {profile.age}-year-old in {profile.state}
-            {profile.isFirstTime ? ' · First-time voter' : ''}
+            {t('journey.subtitle', { age: profile.age, state: profile.state })}
+            {profile.isFirstTime ? ` · ${t('journey.firstTime')}` : ''}
           </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="text-right">
             <span className="text-2xl font-bold text-blue-600">{progress}%</span>
-            <p className="text-[10px] text-slate-400 uppercase font-semibold tracking-widest">Complete</p>
+            <p className="text-[10px] text-slate-400 uppercase font-semibold tracking-widest">{t('journey.completeLabel')}</p>
           </div>
           <button
             onClick={resetJourney}
-            title="Reset journey"
+            title={t('journey.resetTitle')}
             className="text-slate-400 hover:text-red-400 transition-colors"
           >
             <RotateCcw size={16} />
@@ -84,6 +91,7 @@ export default function VotingJourney({ setActivePhase }) {
           const s = STEP_STYLES[step.status];
           const isActive = step.status === 'active';
           const isLocked = step.status === 'locked';
+          const title = t(`journey.stepTitles.${step.id}`);
 
           return (
             <div
@@ -107,7 +115,7 @@ export default function VotingJourney({ setActivePhase }) {
               {/* Icon + Title */}
               <div className="mb-4">
                 <span className="text-2xl">{step.icon}</span>
-                <h4 className={`text-sm font-bold mt-1 ${s.title}`}>{step.title}</h4>
+                <h4 className={`text-sm font-bold mt-1 ${s.title}`}>{title}</h4>
               </div>
 
               {/* Actions */}
@@ -117,7 +125,7 @@ export default function VotingJourney({ setActivePhase }) {
                     onClick={() => handleLearn(step)}
                     className="w-full flex items-center justify-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-800 border border-blue-200 hover:border-blue-400 bg-white rounded-lg py-2 transition-all"
                   >
-                    Go to page <ChevronRight size={13} />
+                    {t('journey.goLabel')} <ChevronRight size={13} />
                   </button>
                 )}
                 {isActive && (
@@ -125,7 +133,7 @@ export default function VotingJourney({ setActivePhase }) {
                     onClick={() => completeStep(step.id)}
                     className="w-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg py-2 transition-all active:scale-95"
                   >
-                    Mark as Complete ✓
+                    {t('journey.markLabel')} ✓
                   </button>
                 )}
               </div>
@@ -137,8 +145,8 @@ export default function VotingJourney({ setActivePhase }) {
       {/* Completion banner */}
       {allDone && (
         <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-teal-500 to-blue-500 text-white text-center">
-          <p className="font-bold text-lg">🎉 Journey Complete!</p>
-          <p className="text-sm text-white/80 mt-0.5">You've completed all election phases. Proud voter!</p>
+          <p className="font-bold text-lg">{t('journey.completeTitle')}</p>
+          <p className="text-sm text-white/80 mt-0.5">{t('journey.completeSubtitle')}</p>
         </div>
       )}
     </div>

@@ -12,13 +12,22 @@
       "campaigning": "Campaigning",
       "polling": "Polling Day",
       "results": "Results",
-      "quiz": "Eligibility Quiz"
+      "quiz": "Eligibility Quiz",
+      "mythbuster": "Myth Buster"
     }
   },
   "header": {
     "registerBtn": "Register to Vote",
     "breadcrumbRoot": "ElectionEdu",
-    "autoDetectNote": "Other languages auto-detected from your browser."
+    "autoDetectNote": "Other languages auto-detected from your browser.",
+    "summaryCardTitle": "🧠 AI Summary",
+    "summaryCardSubtitle": "Personalised by CivicGuide",
+    "summaryStepsLabel": "⚡ Quick Steps",
+    "summaryChecklistLabel": "📋 Checklist",
+    "aiBarExplain": "Explain simply",
+    "aiBarSteps": "Give me steps",
+    "aiBarChecklist": "Create checklist",
+    "aiBarAsk": "✨ Ask AI"
   },
   "overview": {
     "tagline": "The World's Largest Democracy",
@@ -110,7 +119,10 @@
       { "phase": "Silence Period","detail": "48h before voting" }
     ],
     "dykLabel": "💡 Did You Know?",
-    "dykText": "The MCC comes into force the moment election dates are announced by the ECI."
+    "dykText": "The MCC comes into force the moment election dates are announced by the ECI.",
+    "checkRulesBtn": "🛑 Check Election Rules",
+    "aiAskLabel": "Is this activity allowed?",
+    "aiAskQuery": "What are the Model Code of Conduct rules during election campaigning in India?"
   },
   "polling": {
     "title": "Polling Day",
@@ -262,5 +274,74 @@
     "apiNote": "(API plug-in ready)",
     "accept": "Yes, translate",
     "dismiss": "No thanks"
+  },
+  "journey": {
+    "title": "Your AI Voting Journey",
+    "subtitle": "Personalized for {{age}}-year-old in {{state}}",
+    "firstTime": "First-time voter",
+    "completeLabel": "Complete",
+    "resetTitle": "Reset journey",
+    "goLabel": "Go to page",
+    "markLabel": "Mark as Complete",
+    "doneLabel": "✓ Done",
+    "activeLabel": "▶ In Progress",
+    "lockedLabel": "🔒 Locked",
+    "completeTitle": "🎉 Journey Complete!",
+    "completeSubtitle": "You've completed all election phases. Proud voter!",
+    "stepTitles": {
+      "registration": "Register to Vote",
+      "campaigning": "Understand Campaigning",
+      "polling": "Polling Day",
+      "results": "View Results"
+    }
+  },
+  "mythbuster": {
+    "title": "Election Myth Buster",
+    "subtitle": "Check if an activity is allowed under MCC or if a claim is a myth.",
+    "inputLabel": "Enter a claim or activity to verify:",
+    "placeholder": "e.g., Is it allowed to distribute food at rallies?",
+    "checkBtn": "Check Claim",
+    "analyzing": "Analyzing...",
+    "examplesLabel": "Try these examples:",
+    "analysisPending": "Analysis Pending",
+    "pendingDesc": "Enter a claim on the left to see the AI verification result.",
+    "explanationLabel": "AI Explanation",
+    "factLabel": "Correct Rule / Fact",
+    "footerNote": "Always consult official ECI guidelines for legal compliance",
+    "allowed": "Allowed",
+    "notAllowed": "Not Allowed",
+    "misleading": "Misleading",
+    "success": "Verification Success",
+    "violation": "Rule Violation",
+    "verification": "Claim Verification",
+    "confidence": "Confidence",
+    "examples": [
+      "Giving free gifts to voters",
+      "Voting age is 21",
+      "Campaigning on polling day",
+      "Possessing multiple voter IDs",
+      "Loudspeakers after 10 PM"
+    ]
+  },
+  "chat": {
+    "welcome": {
+      "short": "Hi! I'm CivicGuide 🇮🇳 — your AI assistant for everything about Indian elections.",
+      "steps": [
+        "How do I register to vote?",
+        "What documents do I need?",
+        "Am I eligible to vote?",
+        "What happens on polling day?"
+      ],
+      "tip": "Ask me anything about the election process!"
+    },
+    "chips": [
+      "How to register?",
+      "Documents needed",
+      "Am I eligible?",
+      "Polling day guide"
+    ],
+    "placeholder": "Ask about elections...",
+    "tagline": "Your election education assistant",
+    "online": "Online"
   }
 }

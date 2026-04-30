@@ -1,5 +1,6 @@
 // ─── ChatAssistant — floating button + sliding chat panel ───────────────────
 import { useState, useRef, useEffect, useCallback, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MessageCircle, X, Send, Bot, Sparkles } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import { getAIResponse } from './aiResponses';
@@ -12,32 +13,29 @@ const USER_PROFILE = {
   // isFirstTime: true,
 };
 
-const WELCOME_MESSAGE = {
-  id: 'welcome',
-  role: 'ai',
-  content: {
-    short: "Hi! I'm CivicGuide 🇮🇳 — your AI assistant for everything about Indian elections.",
-    steps: [
-      '"How do I register to vote?"',
-      '"What documents do I need?"',
-      '"Am I eligible to vote?"',
-      '"What happens on polling day?"',
-    ],
-    tip: 'Ask me anything about the election process!',
-  },
-};
-
 let _id = 1;
 const uid = () => `msg-${_id++}`;
 
 export default function ChatAssistant() {
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState([WELCOME_MESSAGE]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Initialize welcome message with current language
+  useEffect(() => {
+    if (messages.length === 0) {
+      setMessages([{
+        id: 'welcome',
+        role: 'ai',
+        content: t('chat.welcome', { returnObjects: true })
+      }]);
+    }
+  }, [t, messages.length]);
 
   // Consume context to receive external triggers from pages
   const chatCtx = useContext(ChatContext);
@@ -51,12 +49,18 @@ export default function ChatAssistant() {
     setTyping(true);
     const delay = 1000 + Math.random() * 800;
     setTimeout(() => {
-      const aiContent = getAIResponse(trimmed, USER_PROFILE);
-      const aiMsg = { id: uid(), role: 'ai', content: aiContent };
+      const aiContent = getAIResponse(trimmed, USER_PROFILE, i18n.language);
+      const aiMsg = { id: uid(), role: 'ai', content: aiMsgFromContent(aiContent) };
       setMessages((prev) => [...prev, aiMsg]);
       setTyping(false);
     }, delay);
-  }, []);
+  }, [i18n.language]);
+
+  // Helper to ensure content matches the expected structure
+  const aiMsgFromContent = (content) => {
+    if (typeof content === 'string') return { short: content };
+    return content;
+  };
 
   // Auto-scroll to latest message
   useEffect(() => {
@@ -98,12 +102,7 @@ export default function ChatAssistant() {
   };
 
   // Quick-reply chips
-  const CHIPS = [
-    'How to register?',
-    'Documents needed',
-    'Am I eligible?',
-    'Polling day guide',
-  ];
+  const CHIPS = t('chat.chips', { returnObjects: true }) || [];
 
   const sendChip = (text) => {
     if (typing) return;
@@ -172,12 +171,12 @@ export default function ChatAssistant() {
               <p className="text-white font-semibold text-sm leading-none">CivicGuide AI</p>
               <Sparkles size={12} className="text-amber-300" />
             </div>
-            <p className="text-white/60 text-xs mt-0.5">Your election education assistant</p>
+            <p className="text-white/60 text-xs mt-0.5">{t('chat.tagline')}</p>
           </div>
           {/* Online badge */}
           <div className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse-slow" />
-            <span className="text-teal-300 text-xs font-medium">Online</span>
+            <span className="text-teal-300 text-xs font-medium">{t('chat.online')}</span>
           </div>
         </div>
 
@@ -242,7 +241,7 @@ export default function ChatAssistant() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKey}
-            placeholder="Ask about elections..."
+            placeholder={t('chat.placeholder')}
             disabled={typing}
             className="
               flex-1 resize-none rounded-xl border border-slate-200

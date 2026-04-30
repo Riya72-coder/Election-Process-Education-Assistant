@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Home, ClipboardList, Megaphone, Vote, BarChart3, HelpCircle, ChevronRight, X, Award } from 'lucide-react';
+import { Home, ClipboardList, Megaphone, Vote, BarChart3, HelpCircle, ChevronRight, X, Award, ShieldAlert } from 'lucide-react';
 
 const PHASES = [
   { id: 'overview',     Icon: Home,          badge: '01' },
@@ -8,6 +8,7 @@ const PHASES = [
   { id: 'polling',      Icon: Vote,          badge: '04' },
   { id: 'results',      Icon: BarChart3,     badge: '05' },
   { id: 'quiz',         Icon: HelpCircle,    badge: '06' },
+  { id: 'mythbuster',   Icon: ShieldAlert,   badge: 'NEW' },
 ];
 
 const COLORS = {
@@ -17,6 +18,7 @@ const COLORS = {
   polling:      { active: 'bg-civic-600 text-white shadow-civic', hover: 'hover:bg-civic-50 hover:text-civic-700' },
   results:      { active: 'bg-teal-600 text-white shadow-md',     hover: 'hover:bg-teal-50 hover:text-teal-700' },
   quiz:         { active: 'bg-orange-500 text-white shadow-md',   hover: 'hover:bg-orange-50 hover:text-orange-700' },
+  mythbuster:   { active: 'bg-rose-600 text-white shadow-md',     hover: 'hover:bg-rose-50 hover:text-rose-700' },
 };
 
 export default function Sidebar({ activePhase, setActivePhase, mobileOpen, setMobileOpen }) {

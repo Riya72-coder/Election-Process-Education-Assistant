@@ -1,9 +1,9 @@
-import { ShieldCheck, DollarSign, Clock } from 'lucide-react';
+import { ShieldCheck, DollarSign, Clock, ShieldAlert, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import AISummaryCard from '../chat/AISummaryCard';
 import PageAIBar from '../chat/PageAIBar';
 
-export default function CampaigningPhase() {
+export default function CampaigningPhase({ setActivePhase }) {
   const { t } = useTranslation();
 
   const mccPoints = t('campaigning.mccPoints', { returnObjects: true });
@@ -20,11 +20,19 @@ export default function CampaigningPhase() {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('campaigning.title')}</h2>
           <p className="text-orange-100 font-medium mb-2">{t('campaigning.subtitle')}</p>
           <p className="text-orange-50 text-sm max-w-2xl leading-relaxed">{t('campaigning.description')}</p>
-          {/* AI Bar inside hero */}
-          <div className="mt-5">
+          
+          <div className="mt-6 flex flex-wrap gap-3">
+            <button 
+              onClick={() => setActivePhase('mythbuster')}
+              className="px-5 py-2.5 bg-white text-orange-600 rounded-xl font-bold text-sm shadow-lg shadow-orange-900/20 flex items-center gap-2 hover:bg-orange-50 transition-all active:scale-95"
+            >
+              <ShieldAlert size={18} />
+              {t('campaigning.checkRulesBtn')}
+            </button>
+            
             <PageAIBar
-              askLabel="Is this activity allowed?"
-              askQuery="What are the Model Code of Conduct rules during election campaigning in India?"
+              askLabel={t('campaigning.aiAskLabel')}
+              askQuery={t('campaigning.aiAskQuery')}
               pageType="election campaigning"
             />
           </div>

@@ -1,5 +1,6 @@
 // ─── PageAIBar — "Ask AI" + Quick Action buttons row ─────────────────────────
 import { Sparkles, MessageSquare, Zap, ClipboardList } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useChatTrigger } from './ChatContext';
 
 /**
@@ -10,25 +11,26 @@ import { useChatTrigger } from './ChatContext';
  * }} props
  */
 export default function PageAIBar({ askLabel, askQuery, pageType }) {
+  const { t } = useTranslation();
   const openWithMessage = useChatTrigger();
 
   const QUICK_ACTIONS = [
     {
       id: 'explain',
       Icon: MessageSquare,
-      label: 'Explain simply',
+      label: t('header.aiBarExplain'),
       query: `Explain ${pageType} simply in plain language`,
     },
     {
       id: 'steps',
       Icon: Zap,
-      label: 'Give me steps',
+      label: t('header.aiBarSteps'),
       query: `Give me quick steps for ${pageType}`,
     },
     {
       id: 'checklist',
       Icon: ClipboardList,
-      label: 'Create checklist',
+      label: t('header.aiBarChecklist'),
       query: `Give me a checklist for ${pageType}`,
     },
   ];
@@ -49,7 +51,7 @@ export default function PageAIBar({ askLabel, askQuery, pageType }) {
         "
       >
         <Sparkles size={13} />
-        ✨ Ask AI: {askLabel}
+        {t('header.aiBarAsk')}: {askLabel}
       </button>
 
       {/* Divider */}

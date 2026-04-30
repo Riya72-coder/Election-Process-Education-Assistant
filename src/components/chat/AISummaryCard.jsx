@@ -1,5 +1,6 @@
 // ─── AISummaryCard — reusable "🧠 AI Summary" card for every phase page ──────
 import { Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { getPageSummary } from './aiResponses';
 
 /**
@@ -7,7 +8,8 @@ import { getPageSummary } from './aiResponses';
  * accentColor: Tailwind border-* class, e.g. 'border-teal-500' or 'border-civic-600'
  */
 export default function AISummaryCard({ pageType, userProfile = {}, accentColor = 'border-civic-500' }) {
-  const summary = getPageSummary(pageType, userProfile);
+  const { t, i18n } = useTranslation();
+  const summary = getPageSummary(pageType, userProfile, i18n.language);
 
   return (
     <div className={`section-card border-l-4 ${accentColor} bg-gradient-to-r from-slate-50 to-white animate-fade-in`}>
@@ -17,8 +19,8 @@ export default function AISummaryCard({ pageType, userProfile = {}, accentColor 
           <Sparkles size={15} className="text-white" />
         </div>
         <div>
-          <p className="font-display font-bold text-slate-800 text-sm leading-none">🧠 AI Summary</p>
-          <p className="text-xs text-slate-400 mt-0.5">Personalised by CivicGuide</p>
+          <p className="font-display font-bold text-slate-800 text-sm leading-none">{t('header.summaryCardTitle')}</p>
+          <p className="text-xs text-slate-400 mt-0.5">{t('header.summaryCardSubtitle')}</p>
         </div>
       </div>
 
@@ -43,7 +45,7 @@ export default function AISummaryCard({ pageType, userProfile = {}, accentColor 
         {/* Steps */}
         {summary.steps && summary.steps.length > 0 && (
           <div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">⚡ Quick Steps</p>
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t('header.summaryStepsLabel')}</p>
             <ol className="space-y-1.5">
               {summary.steps.map((step, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs text-slate-700 leading-snug">
@@ -60,7 +62,7 @@ export default function AISummaryCard({ pageType, userProfile = {}, accentColor 
         {/* Checklist */}
         {summary.checklist && summary.checklist.length > 0 && (
           <div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">📋 Checklist</p>
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t('header.summaryChecklistLabel')}</p>
             <ul className="space-y-1.5">
               {summary.checklist.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-xs text-slate-700 leading-snug">
