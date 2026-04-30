@@ -1,53 +1,53 @@
-# ElectionEdu: AI-Powered Election Education Assistant 🇮🇳
+# ElectionEdu: CivicGuide AI Assistant 🇮🇳
 
-**ElectionEdu** is a state-of-the-art, interactive platform designed to educate Indian citizens on the election process. By leveraging a context-aware AI assistant and a personalized roadmap system, the app transforms complex bureaucratic procedures into a seamless, guided journey for every voter.
+**ElectionEdu** is a premium, interactive platform designed to empower Indian citizens through the world's largest democratic process. By blending context-aware AI with a personalized roadmap system, the app transforms complex election rules into a seamless, guided journey for every voter.
 
 ---
 
 ## 🚀 Key Features
 
-### 1. Personalized AI Voting Journey
-A tailored roadmap that guides users based on their specific profile.
-- **Onboarding:** Collects age, state, and "first-time voter" status to customize the experience.
-- **Progress Tracking:** Interactive 4-step roadmap (Registration → Campaigning → Polling → Results) with real-time progress bars.
-- **Dynamic Unlocking:** Steps unlock sequentially as the user completes each phase.
+### 1. 🗺️ Personalized Voting Journey
+A tailored roadmap that tracks your progress from registration to the final results.
+- **Onboarding Experience**: A premium introduction that captures your age, state, and voter status to customize your learning path.
+- **Progress Tracking**: 4-phase interactive journey (Registration → Campaigning → Polling → Results) with real-time progress visualization and milestone badges.
 
-### 2. CivicGuide AI (Intelligent Assistant)
-A sophisticated, keyword-driven AI chat interface built directly into the UI.
-- **Context Awareness:** The AI knows which page you are on and provides relevant summaries.
-- **Multi-Format Responses:** Can generate "Quick Steps," "Checklists," or "Simple Explanations" on demand.
-- **Zero-Latency:** Mock response engine ensures instant feedback without expensive backend calls.
+### 2. 🤖 CivicGuide AI (Smart Assistant)
+A sophisticated, simulated AI chat interface built for instant guidance.
+- **Streaming Responses**: Real-time "character-by-character" AI generation for a lifelike experience.
+- **Context-Aware Summaries**: Dynamic "🧠 AI Summary" cards on every page that distill technical rules into simple takeaways.
+- **Typing Indicator**: Animated "AI Thinking" states and interactive quick-reply chips.
 
-### 3. Smart Phase Modules
-Comprehensive deep-dives into every stage of the Indian election cycle:
-- **Registration:** Guidance on Form 6, required documents (Aadhaar/EPIC), and online portal links.
-- **Campaigning:** Insights into the Model Code of Conduct (MCC), manifestos, and silence periods.
-- **Polling Day:** Step-by-step walkthrough of the booth experience, EVM/VVPAT usage, and ID requirements.
-- **Results:** Explanation of the counting process and government formation.
+### 3. 🛑 Election Myth Buster & MCC Checker
+A dedicated tool to verify election-related claims and activities.
+- **Claim Verification**: Instant checks on whether an activity is **Allowed**, **Not Allowed**, or **Misleading**.
+- **Model Code of Conduct (MCC)**: Deep integration of ECI rules to provide legal context and confidence scores.
 
-### 4. Interactive Tools
-- **Voter Eligibility Quiz:** A quick tool to help users verify their voting rights.
-- **AI Summary Cards:** Instant, digestible takeaways at the top of every phase page.
-- **Quick Action Chips:** One-tap buttons for "Explain Simply" or "Give me steps" to reduce cognitive load.
+### 4. 🌍 Multilingual by Design
+Seamless support for India's linguistic diversity with **6 major languages**:
+- 🇮🇳 English, Hindi (हिन्दी), Marathi (मराठी), Bengali (বাংলা), Tamil (தமிழ்), and Telugu (తెలుగు).
+- **Auto-Detection**: Dynamically detects browser language and applies script-specific typography and RTL support where necessary.
+
+### 5. 🎬 Integrated Demo Mode
+A "one-click" demonstration sequence for judges and presenters.
+- **Automated Walkthrough**: Simulates a live user session including AI chat interactions, journey navigation, and myth-busting sequences with a single click.
 
 ---
 
-## 🎨 Design Philosophy
-The app utilizes a **Premium Tricolour Aesthetic**, blending modern glassmorphism with India's national colors (Saffron, White, Green) and a deep "Civic Blue" palette.
-- **Modern Typography:** Uses clean, sans-serif fonts for maximum readability.
-- **Micro-animations:** Powered by **Framer Motion** for smooth transitions and interactive feedback.
-- **Responsive Layout:** Fully optimized for mobile, tablet, and desktop viewing.
+## 🎨 Design & UX
+- **Premium Aesthetic**: Modern UI with glassmorphism, depth-based shadows, and high-quality gradients.
+- **Micro-Animations**: Powered by **Framer Motion** for hover scales, sliding transitions, and bouncing feedback.
+- **Accessibility**: Standardized on `rounded-2xl` corners and high-contrast typography for maximum readability.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Core:** [React 19](https://reactjs.org/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Internationalization:** [react-i18next](https://react.i18next.com/)
-- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Frontend**: [React 19](https://reactjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **I18n**: [react-i18next](https://react.i18next.com/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
 
 ---
 
@@ -56,37 +56,27 @@ The app utilizes a **Premium Tricolour Aesthetic**, blending modern glassmorphis
 ```text
 src/
 ├── components/
-│   ├── chat/        # CivicGuide AI engine & components
-│   ├── journey/     # Personalized Journey logic & UI
-│   ├── phases/      # Educational content modules
-│   └── layout/      # Sidebar & Navigation
-├── hooks/           # Custom React hooks (i18n, triggers)
-├── data/            # Static election data & language maps
-└── App.jsx          # Root component & State providers
+│   ├── chat/        # CivicGuide AI engine (aiResponses.js) & UI
+│   ├── journey/     # Personalized Journey logic & Progress Context
+│   ├── mythbuster/  # Claim verification & MCC logic
+│   ├── phases/      # Educational modules (Registration, Polling, etc.)
+│   └── ui/          # Final polish: Onboarding, QuickToolbar (Demo Mode)
+├── locales/         # Multi-language JSON dictionaries
+├── data/            # Static election data & language configurations
+└── App.jsx          # Root layout & State management
 ```
 
 ---
 
 ## ⚡ Getting Started
 
-### Prerequisites
-- Node.js (v18+)
-- npm or yarn
-
-### Installation
-1. Clone the repository:
+1. **Clone & Install**:
    ```bash
    git clone https://github.com/Riya72-coder/Election-Process-Education-Assistant.git
-   ```
-2. Navigate to the project directory:
-   ```bash
    cd Election-Process-Education-Assistant
-   ```
-3. Install dependencies:
-   ```bash
    npm install
    ```
-4. Start the development server:
+2. **Launch**:
    ```bash
    npm run dev
    ```
@@ -94,9 +84,9 @@ src/
 ---
 
 ## 🏆 Hackathon Vision
-This project aims to bridge the digital divide in civic awareness. By replacing dense government PDF manuals with an **AI-guided companion**, we empower the next generation of voters (Gen-Z and Millennials) to participate confidently in the world's largest democracy.
+This project aims to bridge the civic awareness gap by replacing dense manuals with an **AI-guided companion**. It empowers Gen-Z and first-time voters to participate confidently in Indian democracy through technology and personalized education.
 
 ---
 
 ## 📄 License
-This project is open-source and available under the MIT License.
+This project is open-source and available under the **MIT License**.
