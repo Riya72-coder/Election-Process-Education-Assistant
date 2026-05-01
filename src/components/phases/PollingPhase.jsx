@@ -24,6 +24,32 @@ export default function PollingPhase() {
   const steps       = t('polling.steps',         { returnObjects: true });
   const rights      = t('polling.rights',        { returnObjects: true });
 
+  const getPageText = () => {
+    const parts = [
+      t('polling.title'),
+      t('polling.subtitle'),
+      t('polling.description'),
+      t('polling.evmVvpatTitle'),
+      t('polling.evmVvpatSubtitle'),
+      t('polling.evmLabel'),
+      ...evmPoints,
+      t('polling.vvpatLabel'),
+      ...vvpatPoints,
+      t('polling.inkTitle'),
+      ...inkFacts,
+      t('polling.bringTitle'),
+      ...whatToBring.map(d => `${d.item}: ${d.desc}`),
+      t('polling.stepsTitle'),
+      ...steps.map(s => `${s.title}: ${s.detail}`),
+      t('polling.rightsTitle'),
+      ...rights,
+      t('polling.reportLabel') + ' 1950',
+      t('polling.dykLabel'),
+      t('polling.dykText')
+    ];
+    return parts.join('. ');
+  };
+
   return (
     <motion.div
       variants={containerVariants}
@@ -43,7 +69,7 @@ export default function PollingPhase() {
           <p className="text-civic-200 font-medium mb-2">{t('polling.subtitle')}</p>
           <p className="text-civic-100 text-sm max-w-2xl leading-relaxed">{t('polling.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('polling.subtitle')}. ${t('polling.description')}`} lang={i18n.language} />
+            <ListenButton text={getPageText()} lang={i18n.language} />
           </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">

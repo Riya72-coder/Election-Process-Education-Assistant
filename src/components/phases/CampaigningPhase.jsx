@@ -12,6 +12,25 @@ export default function CampaigningPhase({ setActivePhase }) {
   const expenses  = t('campaigning.expenses',  { returnObjects: true });
   const timeline  = t('campaigning.timeline',  { returnObjects: true });
 
+  const getPageText = () => {
+    const parts = [
+      t('campaigning.title'),
+      t('campaigning.subtitle'),
+      t('campaigning.description'),
+      t('campaigning.mccTitle'),
+      t('campaigning.mccDesc'),
+      ...mccPoints.map(p => `${p.title}: ${p.detail}`),
+      t('campaigning.expenseTitle'),
+      ...expenses.map(e => `${e.category}: ${e.limit}`),
+      t('campaigning.expenseWarning'),
+      t('campaigning.timelineTitle'),
+      ...timeline.map(t => `${t.phase}: ${t.detail}`),
+      t('campaigning.dykLabel'),
+      t('campaigning.dykText')
+    ];
+    return parts.join('. ');
+  };
+
   return (
     <div className="max-w-5xl mx-auto space-y-8 animate-fade-in">
       {/* Hero */}
@@ -23,7 +42,7 @@ export default function CampaigningPhase({ setActivePhase }) {
           <p className="text-orange-100 font-medium mb-2">{t('campaigning.subtitle')}</p>
           <p className="text-orange-50 text-sm max-w-2xl leading-relaxed">{t('campaigning.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('campaigning.subtitle')}. ${t('campaigning.description')}`} lang={i18n.language} />
+            <ListenButton text={getPageText()} lang={i18n.language} />
           </div>
           
           <div className="mt-6 flex flex-wrap gap-3">

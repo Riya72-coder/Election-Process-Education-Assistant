@@ -22,6 +22,26 @@ export default function RegistrationPhase() {
   const steps        = t('registration.steps',       { returnObjects: true });
   const forms        = t('registration.forms',       { returnObjects: true });
 
+  const getPageText = () => {
+    const parts = [
+      t('registration.title'),
+      t('registration.subtitle'),
+      t('registration.description'),
+      t('registration.epicTitle'),
+      t('registration.epicSubtitle'),
+      ...epicPoints,
+      t('registration.eligibilityTitle'),
+      ...eligibility.map(e => `${e.label}: ${e.detail}`),
+      t('registration.stepsTitle'),
+      ...steps.map(s => `${s.title}: ${s.detail}`),
+      t('registration.formsTitle'),
+      ...forms.map(f => `${f.form}: ${f.purpose}`),
+      t('overview.dykLabel'),
+      t('overview.dykText')
+    ];
+    return parts.join('. ');
+  };
+
   return (
     <motion.div
       variants={containerVariants}
@@ -41,7 +61,7 @@ export default function RegistrationPhase() {
           <p className="text-teal-100 font-medium mb-2">{t('registration.subtitle')}</p>
           <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('registration.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('registration.subtitle')}. ${t('registration.description')}`} lang={i18n.language} />
+            <ListenButton text={getPageText()} lang={i18n.language} />
           </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">

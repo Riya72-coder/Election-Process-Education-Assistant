@@ -11,6 +11,23 @@ export default function ResultsPhase() {
   const governmentFormation = t('results.governmentFormation', { returnObjects: true });
   const keyConcepts         = t('results.keyConcepts',         { returnObjects: true });
 
+  const getPageText = () => {
+    const parts = [
+      t('results.title'),
+      t('results.subtitle'),
+      t('results.description'),
+      t('results.countingTitle'),
+      ...countingSteps.map(s => `${s.title}: ${s.detail}`),
+      t('results.govTitle'),
+      ...governmentFormation.map(g => `${g.title}: ${g.detail}`),
+      t('results.conceptsTitle'),
+      ...keyConcepts.map(c => `${c.term}: ${c.meaning}`),
+      t('results.dykLabel'),
+      t('results.dykText')
+    ];
+    return parts.join('. ');
+  };
+
   return (
     <div className="max-w-5xl mx-auto space-y-8 animate-fade-in">
       {/* Hero */}
@@ -22,7 +39,7 @@ export default function ResultsPhase() {
           <p className="text-teal-100 font-medium mb-2">{t('results.subtitle')}</p>
           <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('results.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('results.subtitle')}. ${t('results.description')}`} lang={i18n.language} />
+            <ListenButton text={getPageText()} lang={i18n.language} />
           </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">
