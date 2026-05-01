@@ -6,7 +6,7 @@ import CandidateParser from '../candidate/CandidateParser';
 import ListenButton from '../ui/ListenButton';
 
 export default function CampaigningPhase({ setActivePhase }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const mccPoints = t('campaigning.mccPoints', { returnObjects: true });
   const expenses  = t('campaigning.expenses',  { returnObjects: true });
@@ -23,7 +23,7 @@ export default function CampaigningPhase({ setActivePhase }) {
           <p className="text-orange-100 font-medium mb-2">{t('campaigning.subtitle')}</p>
           <p className="text-orange-50 text-sm max-w-2xl leading-relaxed">{t('campaigning.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('campaigning.subtitle')}. ${t('campaigning.description')}`} lang={t('_lang', 'en')} />
+            <ListenButton text={`${t('campaigning.subtitle')}. ${t('campaigning.description')}`} lang={i18n.language} />
           </div>
           
           <div className="mt-6 flex flex-wrap gap-3">

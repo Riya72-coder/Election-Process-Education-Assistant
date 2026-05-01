@@ -15,7 +15,7 @@ const itemVariants = {
 };
 
 export default function RegistrationPhase() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const epicPoints   = t('registration.epicPoints',  { returnObjects: true });
   const eligibility  = t('registration.eligibility', { returnObjects: true });
@@ -41,7 +41,7 @@ export default function RegistrationPhase() {
           <p className="text-teal-100 font-medium mb-2">{t('registration.subtitle')}</p>
           <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('registration.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('registration.subtitle')}. ${t('registration.description')}`} lang={t('_lang', 'en')} />
+            <ListenButton text={`${t('registration.subtitle')}. ${t('registration.description')}`} lang={i18n.language} />
           </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">

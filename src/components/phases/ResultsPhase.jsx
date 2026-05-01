@@ -5,7 +5,7 @@ import PageAIBar from '../chat/PageAIBar';
 import ListenButton from '../ui/ListenButton';
 
 export default function ResultsPhase() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const countingSteps       = t('results.countingSteps',       { returnObjects: true });
   const governmentFormation = t('results.governmentFormation', { returnObjects: true });
@@ -22,7 +22,7 @@ export default function ResultsPhase() {
           <p className="text-teal-100 font-medium mb-2">{t('results.subtitle')}</p>
           <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('results.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('results.subtitle')}. ${t('results.description')}`} lang={t('_lang', 'en')} />
+            <ListenButton text={`${t('results.subtitle')}. ${t('results.description')}`} lang={i18n.language} />
           </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">

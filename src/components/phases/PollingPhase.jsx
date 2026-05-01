@@ -15,7 +15,7 @@ const itemVariants = {
 };
 
 export default function PollingPhase() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const evmPoints   = t('polling.evm',          { returnObjects: true });
   const vvpatPoints = t('polling.vvpat',         { returnObjects: true });
@@ -43,7 +43,7 @@ export default function PollingPhase() {
           <p className="text-civic-200 font-medium mb-2">{t('polling.subtitle')}</p>
           <p className="text-civic-100 text-sm max-w-2xl leading-relaxed">{t('polling.description')}</p>
           <div className="mt-3">
-            <ListenButton text={`${t('polling.subtitle')}. ${t('polling.description')}`} lang={t('_lang', 'en')} />
+            <ListenButton text={`${t('polling.subtitle')}. ${t('polling.description')}`} lang={i18n.language} />
           </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">
