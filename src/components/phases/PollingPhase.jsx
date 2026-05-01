@@ -3,6 +3,7 @@ import { CreditCard, ShieldCheck, Star, Cpu, FileText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import AISummaryCard from '../chat/AISummaryCard';
 import PageAIBar from '../chat/PageAIBar';
+import ListenButton from '../ui/ListenButton';
 
 const containerVariants = {
   hidden:  { opacity: 0 },
@@ -41,6 +42,9 @@ export default function PollingPhase() {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('polling.title')}</h2>
           <p className="text-civic-200 font-medium mb-2">{t('polling.subtitle')}</p>
           <p className="text-civic-100 text-sm max-w-2xl leading-relaxed">{t('polling.description')}</p>
+          <div className="mt-3">
+            <ListenButton text={`${t('polling.subtitle')}. ${t('polling.description')}`} lang={t('_lang', 'en')} />
+          </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">
             <PageAIBar

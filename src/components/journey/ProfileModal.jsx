@@ -15,12 +15,12 @@ const INDIAN_STATES = [
 export default function ProfileModal({ isOpen, onClose }) {
   const { setProfile } = useJourney();
   const openChat = useChatTrigger();
-  const [form, setForm] = useState({ age: '', state: 'Maharashtra', isFirstTime: true });
+  const [form, setForm] = useState({ age: '', state: 'Maharashtra', city: '', isFirstTime: true });
   const [errors, setErrors] = useState({});
 
   // Reset form every time modal opens
   useEffect(() => {
-    if (isOpen) setForm({ age: '', state: 'Maharashtra', isFirstTime: true });
+    if (isOpen) setForm({ age: '', state: 'Maharashtra', city: '', isFirstTime: true });
     setErrors({});
   }, [isOpen]);
 
@@ -111,6 +111,22 @@ export default function ProfileModal({ isOpen, onClose }) {
               >
                 {INDIAN_STATES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
+            </div>
+          </div>
+          
+          {/* City (Optional) */}
+          <div>
+            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              Your City (Optional)
+            </label>
+            <div className="relative">
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={17} />
+              <input
+                type="text" placeholder="e.g. Pune"
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white text-sm outline-none focus:ring-2 focus:ring-blue-100 focus:border-blue-400 transition-all"
+                value={form.city}
+                onChange={e => setForm({...form, city: e.target.value})}
+              />
             </div>
           </div>
 

@@ -2,6 +2,7 @@ import { TrendingUp, Gavel, BookOpen } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import AISummaryCard from '../chat/AISummaryCard';
 import PageAIBar from '../chat/PageAIBar';
+import ListenButton from '../ui/ListenButton';
 
 export default function ResultsPhase() {
   const { t } = useTranslation();
@@ -20,6 +21,9 @@ export default function ResultsPhase() {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('results.title')}</h2>
           <p className="text-teal-100 font-medium mb-2">{t('results.subtitle')}</p>
           <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('results.description')}</p>
+          <div className="mt-3">
+            <ListenButton text={`${t('results.subtitle')}. ${t('results.description')}`} lang={t('_lang', 'en')} />
+          </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">
             <PageAIBar

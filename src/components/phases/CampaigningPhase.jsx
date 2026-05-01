@@ -2,6 +2,8 @@ import { ShieldCheck, DollarSign, Clock, ShieldAlert, ArrowRight } from 'lucide-
 import { useTranslation } from 'react-i18next';
 import AISummaryCard from '../chat/AISummaryCard';
 import PageAIBar from '../chat/PageAIBar';
+import CandidateParser from '../candidate/CandidateParser';
+import ListenButton from '../ui/ListenButton';
 
 export default function CampaigningPhase({ setActivePhase }) {
   const { t } = useTranslation();
@@ -20,6 +22,9 @@ export default function CampaigningPhase({ setActivePhase }) {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('campaigning.title')}</h2>
           <p className="text-orange-100 font-medium mb-2">{t('campaigning.subtitle')}</p>
           <p className="text-orange-50 text-sm max-w-2xl leading-relaxed">{t('campaigning.description')}</p>
+          <div className="mt-3">
+            <ListenButton text={`${t('campaigning.subtitle')}. ${t('campaigning.description')}`} lang={t('_lang', 'en')} />
+          </div>
           
           <div className="mt-6 flex flex-wrap gap-3">
             <button 
@@ -112,6 +117,11 @@ export default function CampaigningPhase({ setActivePhase }) {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* ── Candidate Promise Parser ── */}
+      <div className="animate-slide-up" style={{ animationDelay: '0.3s' }}>
+        <CandidateParser />
       </div>
 
       {/* Did You Know */}

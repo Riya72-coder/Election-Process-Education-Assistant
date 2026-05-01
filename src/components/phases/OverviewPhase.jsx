@@ -121,7 +121,10 @@ export default function OverviewPhase({ setActivePhase }) {
 
       {profile && (
         <motion.div variants={itemVariants}>
-          <VotingJourney setActivePhase={setActivePhase} />
+          <VotingJourney 
+            setActivePhase={setActivePhase} 
+            onEditProfile={() => setModalOpen(true)}
+          />
         </motion.div>
       )}
 

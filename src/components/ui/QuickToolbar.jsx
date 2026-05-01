@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, ShieldAlert, Map, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { Play, ShieldAlert, Map, MessageSquare, CheckCircle2, PhoneCall, ExternalLink } from 'lucide-react';
 import { useChatTrigger } from '../chat/ChatContext';
+import { useJourney } from '../journey/JourneyContext';
 
 export default function QuickToolbar({ setActivePhase }) {
+  const { profile } = useJourney();
   const openWithMessage = useChatTrigger();
   const [isDemoing, setIsDemoing] = useState(false);
+
+  const isPune = profile?.state === 'Maharashtra' && profile?.city?.toLowerCase() === 'pune';
 
   const runDemo = async () => {
     if (isDemoing) return;
@@ -44,6 +48,28 @@ export default function QuickToolbar({ setActivePhase }) {
         <ShieldAlert size={20} />
         <span className="text-[10px] font-bold uppercase tracking-wider">Myths</span>
       </button>
+
+      {isPune && (
+        <>
+          <div className="w-[1px] h-8 bg-slate-200 mx-1" />
+          <button
+            onClick={() => window.open('https://pune.nic.in/election/', '_blank')}
+            className="p-2 rounded-xl hover:bg-orange-50 transition-colors text-orange-600 flex flex-col items-center gap-1 min-w-[60px]"
+            title="Pune District Election Office"
+          >
+            <ExternalLink size={20} />
+            <span className="text-[10px] font-bold uppercase tracking-wider">Pune DEO</span>
+          </button>
+          <button
+            onClick={() => window.open('tel:1950')}
+            className="p-2 rounded-xl hover:bg-teal-50 transition-colors text-teal-600 flex flex-col items-center gap-1 min-w-[60px]"
+            title="Voter Helpline"
+          >
+            <PhoneCall size={20} />
+            <span className="text-[10px] font-bold uppercase tracking-wider">Help 1950</span>
+          </button>
+        </>
+      )}
 
       <div className="w-[1px] h-8 bg-slate-200 mx-1" />
 

@@ -3,6 +3,7 @@ import { CheckCircle, FileText, CreditCard } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import AISummaryCard from '../chat/AISummaryCard';
 import PageAIBar from '../chat/PageAIBar';
+import ListenButton from '../ui/ListenButton';
 
 const containerVariants = {
   hidden:  { opacity: 0 },
@@ -39,6 +40,9 @@ export default function RegistrationPhase() {
           <h2 className="font-display text-3xl lg:text-4xl font-bold mb-3">{t('registration.title')}</h2>
           <p className="text-teal-100 font-medium mb-2">{t('registration.subtitle')}</p>
           <p className="text-teal-50 text-sm max-w-2xl leading-relaxed">{t('registration.description')}</p>
+          <div className="mt-3">
+            <ListenButton text={`${t('registration.subtitle')}. ${t('registration.description')}`} lang={t('_lang', 'en')} />
+          </div>
           {/* AI Bar inside hero */}
           <div className="mt-5">
             <PageAIBar

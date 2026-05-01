@@ -651,3 +651,51 @@ export function checkElectionClaim(input, lang = 'en') {
   // Default / Fallback
   return { status: 'misleading', ...t.fallback, confidence: 'Low' };
 }
+
+/**
+ * Simple parser to categorize candidate promises and provide impact scores.
+ * @param {string} text 
+ * @returns {{ category: string, score: number, explanation: string }}
+ */
+export function parseCandidatePromise(text) {
+  const input = text.toLowerCase();
+  
+  const categories = [
+    { name: 'Education', keywords: ['school', 'college', 'university', 'education', 'teacher', 'literacy', 'student'] },
+    { name: 'Healthcare', keywords: ['hospital', 'doctor', 'medicine', 'health', 'clinic', 'wellness', 'medical'] },
+    { name: 'Infrastructure', keywords: ['road', 'bridge', 'highway', 'metro', 'train', 'airport', 'building', 'water', 'electricity'] },
+    { name: 'Finance', keywords: ['tax', 'money', 'budget', 'economy', 'job', 'employment', 'business', 'loan'] },
+    { name: 'Agriculture', keywords: ['farmer', 'crop', 'soil', 'irrigation', 'farming', 'village', 'rural'] },
+    { name: 'Environment', keywords: ['tree', 'forest', 'pollution', 'green', 'solar', 'climate', 'renewable'] }
+  ];
+
+  let foundCategory = categories.find(cat => cat.keywords.some(kw => input.includes(kw)));
+  
+  const categoryName = foundCategory ? foundCategory.name : 'General Governance';
+  
+  // Dynamic Score logic: more keywords + length = higher score
+  let score = 5; // Base score
+  if (foundCategory) score += 2;
+  if (text.length > 100) score += 1;
+  if (text.length > 250) score += 1;
+  const matches = (i, kws) => kws.some(kw => i.includes(kw));
+  if (matches(input, ['immediate', 'reform', 'policy', 'scheme'])) score += 1;
+
+  score = Math.min(score, 10);
+
+  const explanations = {
+    Education: "Focuses on human capital and long-term development.",
+    Healthcare: "Directly impacts public welfare and quality of life.",
+    Infrastructure: "Boosts connectivity and logistical efficiency.",
+    Finance: "Aims at economic stability and livelihood improvement.",
+    Agriculture: "Supports the backbone of the primary sector and rural economy.",
+    Environment: "Prioritizes sustainability and future-proofing.",
+    'General Governance': "A broad promise aimed at overall administrative improvement."
+  };
+
+  return {
+    category: categoryName,
+    score,
+    explanation: explanations[categoryName]
+  };
+}
