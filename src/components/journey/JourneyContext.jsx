@@ -52,8 +52,15 @@ export function JourneyProvider({ children }) {
     localStorage.removeItem('voter_journey');
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBoothModalOpen, setIsBoothModalOpen] = useState(false);
+
   return (
-    <JourneyContext.Provider value={{ profile, setProfile, journey, completeStep, resetJourney }}>
+    <JourneyContext.Provider value={{ 
+      profile, setProfile, journey, completeStep, resetJourney,
+      isModalOpen, setIsModalOpen,
+      isBoothModalOpen, setIsBoothModalOpen 
+    }}>
       {children}
     </JourneyContext.Provider>
   );

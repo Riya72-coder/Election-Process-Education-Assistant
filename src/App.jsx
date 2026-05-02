@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Sidebar from './components/Layout/Sidebar';
@@ -12,10 +12,12 @@ import VoterEligibilityQuiz from './components/quiz/VoterEligibilityQuiz';
 import MythBuster from './components/mythbuster/MythBuster';
 import { getScriptConfig, isRTL } from './data/languages';
 import ChatAssistant from './components/chat/ChatAssistant';
-import { ChatProvider } from './components/chat/ChatContext';
-import { JourneyProvider } from './components/journey/JourneyContext';
+import { ChatContext } from './components/chat/ChatContext';
 import Onboarding from './components/ui/Onboarding';
 import QuickToolbar from './components/ui/QuickToolbar';
+import { useJourney } from './components/journey/JourneyContext';
+import ProfileModal from './components/journey/ProfileModal';
+import BoothFinderModal from './components/ui/BoothFinderModal';
 
 const phaseComponents = {
   overview: OverviewPhase,
@@ -37,6 +39,8 @@ export default function App() {
   const { i18n } = useTranslation();
   const [activePhase, setActivePhase] = useState('overview');
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { isOpen } = useContext(ChatContext);
+  const { isModalOpen, setIsModalOpen, isBoothModalOpen, setIsBoothModalOpen } = useJourney();
 
   // Apply RTL direction + script-specific CSS font vars on language change
   useEffect(() => {
@@ -51,8 +55,6 @@ export default function App() {
   const ActiveComponent = phaseComponents[activePhase] || OverviewPhase;
 
   return (
-    <JourneyProvider>
-    <ChatProvider>
     <div className="flex h-screen overflow-hidden bg-slate-50">
       <Sidebar
         activePhase={activePhase}
@@ -61,36 +63,59 @@ export default function App() {
         setMobileOpen={setMobileOpen}
       />
 
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
         <Header activePhase={activePhase} setMobileOpen={setMobileOpen} />
 
-        <main id="main-content" className="flex-1 overflow-y-auto p-4 lg:p-8 relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${activePhase}-${i18n.language}`}
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              onAnimationComplete={() =>
-                document.getElementById('main-content')?.scrollTo({ top: 0, behavior: 'smooth' })
-              }
-            >
-              <ActiveComponent setActivePhase={setActivePhase} />
-              <div className="h-8" />
-            </motion.div>
-          </AnimatePresence>
-        </main>
+        {/* ── Main Content Area + AI Panel Container ── */}
+        <div className="flex-1 flex min-h-0 relative">
+          <motion.main
+            id="main-content"
+            initial={false}
+            animate={{ 
+              width: isOpen ? '60%' : '100%',
+            }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="h-full overflow-y-auto p-4 lg:p-8 relative"
+          >
+            {/* Backdrop Blur Overlay when AI is active */}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute inset-0 z-10 bg-slate-900/5 backdrop-blur-[2px] pointer-events-none"
+                />
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${activePhase}-${i18n.language}`}
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                onAnimationComplete={() =>
+                  document.getElementById('main-content')?.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              >
+                <ActiveComponent setActivePhase={setActivePhase} />
+                <div className="h-8" />
+              </motion.div>
+            </AnimatePresence>
+          </motion.main>
+
+          {/* ── AI Side Panel ── */}
+          <ChatAssistant />
+        </div>
       </div>
 
-      {/* ── AI Chat Assistant — fixed overlay, does not affect layout ── */}
-      <ChatAssistant />
-
       {/* ── Final Polish Components ── */}
+      <ProfileModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <BoothFinderModal isOpen={isBoothModalOpen} onClose={() => setIsBoothModalOpen(false)} />
       <Onboarding />
       <QuickToolbar setActivePhase={setActivePhase} />
     </div>
-    </ChatProvider>
-    </JourneyProvider>
   );
 }

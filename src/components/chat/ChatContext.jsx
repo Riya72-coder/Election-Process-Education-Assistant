@@ -8,18 +8,19 @@ export const ChatContext = createContext(null);
  * the chat panel with a pre-typed message.
  */
 export function ChatProvider({ children }) {
-  // Each time this changes, ChatAssistant will react to it
   const [pendingMessage, setPendingMessage] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   /** Call from any page: openWithMessage("How do I register?") */
   const openWithMessage = useCallback((text) => {
-    setPendingMessage({ text, ts: Date.now() }); // ts forces re-render even for same text
+    setPendingMessage({ text, ts: Date.now() });
+    setIsOpen(true);
   }, []);
 
   const clearPending = useCallback(() => setPendingMessage(null), []);
 
   return (
-    <ChatContext.Provider value={{ pendingMessage, openWithMessage, clearPending }}>
+    <ChatContext.Provider value={{ pendingMessage, openWithMessage, clearPending, isOpen, setIsOpen }}>
       {children}
     </ChatContext.Provider>
   );

@@ -6,17 +6,11 @@ import AISummaryCard from '../chat/AISummaryCard';
 import PageAIBar from '../chat/PageAIBar';
 import { useJourney } from '../journey/JourneyContext';
 import VotingJourney from '../journey/VotingJourney';
-import ProfileModal from '../journey/ProfileModal';
-import { useState } from 'react';
 
 const iconMap = { Users, MapPin, Building2, Flag };
-
 const JOURNEY_PHASES = ['registration', 'campaigning', 'polling', 'results'];
-
-// Aligned to overviewData.stats array order in electionData.js
 const STAT_KEYS = ['voters', 'stations', 'seats', 'assemblies'];
 
-// Static map so Tailwind keeps all classes in the bundle
 const PHASE_STYLES = {
   registration: { badge: 'bg-teal-600 text-white',   ring: 'hover:border-teal-300' },
   campaigning:  { badge: 'bg-orange-500 text-white', ring: 'hover:border-orange-300' },
@@ -35,8 +29,7 @@ const itemVariants = {
 
 export default function OverviewPhase({ setActivePhase }) {
   const { t } = useTranslation();
-  const { profile } = useJourney();
-  const [modalOpen, setModalOpen] = useState(false);
+  const { profile, setIsModalOpen, setIsBoothModalOpen } = useJourney();
 
   return (
     <motion.div
@@ -54,7 +47,6 @@ export default function OverviewPhase({ setActivePhase }) {
         <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-teal-400/10 rounded-full pointer-events-none" />
 
         <div className="relative max-w-2xl">
-          {/* Tricolour pill + tagline */}
           <div className="flex items-center gap-1.5 mb-6">
             <span className="w-4 h-4 rounded-full bg-india-saffron" />
             <span className="w-4 h-4 rounded-full bg-white/90" />
@@ -88,7 +80,7 @@ export default function OverviewPhase({ setActivePhase }) {
               <motion.button
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => setModalOpen(true)}
+                onClick={() => setIsModalOpen(true)}
                 className="inline-flex items-center gap-2 bg-white text-civic-800 font-bold px-7 py-3.5 rounded-xl shadow-lg text-sm"
               >
                 🚀 Start My AI Voting Journey
@@ -102,10 +94,17 @@ export default function OverviewPhase({ setActivePhase }) {
             >
               {t('overview.ctaEligibility')}
             </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setIsBoothModalOpen(true)}
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white text-xs font-bold transition-all px-4 py-2 border border-white/10 hover:border-white/30 rounded-full"
+            >
+              <MapPin size={14} />
+              Find nearby booth
+            </motion.button>
           </div>
 
-
-          {/* AI Bar inside hero */}
           <div className="mt-6">
             <PageAIBar
               askLabel="How does voting work?"
@@ -116,19 +115,15 @@ export default function OverviewPhase({ setActivePhase }) {
         </div>
       </motion.div>
 
-      {/* Profile modal — outside hero so it doesn't inherit text-white */}
-      <ProfileModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-
       {profile && (
         <motion.div variants={itemVariants}>
           <VotingJourney 
             setActivePhase={setActivePhase} 
-            onEditProfile={() => setModalOpen(true)}
+            onEditProfile={() => setIsModalOpen(true)}
           />
         </motion.div>
       )}
 
-      {/* ── STATS GRID ── */}
       <motion.div variants={itemVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {overviewData.stats.map((stat, idx) => {
           const Icon = iconMap[stat.icon];
@@ -150,10 +145,8 @@ export default function OverviewPhase({ setActivePhase }) {
         })}
       </motion.div>
 
-      {/* AI Summary Card */}
       <AISummaryCard pageType="overview" accentColor="border-civic-600" />
 
-      {/* ── VOTER HELPLINE APP ── */}
       <motion.div
         variants={itemVariants}
         className="section-card flex flex-col md:flex-row items-start md:items-center gap-5 bg-gradient-to-r from-teal-50 to-cyan-50 border-teal-100"
@@ -179,7 +172,6 @@ export default function OverviewPhase({ setActivePhase }) {
         </a>
       </motion.div>
 
-      {/* ── JOURNEY CARDS ── */}
       <motion.div variants={itemVariants}>
         <h3 className="font-display text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-civic-600 rounded-full" />
@@ -215,7 +207,6 @@ export default function OverviewPhase({ setActivePhase }) {
         </div>
       </motion.div>
 
-      {/* ── HISTORICAL TIMELINE ── */}
       <motion.div variants={itemVariants} className="section-card">
         <h3 className="font-display text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
           <span className="w-1.5 h-6 bg-civic-600 rounded-full" />
@@ -241,7 +232,6 @@ export default function OverviewPhase({ setActivePhase }) {
         </div>
       </motion.div>
 
-      {/* ── DID YOU KNOW ── */}
       <motion.div variants={itemVariants} className="did-you-know">
         <p className="text-sm font-bold uppercase tracking-wider mb-2">{t('overview.dykLabel')}</p>
         <p className="text-sm leading-relaxed">{t('overview.dykText')}</p>

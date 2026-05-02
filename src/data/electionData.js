@@ -140,7 +140,7 @@ export const content = {
       tagline: "India's Democracy Guide",
       sectionLabel: 'Election Phases',
       footerVote: '🗳️ Your vote is your voice',
-      footerEvent: 'Hack2Skills PromptWars 2026',
+      footerEvent: 'ElectionEdu 2026',
       tryIt: 'Try it!',
       phases: phases.map((p, i) => ({ ...p, badge: String(i + 1).padStart(2, '0') })),
     },
@@ -238,7 +238,7 @@ export const content = {
       tagline: 'भारत का लोकतंत्र मार्गदर्शक',
       sectionLabel: 'चुनाव के चरण',
       footerVote: '🗳️ आपका वोट, आपकी आवाज़',
-      footerEvent: 'Hack2Skills PromptWars 2026',
+      footerEvent: 'ElectionEdu 2026',
       tryIt: 'आज़माएं!',
       phases: [
         { id: 'overview', label: 'सिंहावलोकन', icon: 'Home', badge: '01' },
@@ -432,7 +432,7 @@ export const content = {
       tagline: 'भारताचा लोकशाही मार्गदर्शक',
       sectionLabel: 'निवडणुकीचे टप्पे',
       footerVote: '🗳️ तुमचं मत, तुमची आवाज',
-      footerEvent: 'Hack2Skills PromptWars 2026',
+      footerEvent: 'ElectionEdu 2026',
       tryIt: 'वापरून पाहा!',
       phases: [
         { id: 'overview', label: 'आढावा', icon: 'Home', badge: '01' },
@@ -626,7 +626,7 @@ export const content = {
       tagline: 'ভারতের গণতন্ত্র গাইড',
       sectionLabel: 'নির্বাচনের পর্যায়',
       footerVote: '🗳️ আপনার ভোট, আপনার কণ্ঠস্বর',
-      footerEvent: 'Hack2Skills PromptWars 2026',
+      footerEvent: 'ElectionEdu 2026',
       tryIt: 'চেষ্টা করুন!',
       phases: [
         { id: 'overview', label: 'সংক্ষিপ্ত বিবরণ', icon: 'Home', badge: '01' },
@@ -820,7 +820,7 @@ export const content = {
       tagline: 'இந்தியாவின் ஜனநாயக வழிகாட்டி',
       sectionLabel: 'தேர்தல் கட்டங்கள்',
       footerVote: '🗳️ உங்கள் வாக்கு உங்கள் குரல்',
-      footerEvent: 'Hack2Skills PromptWars 2026',
+      footerEvent: 'ElectionEdu 2026',
       tryIt: 'முயற்சி செய்து பாருங்கள்!',
       phases: [
         { id: 'overview', label: 'கண்ணோட்டம்', icon: 'Home', badge: '01' },
@@ -1014,7 +1014,7 @@ export const content = {
       tagline: 'భారతదేశ ప్రజాస్వామ్య మార్గదర్శి',
       sectionLabel: 'ఎన్నికల దశలు',
       footerVote: '🗳️ మీ ఓటు మీ గొంతుక',
-      footerEvent: 'Hack2Skills PromptWars 2026',
+      footerEvent: 'ElectionEdu 2026',
       tryIt: 'ప్రయతించి చూడండి!',
       phases: [
         { id: 'overview', label: 'అవలోకనం', icon: 'Home', badge: '01' },

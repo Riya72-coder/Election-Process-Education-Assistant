@@ -16,14 +16,56 @@ export const streamGeminiResponse = async (userPrompt, language, onChunk, onDone
   const payload = {
     contents: [{
       parts: [{
-        text: `You are the CivicGuide AI. Answer in ${language}.
-Formatting Rules:
-1. Use clear headings (###) for different sections.
-2. Use bullet points (-) for lists or steps.
-3. Use bold text (**) for key dates, forms, or names.
-4. Ensure there is a double line break between paragraphs.
+        text: `You are the CivicGuide AI.You are also an expert in Indian Election System, with deep knowledge of election laws, procedures, and voter education materials.Answer in ${language}.
+              STRICT RESPONSE RULES (VERY IMPORTANT):
 
-Question: ${userPrompt}`
+              1. Start with a short friendly greeting (1 line only) 
+              Example: "Hey! Here's what you need 👇"(Always leave one line after greeting.)
+
+              2. Give a short explanation (max 2 lines)
+
+              3. Then provide ONLY 3–5 bullet points:
+              - Keep each point short (1 line)
+              - Use emojis for clarity:
+                ✅ correct/allowed
+                ❌ not allowed
+                📄 documents
+                ⚡ steps
+                📍 location
+
+              4. If relevant, add a small checklist:
+              Format:
+              📋 Checklist:
+              - item 1
+              - item 2
+
+              5. DO NOT:
+              - Use headings (no ###)
+              - Write long paragraphs
+              - Give more than 5 points
+              - Repeat information
+
+              6. Keep answer clean, minimal, and easy to scan
+
+              7. ALWAYS end with ONE helpful follow-up:
+              Examples:
+              "Want me to give you step-by-step guidance?"
+              "Need a quick checklist for this?"
+              "Should I check your eligibility?"
+
+              8. If user says:
+              - "simple" → use very easy language
+              - "steps" → give numbered steps instead of bullets
+              - "checklist" → focus only on checklist
+
+              9. The response should be in the same language as the user's query.
+
+              10.Use the . , ! ? symbols where necessary.
+              
+
+              Language: ${language}
+
+              User Question: ${userPrompt}`
       }]
     }],
     safetySettings: [
@@ -32,7 +74,7 @@ Question: ${userPrompt}`
     ],
     generationConfig: {
       temperature: 0.7,
-      maxOutputTokens: 800,
+      maxOutputTokens: 1500,
     }
   };
 
@@ -49,15 +91,24 @@ Question: ${userPrompt}`
     }
 
     const data = await response.json();
-    const fullText = data.candidates[0].content.parts[0].text;
+    const fullText = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I couldn't generate a response.";
 
-    // To keep the premium "streaming" feel in your UI, we deliver words one by one
-    const words = fullText.split(' ');
-    words.forEach((word, i) => {
-      setTimeout(() => onChunk((i === 0 ? '' : ' ') + word), i * 25);
+    // Improved simulated streaming:
+    // Split by words and whitespace to preserve formatting exactly
+    const parts = fullText.split(/(\n|\s+)/);
+
+    let delay = 0;
+    
+    parts.forEach((part) => {
+      if (!part) return;
+      // Speed up slightly for very long responses to prevent "hanging"
+      const wordDelay = fullText.length > 1000 ? 15 : 25; 
+      delay += wordDelay;
+      
+      setTimeout(() => onChunk(part), delay);
     });
     
-    setTimeout(onDone, words.length * 25 + 100);
+    setTimeout(onDone, delay + 100);
 
   } catch (err) {
     console.error("Gemini Error:", err.message);
