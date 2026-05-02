@@ -41,6 +41,17 @@ A dedicated tool to verify election-related claims and Model Code of Conduct (MC
 
 ---
 
+## ☁️ Google Cloud Integration
+
+This project is built using a deep integration with the **Google Cloud Ecosystem** to ensure scalability, security, and cutting-edge AI capabilities.
+
+*   **Google Gemini API (Generative Language API)**: The core intelligence engine using **Gemini 2.5 Flash** for real-time, context-aware civic guidance and multilingual support.
+*   **Google Cloud Run (Serverless Hosting)**: Fully managed containerized environment for high-performance, autoscaling web hosting.
+*   **Google Cloud Build (CI/CD Pipeline)**: Automated build and deployment pipeline that securely handles sensitive build arguments and containerization.
+*   **Artifact Registry (Container Management)**: Secure, private storage and management for the project's Docker images, integrated directly with Cloud Build and Cloud Run.
+
+---
+
 ## 📂 Project Structure
 
 ```text
