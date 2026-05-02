@@ -80,6 +80,24 @@ src/
 
 ---
 
+## 🧪 Professional Testing Suite
+
+The project implements a robust testing architecture using **Vitest** and **React Testing Library** to ensure 100% reliability of core civic logic and UI interactions.
+
+### 🔍 Test Coverage
+1.  **Voter Eligibility (Unit)**: 9 dedicated tests covering age boundaries (18+), document requirements, and citizenship status logic.
+2.  **CivicGuide AI (Integration)**: Full rendering tests for the ChatAssistant, simulating user typing, FAB interactions, and state management.
+3.  **API Resilience (Edge Cases)**: Verification of graceful degradation during **429 Rate Limiting**, network failures, and 500 server errors using sophisticated **Gemini API mocking**.
+
+### 🛠️ Testing Commands
+| Command | Description |
+| :--- | :--- |
+| `npm run test` | Starts the test runner in interactive watch mode. |
+| `npm run test:run` | Executes all tests once (ideal for CI/CD pipelines). |
+| `npm run test:ui` | Launches a premium visual dashboard to inspect test results and coverage. |
+
+---
+
 ## ☁️ Deployment (Google Cloud Run)
 
 This project is configured for secure deployment via **Google Cloud Build**.
