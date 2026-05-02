@@ -2,52 +2,42 @@
 
 **ElectionEdu** is a premium, interactive platform designed to empower Indian citizens through the world's largest democratic process. By blending context-aware AI with a personalized roadmap system, the app transforms complex election rules into a seamless, guided journey for every voter.
 
+**🚀 Live Demo:** [https://election-edu-216772053294.us-central1.run.app](https://election-edu-216772053294.us-central1.run.app)
+
 ---
 
-## 🚀 Key Features
+## 🤖 AI Features & Intelligence
 
-### 1. 🗺️ Personalized Voting Journey
-A tailored roadmap that tracks your progress from registration to the final results.
-- **Onboarding Experience**: A premium introduction that captures your age, state, and voter status to customize your learning path.
-- **Progress Tracking**: 4-phase interactive journey (Registration → Campaigning → Polling → Results) with real-time progress visualization and milestone badges.
-
-### 2. 🤖 CivicGuide AI (Smart Assistant)
-A sophisticated, simulated AI chat interface built for instant guidance.
-- **Streaming Responses**: Real-time "character-by-character" AI generation for a lifelike experience.
+### 1. 🦾 CivicGuide AI (Powered by Gemini)
+A sophisticated AI chat interface utilizing the **Gemini 1.5 Flash** model to provide instant, context-aware guidance.
+- **Streaming Responses**: Real-time "character-by-character" AI generation.
 - **Context-Aware Summaries**: Dynamic "🧠 AI Summary" cards on every page that distill technical rules into simple takeaways.
-- **Typing Indicator**: Animated "AI Thinking" states and interactive quick-reply chips.
+- **Interactive Prompts**: Quick-reply chips and animated "AI Thinking" indicators.
 
-### 3. 🛑 Election Myth Buster & MCC Checker
-A dedicated tool to verify election-related claims and activities.
+### 2. 🛑 Election Myth Buster & MCC Checker
+A dedicated tool to verify election-related claims and Model Code of Conduct (MCC) activities.
 - **Claim Verification**: Instant checks on whether an activity is **Allowed**, **Not Allowed**, or **Misleading**.
-- **Model Code of Conduct (MCC)**: Deep integration of ECI rules to provide legal context and confidence scores.
-
-### 4. 🌍 Multilingual by Design
-Seamless support for India's linguistic diversity with **6 major languages**:
-- 🇮🇳 English, Hindi (हिन्दी), Marathi (मराठी), Bengali (বাংলা), Tamil (தமிழ்), and Telugu (తెలుగు).
-- **Auto-Detection**: Dynamically detects browser language and applies script-specific typography and RTL support where necessary.
-
-### 5. 🎬 Integrated Demo Mode
-A "one-click" demonstration sequence for judges and presenters.
-- **Automated Walkthrough**: Simulates a live user session including AI chat interactions, journey navigation, and myth-busting sequences with a single click.
+- **ECI Rule Integration**: Deep logic based on Election Commission of India guidelines with confidence scoring.
 
 ---
 
-## 🎨 Design & UX
-- **Premium Aesthetic**: Modern UI with glassmorphism, depth-based shadows, and high-quality gradients.
-- **Micro-Animations**: Powered by **Framer Motion** for hover scales, sliding transitions, and bouncing feedback.
-- **Accessibility**: Standardized on `rounded-2xl` corners and high-contrast typography for maximum readability.
+## 🗺️ Key Functionalities
+
+*   **Personalized Voting Journey**: A 4-phase interactive roadmap (Registration → Campaigning → Polling → Results) tailored to user age, state, and voter status.
+*   **Multilingual Support**: Full internationalization for **6 major Indian languages**: English, Hindi (हिन्दी), Marathi (मराठी), Bengali (বাংলা), Tamil (தமிழ்), and Telugu (తెलुगु).
+*   **Integrated Demo Mode**: A "one-click" automated walkthrough for presenters to showcase all major features in seconds.
+*   **Premium Design**: Modern UI with glassmorphism, depth-based shadows, and smooth **Framer Motion** animations.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [React 19](https://reactjs.org/)
+- **Frontend**: [React 19](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **AI Engine**: [Google Gemini API](https://aistudio.google.com/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+- **Deployment**: [Google Cloud Run](https://cloud.google.com/)
 - **I18n**: [react-i18next](https://react.i18next.com/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
 
 ---
 
@@ -55,20 +45,20 @@ A "one-click" demonstration sequence for judges and presenters.
 
 ```text
 src/
+├── api/             # Gemini API integration and streaming logic
 ├── components/
-│   ├── chat/        # CivicGuide AI engine (aiResponses.js) & UI
-│   ├── journey/     # Personalized Journey logic & Progress Context
+│   ├── chat/        # CivicGuide AI engine & UI components
+│   ├── journey/     # Personalized Roadmap & Progress Context
 │   ├── mythbuster/  # Claim verification & MCC logic
 │   ├── phases/      # Educational modules (Registration, Polling, etc.)
-│   └── ui/          # Final polish: Onboarding, QuickToolbar (Demo Mode)
-├── locales/         # Multi-language JSON dictionaries
-├── data/            # Static election data & language configurations
-└── App.jsx          # Root layout & State management
+│   └── ui/          # Final polish: Onboarding, QuickToolbar
+├── locales/         # Multi-language JSON dictionaries (en, hi, mr, bn, ta, te)
+└── data/            # Static election data & language configurations
 ```
 
 ---
 
-## ⚡ Getting Started
+## ⚡ Local Development
 
 1. **Clone & Install**:
    ```bash
@@ -76,15 +66,35 @@ src/
    cd Election-Process-Education-Assistant
    npm install
    ```
-2. **Launch**:
+
+2. **Environment Variables**:
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+3. **Launch**:
    ```bash
    npm run dev
    ```
 
 ---
 
-## 🏆 Hackathon Vision
-This project aims to bridge the civic awareness gap by replacing dense manuals with an **AI-guided companion**. It empowers Gen-Z and first-time voters to participate confidently in Indian democracy through technology and personalized education.
+## ☁️ Deployment (Google Cloud Run)
+
+This project is configured for secure deployment via **Google Cloud Build**.
+
+1. **Authentication**:
+   ```bash
+   gcloud auth login
+   gcloud config set project [YOUR_PROJECT_ID]
+   ```
+
+2. **Deploy with Build Arguments**:
+   To keep the API key out of the Docker image layers, we use build arguments:
+   ```bash
+   gcloud builds submit --config cloudbuild.yaml --substitutions=_VITE_GEMINI_API_KEY=[YOUR_KEY]
+   ```
 
 ---
 
