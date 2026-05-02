@@ -1,0 +1,29 @@
+steps:
+  # 1. Build the container image using the API Key build argument
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '--build-arg', 'VITE_GEMINI_API_KEY=${_VITE_GEMINI_API_KEY}',
+      '-t', 'gcr.io/${PROJECT_ID}/election-edu',
+      '.'
+    ]
+
+  # 2. Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/${PROJECT_ID}/election-edu']
+
+  # 3. Deploy the container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args: [
+      'run', 'deploy', 'election-edu',
+      '--image', 'gcr.io/${PROJECT_ID}/election-edu',
+      '--region', 'us-central1',
+      '--allow-unauthenticated'
+    ]
+
+images:
+  - 'gcr.io/${PROJECT_ID}/election-edu'
+
+substitutions:
+  _VITE_GEMINI_API_KEY: '' # Expected to be passed during 'gcloud builds submit'
