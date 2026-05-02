@@ -1,4 +1,4 @@
-// ─── ChatMessage — individual message bubble ─────────────────────────────────
+import ReactMarkdown from 'react-markdown';
 import { Bot, User } from 'lucide-react';
 
 /**
@@ -35,14 +35,22 @@ export default function ChatMessage({ role, content }) {
   );
 }
 
-/** Renders structured AI response: short + optional steps + checklist + tip */
+/** Renders structured AI response with Markdown support */
 function AIContent({ content }) {
-  if (typeof content === 'string') return <p>{content}</p>;
+  const text = typeof content === 'string' ? content : content.short;
+  
   return (
-    <div className="space-y-2">
-      <p className={`font-medium leading-snug transition-all duration-300 ${content.isStreaming ? 'border-r-2 border-civic-400 animate-pulse-slow' : ''}`}>
-        {content.short}
-      </p>
+    <div className="space-y-2 overflow-hidden">
+      <div className={`
+        prose prose-sm max-w-none prose-slate
+        prose-headings:text-civic-800 prose-headings:font-bold prose-headings:mt-1 prose-headings:mb-1
+        prose-p:leading-snug prose-p:my-1
+        prose-li:my-0.5 prose-strong:text-civic-700
+        transition-all duration-300 
+        ${content.isStreaming ? 'border-r-2 border-civic-400 animate-pulse-slow' : ''}
+      `}>
+        <ReactMarkdown>{text}</ReactMarkdown>
+      </div>
 
       {content.steps && content.steps.length > 0 && (
         <ol className="space-y-1 pl-1">

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { MessageCircle, X, Send, Bot, Sparkles } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import { getAIResponse } from './aiResponses';
+import { streamGeminiResponse } from '../../api/gemini';
 import { ChatContext } from './ChatContext';
 
 // ── Optional: tweak the user profile for personalized responses ──────────────
@@ -41,29 +42,64 @@ export default function ChatAssistant() {
   // Consume context to receive external triggers from pages
   const chatCtx = useContext(ChatContext);
 
-  // ── Core send logic (reusable) ───────────────────────────────────────────
+  // ── Core send logic ──────────────────────────────────────────────────────
   const dispatchMessage = useCallback((text) => {
     const trimmed = text.trim();
     if (!trimmed) return;
-    const userMsg = { id: uid(), role: 'user', content: trimmed };
-    setMessages((prev) => [...prev, userMsg]);
-    setTyping(true);
     
-    const delay = 800 + Math.random() * 500;
-    setTimeout(() => {
-      const aiContent = getAIResponse(trimmed, USER_PROFILE, i18n.language);
-      setTyping(false);
-      streamResponse(aiContent);
-    }, delay);
+    const userMsg = { id: uid(), role: 'user', content: trimmed };
+    const msgId = uid();
+    const initMsg = { id: msgId, role: 'ai', content: { short: '', isStreaming: true } };
+    
+    setMessages((prev) => [...prev, userMsg, initMsg]);
+    setTyping(true);
+
+    let accumulated = '';
+
+    streamGeminiResponse(
+      trimmed,
+      i18n.language,
+      // onChunk — append streamed text
+      (chunk) => {
+        accumulated += chunk;
+        setTyping(false);
+        setMessages(prev => prev.map(m =>
+          m.id === msgId
+            ? { ...m, content: { short: accumulated, isStreaming: true } }
+            : m
+        ));
+      },
+      // onDone
+      () => {
+        setTyping(false);
+        setMessages(prev => prev.map(m =>
+          m.id === msgId
+            ? { ...m, content: { short: accumulated, isStreaming: false } }
+            : m
+        ));
+      },
+      // onError — fall back to local AI
+      (err) => {
+        if (err.message !== 'NO_API_KEY') {
+          console.warn('Gemini API error, falling back to local AI:', err.message);
+        }
+        setTyping(false);
+        // Remove the empty streaming placeholder
+        setMessages(prev => prev.filter(m => m.id !== msgId));
+        
+        // Fallback to local logic
+        const aiContent = getAIResponse(trimmed, USER_PROFILE, i18n.language);
+        streamResponse(aiContent);
+      }
+    );
   }, [i18n.language]);
 
-  // Gradually reveal AI response
+  // Gradually reveal AI response (local fallback path)
   const streamResponse = (fullContent) => {
     const id = uid();
     const isFullString = typeof fullContent === 'string';
     const shortText = isFullString ? fullContent : fullContent.short;
     
-    // Initial partial message
     const initialMsg = { 
       id, 
       role: 'ai', 
@@ -72,8 +108,7 @@ export default function ChatAssistant() {
     setMessages(prev => [...prev, initialMsg]);
 
     let currentText = '';
-    const speed = 20; // ms per char
-    
+    const speed = 20;
     let i = 0;
     const interval = setInterval(() => {
       if (i < shortText.length) {
@@ -86,7 +121,6 @@ export default function ChatAssistant() {
         i++;
       } else {
         clearInterval(interval);
-        // Once short text is done, show the full content (steps, checklist, etc.)
         setMessages(prev => prev.map(m => 
           m.id === id 
             ? { ...m, content: { ...(typeof fullContent === 'string' ? { short: fullContent } : fullContent), isStreaming: false } } 
